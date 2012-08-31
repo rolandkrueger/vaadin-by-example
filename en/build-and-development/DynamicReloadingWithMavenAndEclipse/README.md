@@ -22,3 +22,6 @@ Build
 -----
 
 To run the example, [Apache Maven](http://maven.apache.org) is needed. Run the example as described in the tutorial.
+
+- - - - - - - - - -
+This project is hosted on github: https://github.com/rolandkrueger/vaadin-by-example
