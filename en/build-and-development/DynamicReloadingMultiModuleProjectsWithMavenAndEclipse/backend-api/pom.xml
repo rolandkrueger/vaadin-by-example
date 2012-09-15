@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>backend-api</artifactId>
+	<name>Vaadin Web Application - Backend API</name>
+
+	<!-- In the backend API sub-module nothing special has to be configured. 
+		We're only defining the module's parent relationship, but this is not strictly 
+		necessary. -->
+
+	<parent>
+		<groupId>de.oio.vaadin.mavenmultimodule</groupId>
+		<artifactId>MavenMultiModule</artifactId>
+		<version>1.0</version>
+	</parent>
+
+</project>

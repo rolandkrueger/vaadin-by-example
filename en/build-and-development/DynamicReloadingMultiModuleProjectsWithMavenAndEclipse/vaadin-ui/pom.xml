@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>vaadin-ui</artifactId>
+	<packaging>war</packaging>
+	<name>Vaadin Web Application</name>
+
+	<parent>
+		<groupId>de.oio.vaadin.mavenmultimodule</groupId>
+		<artifactId>MavenMultiModule</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.24</version>
+				<configuration>
+					<stopPort>9966</stopPort>
+					<stopKey>MavenMultiModule</stopKey>
+					<!-- Redeploy every second if changes are detected -->
+					<scanIntervalSeconds>1</scanIntervalSeconds>
+
+					<!-- We could also activate manual redeployment where we'd have to hit 
+						enter in the console where Jetty is running to redeploy. -->
+					<!-- <reload>manual</reload> -->
+					<webAppConfig>
+						<contextPath>/MavenMultiModule</contextPath>
+						<baseResource implementation="org.mortbay.resource.ResourceCollection">
+							<resourcesAsCSV>src/main/webapp,${project.build.directory}/${project.build.finalName}</resourcesAsCSV>
+						</baseResource>
+						<!-- Add the backend API's classes to Jetty's classpath so that the 
+							server will be able to load the class files. -->
+						<extraClasspath>../backend-api/target/classes</extraClasspath>
+					</webAppConfig>
+
+					<!-- Add the backend API's classes as an additional scan target so that 
+						Jetty will realize when these classes have changed. -->
+					<scanTargets>
+						<scanTarget>../backend-api/target/classes</scanTarget>
+					</scanTargets>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<!-- Define the 'development' profile. -->
+	<profiles>
+		<profile>
+			<id>development</id>
+			<properties>
+				<!-- Redirect the compiler output to the WEB-INF folder for this profile 
+					where Jetty can scan it for changes. -->
+				<target.dir>target/${project.build.finalName}/WEB-INF</target.dir>
+			</properties>
+			<dependencies>
+				<!-- Redefine the dependency on the sub-module with the scope set to 
+					'provided'. The dependency does not have to be copied to WEB-INF/lib in the 
+					development profile as we already have added this dependency to Jetty's classpath 
+					in the Jetty configuration section. -->
+				<dependency>
+					<groupId>de.oio.vaadin.mavenmultimodule</groupId>
+					<artifactId>backend-api</artifactId>
+					<version>${project.version}</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+		<!-- For normal (non-development) builds define the dependency on the sub-module as usual. -->
+		<dependency>
+			<groupId>de.oio.vaadin.mavenmultimodule</groupId>
+			<artifactId>backend-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

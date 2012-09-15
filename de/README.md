@@ -6,4 +6,4 @@ Beispielprojekte für deutschsprachige Artikel
 Unterhalb dieses Verzeichnisses sollen Beispielprojekte eingestellt werden, deren zugehörige Beschreibung auf Deutsch geschrieben ist.
 
 - - - - - - - - - -
-This project is hosted on github: https://github.com/rolandkrueger/vaadin-by-example
+This project is hosted on GitHub: https://github.com/rolandkrueger/vaadin-by-example
