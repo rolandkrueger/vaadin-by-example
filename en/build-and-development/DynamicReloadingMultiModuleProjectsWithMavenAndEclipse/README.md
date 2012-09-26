@@ -10,7 +10,7 @@ This example shows how a multi-module Maven project has to be configured to enab
 
 * __Tutorial__: [Dynamic Reloading of Vaadin Multi-Module Applications With Maven and Eclipse, Pt. II](http://blog.oio.de/2012/09/25/dynamic-reloading-of-vaadin-multi-module-applications-with-maven-and-eclipse-pt-ii/)
 
-* __Author__: Roland Kr�ger
+* __Author__: Roland Krüger
 
 * __Publishing Date__: September 16th, 2012
 
