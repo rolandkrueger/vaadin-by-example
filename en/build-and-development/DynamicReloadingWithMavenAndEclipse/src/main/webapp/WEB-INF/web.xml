@@ -8,10 +8,10 @@
     </context-param>
    <servlet>
     <servlet-name>DynamicReloadingWithMavenAndEclipse</servlet-name>
-    <servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
+    <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
     <init-param>
-      <description>Vaadin root class to use</description>
-      <param-name>root</param-name>
+      <description>Vaadin UI to display</description>
+      <param-name>UI</param-name>
       <param-value>de.oio.blog.vaadin.maven.MyApplication</param-value>
     </init-param>
   </servlet>
