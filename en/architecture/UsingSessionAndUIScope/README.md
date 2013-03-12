@@ -10,6 +10,8 @@ This demo application demonstrates the two different scopes of a Vaadin 7 sessio
 
 * __Tutorial__: [Vaadin’s Variable Scopes: VaadinSession and UI](http://blog.oio.de)
 
+* __Online Demo__: http://rkrueger.jelastic.servint.net/VaadinSessionAndUIScope/
+
 * __Author__: Roland Krüger
 
 * __Publishing Date__: February 17th, 2013
