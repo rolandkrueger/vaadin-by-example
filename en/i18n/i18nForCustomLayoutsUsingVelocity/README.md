@@ -1,23 +1,22 @@
-
-==============================================================
+i18n for Vaadin Applications Using CustomLayouts and Apache Velocity
+====================================================================
 
 Abstract
 --------
 
+This example demonstrates how Vaadin CustomLayout templates can be localized with the Apache Velocity templating engine. By that, it is possible to translate static text used in CustomLayouts into a user's locale.
 
 - - - - - - - - -
 
 * __Tutorial__: [](http://blog.oio.de)
 
-* __Online Demo__: 
-
 * __Author__: Roland Krüger
 
-* __Publishing Date__: 
+* __Publishing Date__: April 17th, 2013
 
 * __Tutorial Language__: English
 
-* __Vaadin Version__: 7.0.0 or higher
+* __Vaadin Version__: any
 
 Build
 -----
@@ -30,3 +29,5 @@ After the Jetty container was successfully started, you can visit the demo appli
 
 - - - - - - - - - -
 This project is hosted on GitHub: https://github.com/rolandkrueger/vaadin-by-example
+
+The flag icon resources are taken from Mark James' website famfamfam.com.
