@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -165,7 +166,12 @@ public class MainApplicationUI extends UI {
 
     // return the result as an InputStream which can be used to initialize a
     // CustomLayout
-    return new ByteArrayInputStream(writer.toString().getBytes());
+    try {
+      return new ByteArrayInputStream(writer.toString().getBytes("UTF-8"));
+    } catch (UnsupportedEncodingException e) {
+      // should not happen
+    }
+    return null;
   }
 
   /**
