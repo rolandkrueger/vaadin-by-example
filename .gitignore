@@ -5,6 +5,7 @@ gwt-unitCache
 .settings
 .project
 .classpath
+ajcore.*
 
 # Package Files #
 *.jar
