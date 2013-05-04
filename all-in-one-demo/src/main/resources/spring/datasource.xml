@@ -22,7 +22,6 @@
 		<property name="dataSource" ref="coreDataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>de.oio.vaadin.data.Contact</value>
 			</list>
 		</property>
 
