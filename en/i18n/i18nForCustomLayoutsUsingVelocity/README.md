@@ -8,11 +8,11 @@ This example demonstrates how Vaadin CustomLayout templates can be localized wit
 
 - - - - - - - - -
 
-* __Tutorial__: [](http://blog.oio.de)
+* __Tutorial__: [i18n for Vaadin Applications Using CustomLayouts and Apache Velocity](http://blog.oio.de/2013/05/07/i18n-for-vaadin-applications-using-customlayouts-and-apache-velocity/)
 
 * __Author__: Roland Krüger
 
-* __Publishing Date__: April 17th, 2013
+* __Publishing Date__: May 7th, 2013
 
 * __Tutorial Language__: English
 
@@ -30,4 +30,4 @@ After the Jetty container was successfully started, you can visit the demo appli
 - - - - - - - - - -
 This project is hosted on GitHub: https://github.com/rolandkrueger/vaadin-by-example
 
-The flag icon resources are taken from Mark James' website famfamfam.com.
+Credits for the flag icon resources go to Mark James (famfamfam.com).
