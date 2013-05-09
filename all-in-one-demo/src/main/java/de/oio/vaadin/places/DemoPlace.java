@@ -18,7 +18,7 @@ public class DemoPlace extends AbstractPlace {
 
 	@Override
 	public void activate() {
-		DemoUI.getCurrent().getViewManager().showDemoSelectionView();
+		DemoUI.getCurrent().getViewManager().showDemoView(demo);
 	}
 
 }

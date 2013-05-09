@@ -7,4 +7,5 @@ public class DemoInfo {
 	private String codeHostingURI;
 	private String shortDescription;
 	private String blogPostURI;
+	private String blogPostTitle;
 }

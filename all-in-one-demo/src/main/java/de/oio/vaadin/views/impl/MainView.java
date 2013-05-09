@@ -16,4 +16,5 @@ public class MainView extends CustomLayoutView {
 	public void setContent(Component content) {
 		getLayout().addComponent(content, "_main_panel_");
 	}
+
 }

@@ -8,6 +8,8 @@ import org.vaadin.appbase.session.SessionContext;
 
 import com.vaadin.ui.UI;
 
+import de.oio.vaadin.DemoUI;
+import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.views.IView;
 import de.oio.vaadin.views.impl.AboutView;
 import de.oio.vaadin.views.impl.DemoSelectionView;
@@ -41,7 +43,8 @@ public class ViewManager extends AbstractUsesServiceProvider {
 	}
 
 	public void showDemoSelectionView() {
-		activateView(new DemoSelectionView(templatingService, context));
+		activateView(new DemoSelectionView(templatingService, context, DemoUI
+				.getCurrent().getDemos().values()));
 	}
 
 	public void showHomeView() {
@@ -64,5 +67,9 @@ public class ViewManager extends AbstractUsesServiceProvider {
 	public void resetViews() {
 		mainView = null;
 		ui.setContent(getMainView().getContent());
+	}
+
+	public void showDemoView(AbstractDemo demo) {
+		getMainView().setContent(demo.getView());
 	}
 }

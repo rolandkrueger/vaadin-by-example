@@ -9,7 +9,9 @@
     </encoder>
   </appender>
   
+  <logger name="org.vaadin.appbase" level="TRACE" />
   <logger name="de.oio.vaadin" level="TRACE" />
+  <logger name="org.roklib" level="INFO" />
 
   <root level="INFO">
     <appender-ref ref="STDOUT" />
