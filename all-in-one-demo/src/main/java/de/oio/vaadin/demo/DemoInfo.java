@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class DemoInfo {
 	private String codeHostingURI;
-	private String shortDescription;
+	private String shortDescriptionKey;
 	private String blogPostURI;
 	private String blogPostTitle;
 }

@@ -13,6 +13,7 @@ import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.views.IView;
 import de.oio.vaadin.views.impl.AboutView;
 import de.oio.vaadin.views.impl.DemoSelectionView;
+import de.oio.vaadin.views.impl.DemoView;
 import de.oio.vaadin.views.impl.HomeView;
 import de.oio.vaadin.views.impl.MainView;
 
@@ -70,6 +71,6 @@ public class ViewManager extends AbstractUsesServiceProvider {
 	}
 
 	public void showDemoView(AbstractDemo demo) {
-		getMainView().setContent(demo.getView());
+		activateView(new DemoView(templatingService, context, demo));
 	}
 }
