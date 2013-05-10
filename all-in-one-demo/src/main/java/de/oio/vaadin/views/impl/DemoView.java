@@ -1,5 +1,8 @@
 package de.oio.vaadin.views.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
@@ -13,9 +16,12 @@ import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.views.CustomLayoutView;
 
+@Configurable
 public class DemoView extends CustomLayoutView {
 
 	private AbstractDemo demo;
+	@Autowired
+	private IMessageProvider messageProvider;
 
 	public DemoView(ITemplatingService templatingService,
 			SessionContext context, AbstractDemo demo) {
@@ -32,20 +38,17 @@ public class DemoView extends CustomLayoutView {
 				new Label(demo.getDemoInfo().getBlogPostTitle()),
 				"demoHeadline");
 		DemoInfoPanel demoInfoPanel = new DemoInfoPanel(getTemplatingService(),
-				getContext(), demo);
+				getContext());
 		demoInfoPanel.buildLayout();
 		getLayout()
 				.addComponent(demoInfoPanel.getContent(), "descriptionPanel");
 		getLayout().addComponent(demo.getView(), "mainPanel");
 	}
 
-	private static class DemoInfoPanel extends CustomLayoutView {
-		private AbstractDemo demo;
-
+	private class DemoInfoPanel extends CustomLayoutView {
 		public DemoInfoPanel(ITemplatingService templatingService,
-				SessionContext context, AbstractDemo demo) {
+				SessionContext context) {
 			super(templatingService, context, "demoInfo");
-			this.demo = demo;
 		}
 
 		@Override
@@ -63,8 +66,9 @@ public class DemoView extends CustomLayoutView {
 					new Link(demo.getDemoInfo().getCodeHostingURI(),
 							new ExternalResource(demo.getDemoInfo()
 									.getCodeHostingURI())), "linkToDemoCode");
-			getLayout().addComponent(new Label("Short description"),
-					"shortDescription");
+			getLayout().addComponent(
+					new Label(messageProvider.getMessage(demo.getDemoInfo()
+							.getShortDescriptionKey())), "shortDescription");
 		}
 
 	}

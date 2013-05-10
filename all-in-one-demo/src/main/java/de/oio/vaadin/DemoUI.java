@@ -18,6 +18,7 @@ import com.vaadin.server.VaadinService;
 import com.vaadin.ui.UI;
 
 import de.oio.vaadin.demo.AbstractDemo;
+import de.oio.vaadin.demo.i18nForCustomLayoutsUsingVelocity.I18nForCustomLayoutsUsingVelocityDemo;
 import de.oio.vaadin.demo.uiscopedemo.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.manager.URIActionHandlerProvider;
 import de.oio.vaadin.manager.ViewManager;
@@ -62,6 +63,10 @@ public class DemoUI extends UI {
 	private void buildDemos() {
 		demos = new HashMap<>();
 		AbstractDemo demo = new UsingSessionAndUIScopeDemo(templatingService,
+				context);
+		demos.put(demo.getName(), demo);
+
+		demo = new I18nForCustomLayoutsUsingVelocityDemo(templatingService,
 				context);
 		demos.put(demo.getName(), demo);
 
