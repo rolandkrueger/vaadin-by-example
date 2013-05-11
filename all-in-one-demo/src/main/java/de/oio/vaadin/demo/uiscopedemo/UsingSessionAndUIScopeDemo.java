@@ -9,6 +9,8 @@ import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.DemoInfo;
 
 public class UsingSessionAndUIScopeDemo extends AbstractDemo {
+	public final static String SESSION_SCOPED_VALUE_ID = "sessionScopedValue";
+	public final static String DEMO_NAME = "UsingSessionAndUIScope";
 	private DemoInfo info;
 
 	public UsingSessionAndUIScopeDemo(ITemplatingService templatingService,
@@ -23,7 +25,7 @@ public class UsingSessionAndUIScopeDemo extends AbstractDemo {
 
 	@Override
 	public String getName() {
-		return "UsingSessionAndUIScope";
+		return DEMO_NAME;
 	}
 
 	@Override

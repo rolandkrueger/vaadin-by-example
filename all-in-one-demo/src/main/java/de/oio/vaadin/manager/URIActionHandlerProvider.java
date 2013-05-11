@@ -1,6 +1,8 @@
 package de.oio.vaadin.manager;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import lombok.Getter;
 
@@ -26,10 +28,13 @@ public class URIActionHandlerProvider {
 	private AbstractURIActionHandler aboutHandler;
 	private AbstractURIActionHandler demosHandler;
 	private DispatchingURIActionHandler demoHandler;
+	@Getter
+	private Map<String, AbstractURIActionHandler> demoHandlersMap;
 
 	public URIActionHandlerProvider(URIActionManager uriActionManager) {
 		Preconditions.checkNotNull(uriActionManager);
 		this.uriActionManager = uriActionManager;
+		demoHandlersMap = new HashMap<String, AbstractURIActionHandler>();
 	}
 
 	public void buildURILayout() {
@@ -58,6 +63,7 @@ public class URIActionHandlerProvider {
 					demo.getName(), new DemoPlace(demo));
 			demoHandler.addSubHandler(handler);
 			demo.setUriHandler(handler);
+			demoHandlersMap.put(demo.getName(), handler);
 		}
 	}
 }
