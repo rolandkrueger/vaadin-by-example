@@ -11,6 +11,7 @@ import org.vaadin.appbase.VaadinUIServices;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
@@ -24,6 +25,7 @@ import de.oio.vaadin.demo.uiscopedemo.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.manager.URIActionHandlerProvider;
 import de.oio.vaadin.manager.ViewManager;
 
+@PreserveOnRefresh
 @Theme("demo")
 @Configurable(preConstruction = true)
 public class DemoUI extends UI {
