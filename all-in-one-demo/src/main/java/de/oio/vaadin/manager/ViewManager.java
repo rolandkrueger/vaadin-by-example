@@ -72,6 +72,7 @@ public class ViewManager implements IMainView.Presenter {
 		mainView = null;
 		ui.setContent(getMainView().getContent());
 		VaadinUIServices.get().getPlaceManager().reactivateCurrentPlace();
+		getMainView().setCurrentLocale(context.getLocale());
 	}
 
 	public void showDemoView(AbstractDemo demo) {

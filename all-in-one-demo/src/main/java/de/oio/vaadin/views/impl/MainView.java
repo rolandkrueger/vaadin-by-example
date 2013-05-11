@@ -18,6 +18,7 @@ public class MainView extends CustomLayoutView implements IMainView,
 		Property.ValueChangeListener {
 	private IMessageProvider messageProvider;
 	private IMainView.Presenter presenter;
+	private LanguageSelector languageSelector;
 
 	public MainView(ITemplatingService templatingService,
 			SessionContext context, IMessageProvider messageProvider) {
@@ -32,8 +33,7 @@ public class MainView extends CustomLayoutView implements IMainView,
 	@Override
 	public void buildLayout() {
 		super.buildLayout();
-		LanguageSelector languageSelector = new LanguageSelector(
-				messageProvider);
+		languageSelector = new LanguageSelector(messageProvider);
 		languageSelector.addValueChangeListener(this);
 		getLayout().addComponent(languageSelector, "languageSelector");
 	}
@@ -47,5 +47,10 @@ public class MainView extends CustomLayoutView implements IMainView,
 	public void valueChange(ValueChangeEvent event) {
 		Locale locale = (Locale) event.getProperty().getValue();
 		presenter.changeLanguage(locale);
+	}
+
+	@Override
+	public void setCurrentLocale(Locale currentLocale) {
+		languageSelector.setValue(new Locale(currentLocale.getLanguage()));
 	}
 }
