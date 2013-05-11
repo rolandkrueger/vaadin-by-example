@@ -18,6 +18,7 @@ import com.vaadin.server.VaadinService;
 import com.vaadin.ui.UI;
 
 import de.oio.vaadin.demo.AbstractDemo;
+import de.oio.vaadin.demo.customhighlighter.ComponentHighlighterDemo;
 import de.oio.vaadin.demo.i18nForCustomLayoutsUsingVelocity.I18nForCustomLayoutsUsingVelocityDemo;
 import de.oio.vaadin.demo.uiscopedemo.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.manager.URIActionHandlerProvider;
@@ -39,14 +40,11 @@ public class DemoUI extends UI {
 
 	@Override
 	public void init(VaadinRequest request) {
+
 		Page.getCurrent().setTitle("Vaadin By Example Demo");
 
 		VaadinUIServices uiServices = new VaadinUIServices();
 		uiServices.startUp();
-
-		templatingService
-				.setResourceLoaderRoot("http://localhost:8080/vaadin-by-example-demo/VAADIN/themes/demo/layouts/");
-		templatingService.setBundleNames("messages,general");
 
 		context.setLocale(getLocale());
 
@@ -62,16 +60,17 @@ public class DemoUI extends UI {
 
 	private void buildDemos() {
 		demos = new HashMap<>();
-		AbstractDemo demo = new UsingSessionAndUIScopeDemo(templatingService,
-				context);
-		demos.put(demo.getName(), demo);
-
-		demo = new I18nForCustomLayoutsUsingVelocityDemo(templatingService,
-				context);
-		demos.put(demo.getName(), demo);
+		addDemo(new UsingSessionAndUIScopeDemo(templatingService, context));
+		addDemo(new I18nForCustomLayoutsUsingVelocityDemo(templatingService,
+				context));
+		addDemo(new ComponentHighlighterDemo(templatingService, context));
 
 		uriActionHandlerProvider.registerDemos(demos.values());
 		uriActionHandlerProvider.getUriActionManager().logActionOverview();
+	}
+
+	private void addDemo(AbstractDemo demo) {
+		demos.put(demo.getName(), demo);
 	}
 
 	public static DemoUI getCurrent() {

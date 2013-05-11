@@ -12,7 +12,13 @@
 	<context:spring-configured />
 	<context:component-scan base-package="org.vaadin.appbase" />
 	<context:component-scan base-package="de.oio.vaadin" />
-	
+
+	<!-- Configuration hint from http://stackoverflow.com/questions/9605828/email-internationalization-using-velocity-freemarker-templates -->
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="/VAADIN/themes/demo/layouts/" />
+	</bean>
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
@@ -21,6 +27,8 @@
 				<value>general</value>
 			</list>
 		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="fallbackToSystemLocale" value="false" />
 	</bean>
 
 </beans>
