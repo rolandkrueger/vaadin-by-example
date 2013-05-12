@@ -12,6 +12,7 @@ import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 
 import com.vaadin.annotations.PreserveOnRefresh;
+import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.ObjectProperty;
@@ -30,6 +31,7 @@ import de.oio.vaadin.manager.ViewManager;
 
 @PreserveOnRefresh
 @Theme("demo")
+@StyleSheet("http://fonts.googleapis.com/css?family=Droid+Sans")
 @Configurable(preConstruction = true)
 public class DemoUI extends UI {
 	@Autowired

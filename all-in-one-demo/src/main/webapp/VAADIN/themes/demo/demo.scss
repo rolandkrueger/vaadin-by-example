@@ -1,0 +1,10 @@
+@import "../reindeer/reindeer.scss";
+
+@mixin demo 
+{ 
+	@include reindeer;
+
+	* {
+		font-family: 'Droid Sans', Verdana, sans-serif;
+  	}
+}
