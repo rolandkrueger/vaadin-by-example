@@ -1,4 +1,4 @@
-package de.oio.vaadin.demo.customhighlighter;
+package de.oio.vaadin.demo.componenthighlighter;
 
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;

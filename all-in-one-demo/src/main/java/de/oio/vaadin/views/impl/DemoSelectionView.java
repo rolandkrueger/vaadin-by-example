@@ -2,6 +2,9 @@ package de.oio.vaadin.views.impl;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
@@ -14,9 +17,12 @@ import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.views.CustomLayoutView;
 
+@Configurable
 public class DemoSelectionView extends CustomLayoutView {
 
 	private Collection<AbstractDemo> demos;
+	@Autowired
+	private IMessageProvider messageProvider;
 
 	public DemoSelectionView(ITemplatingService templatingService,
 			SessionContext context, Collection<AbstractDemo> demos) {
@@ -32,7 +38,7 @@ public class DemoSelectionView extends CustomLayoutView {
 		getLayout().addComponent(selector, "selectionList");
 	}
 
-	private static class DemoSelector extends VerticalLayout {
+	private class DemoSelector extends VerticalLayout {
 
 		public DemoSelector(Collection<AbstractDemo> demos) {
 			if (DemoUI.isDebugMode()) {
@@ -41,11 +47,17 @@ public class DemoSelectionView extends CustomLayoutView {
 
 			for (AbstractDemo demo : demos) {
 				// FIXME: hard-coded #!
-				Link link = new Link(demo.getName(), new ExternalResource("#!"
-						+ demo.getUriHandler().getParameterizedActionURI(true)
-								.toString()));
+				Link link = new Link(messageProvider.getMessage(demo
+						.getDemoInfo().getDemoHeadlineKey()),
+						new ExternalResource("#!"
+								+ demo.getUriHandler()
+										.getParameterizedActionURI(true)
+										.toString()));
+				link.addStyleName("demoSelectorLink");
 				addComponent(link);
 			}
+
+			addStyleName("demoSelector");
 		}
 	}
 }

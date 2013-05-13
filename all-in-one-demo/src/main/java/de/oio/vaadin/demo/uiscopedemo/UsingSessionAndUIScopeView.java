@@ -1,6 +1,9 @@
 package de.oio.vaadin.demo.uiscopedemo;
 
 import org.roklib.webapps.uridispatching.AbstractURIActionHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 
@@ -21,7 +24,11 @@ import com.vaadin.ui.VerticalLayout;
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.views.CustomLayoutView;
 
+@Configurable(preConstruction = true)
 public class UsingSessionAndUIScopeView extends CustomLayoutView {
+	@Autowired
+	private IMessageProvider messageProvider;
+
 	/**
 	 * Textfield for changing the UI-scoped variable.
 	 */
@@ -64,12 +71,10 @@ public class UsingSessionAndUIScopeView extends CustomLayoutView {
 		// object for this window will be created by the framework. All field
 		// variables of this class live in this new UI object and are thus
 		// multiplied in memory for every new UI object.
-		layout.addComponent(new Label(
-				"Open this application in a new browser window/tab <a href=\"#!"
-						+ demoHandler.getParameterizedActionURI(true)
-						+ "\" target=\"_blank\" style=\"color: red;\">with this link</a> and"
-						+ " refresh the browser contents after having edited the scoped variables.",
-				ContentMode.HTML));
+		layout.addComponent(new Label(messageProvider.getMessage(
+				"UsingSessionAndUIScope.openThisApplication",
+				new Object[] { demoHandler.getParameterizedActionURI(true)
+						.toString() }), ContentMode.HTML));
 
 		DemoUI.getCurrentUIScopedVariable().addValueChangeListener(
 				new ValueChangeListener() {
@@ -81,7 +86,8 @@ public class UsingSessionAndUIScopeView extends CustomLayoutView {
 
 		// Print the ID of the current UI. This ID is automatically assigned by
 		// Vaadin to new UI objects.
-		layout.addComponent(new Label("Current UI's ID: "
+		layout.addComponent(new Label(messageProvider
+				.getMessage("UsingSessionAndUIScope.currentUIsID")
 				+ String.valueOf(UI.getCurrent().getUIId())));
 
 		layout.addComponent(createFormLayout());
@@ -89,7 +95,7 @@ public class UsingSessionAndUIScopeView extends CustomLayoutView {
 
 		// Add a refresh button that will update the overview table with the
 		// most current values from each currently active UI object.
-		Button refreshBtn = new Button("Refresh");
+		Button refreshBtn = new Button(messageProvider.getMessage("refresh"));
 		refreshBtn.addClickListener(new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -111,14 +117,14 @@ public class UsingSessionAndUIScopeView extends CustomLayoutView {
 	 */
 	private void refreshOverviewTable() {
 		StringBuilder buf = new StringBuilder();
-		buf.append("<h2>Overview of all UI scoped variables in the current session</h2>");
+		buf.append(messageProvider
+				.getMessage("UsingSessionAndUIScope.overviewHeadline"));
 
 		// add the number of currently active UI objects
-		buf.append("There are currently ")
-				.append(VaadinSession.getCurrent().getUIs().size())
-				.append(" UI objects active for this session (Session ID <em>");
-		buf.append(VaadinSession.getCurrent().getSession().getId()).append(
-				"</em>).");
+		buf.append(messageProvider.getMessage(
+				"UsingSessionAndUIScope.activeUIobjects", new Object[] {
+						VaadinSession.getCurrent().getUIs().size(),
+						VaadinSession.getCurrent().getSession().getId() }));
 
 		// add a table showing the UI-scoped variable values for each currently
 		// active UI object
@@ -148,10 +154,15 @@ public class UsingSessionAndUIScopeView extends CustomLayoutView {
 	 */
 	private FormLayout createFormLayout() {
 		FormLayout formLayout = new FormLayout();
-		formLayout.setCaption("Edit session/UI scoped variables:");
-		uiScopedValueTF = new TextField("UI-scoped value:",
+		formLayout.setCaption(messageProvider
+				.getMessage("UsingSessionAndUIScope.editVariables"));
+		uiScopedValueTF = new TextField(
+				messageProvider
+						.getMessage("UsingSessionAndUIScope.uiScopedValue"),
 				DemoUI.getCurrentUIScopedVariable());
-		sessionScopedValueTF = new TextField("Session-scoped value:",
+		sessionScopedValueTF = new TextField(
+				messageProvider
+						.getMessage("UsingSessionAndUIScope.sessionScopedValue"),
 				DemoUI.getSessionScopedVariable());
 
 		uiScopedValueTF.setImmediate(true);

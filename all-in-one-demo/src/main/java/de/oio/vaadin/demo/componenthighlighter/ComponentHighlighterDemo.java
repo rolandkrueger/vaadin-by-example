@@ -1,4 +1,4 @@
-package de.oio.vaadin.demo.customhighlighter;
+package de.oio.vaadin.demo.componenthighlighter;
 
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
@@ -27,6 +27,7 @@ public class ComponentHighlighterDemo extends AbstractDemo {
 		info.setBlogPostURI("http://blog.oio.de");
 		info.setCodeHostingURI("https://github.com/rolandkrueger/ComponentHighlighter");
 		info.setShortDescriptionKey("componentHighlighter.shortDescription");
+		info.setDemoHeadlineKey("componentHighlighter.headline");
 		return info;
 	}
 

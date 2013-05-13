@@ -1,10 +1,182 @@
 @import "../reindeer/reindeer.scss";
 
-@mixin demo 
-{ 
-	@include reindeer;
+$link-color-header : white;
+$link-color : #008AE6;
+$link-color-hover : #006EB8;
+$green : #1D7A06;
 
+$gray-gradient-start : #66656B;
+$gray-gradient-end : #9AA4AB;
+
+@mixin roundedCorner {
+	border-radius: 20px;
+}
+	
+@mixin dropShadow {
+	box-shadow: 8px 8px 4px #969696;
+}
+
+@mixin whiteBackground {
+	background-color: white;
+}
+
+@mixin link-header {
+	color: $link-color-header;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+@mixin link {
+	color: $link-color;
+  	text-decoration: none; 
+}
+
+@mixin link-hover {
+	border-bottom: 1px dotted $link-color;
+  	color: $link-color-hover;
+}
+
+@mixin margin {
+	margin: 15px;
+}
+
+@mixin monospace-font {
+	font-family: monospace;
+}
+	
+@mixin gray-gradient {
+		background:-moz-linear-gradient(top, $gray-gradient-start, $gray-gradient-end); /* Firefox */
+		background:-webkit-linear-gradient(top, $gray-gradient-start, $gray-gradient-end); /* Safari, Chrome */
+		background:-o-linear-gradient(top, $gray-gradient-start, $gray-gradient-end); /* Opera */
+		background:-ms-linear-gradient(top, $gray-gradient-start, $gray-gradient-end); /* IE */
+		background:linear-gradient(top, $gray-gradient-start, $gray-gradient-end); /* W3C Standard */
+}
+	
+@mixin demo { 
+	@include reindeer;
+	
 	* {
 		font-family: 'Droid Sans', Verdana, sans-serif;
   	}
+  	
+  	a, a:visited {
+  		@include link;
+  	}
+  	
+  	a:hover  {
+  		@include link-hover;
+  	}
+  	
+  	.v-link span {
+  		@include link;
+  	}
+  	
+  	.v-link a:visited span {
+  		@include link;
+  	}
+  	
+  	#headNavigation {
+  		background: #383738;
+  		font-size: 2em;
+  		padding: 3px;
+  		padding-left: 20px;
+  		height: 50px;
+		@include link-header;
+		font-weight: normal;
+		@include gray-gradient;
+		box-shadow: 4px 4px 4px #969696;
+  		
+  		a  {  			
+  			@include link-header;
+  			padding-right: 10px;
+  			padding-left: 10px;
+  		}
+  		
+  		a:hover  {
+  			text-decoration: none;
+  			border-bottom: 0;
+  			background-color: $link-color;
+  			padding-top: 13px;
+  			padding-bottom: 15px;
+  		}
+  	}
+  	
+  	#headNavigationLeft {
+  		float:left;
+  		padding-top: 10px;
+  	}
+  	
+  	#headNavigationRight {
+  		position: absolute;
+  		right: 1%;
+  	}
+  	
+  	#headline {
+  		font-size: 3em;
+  		font-weight: bold;
+  		padding: 20px;
+  		background: url(img/mosaic-dark.png) !important;
+  		color: white;
+  	}
+  	
+  	.demoHeadline {
+  		.v-label {
+  			font-size: 2em;
+  			font-weight: bold;
+  			line-height: 32px;
+  			@include margin;
+  		}
+  	}
+  	
+  	.infoPanel {
+  		@include roundedCorner;
+  		@include dropShadow;
+  		@include whiteBackground;
+  		border: 3px solid #444;
+  		@include margin;
+  		padding: 10px;
+  		max-width: 1000px;
+  		margin-left: auto;
+  		margin-right: auto;
+  	}
+  	
+  	.v-captiontext {
+  		color: $link-color-header;
+  	}
+  	
+  	.demoSelector, .demoSelectorLink {
+  		@include margin;
+  	}
+  	
+  	.demoInfo {
+  		li {
+  			margin-bottom: 10px;
+  			font-size: 1.2em;
+  		}
+  	}
+  	
+  	.demoSelectorLink {
+		padding-left: 34px;
+		height: 20px;
+		background: url(icons/hand_right.png);
+		background-repeat: no-repeat;
+  	}
+  	
+  	.code {
+  		@include monospace-font;
+  	}
+  	
+  	.sourcecode {
+  		@include monospace-font;
+  		color: $green;
+  	}
+  	
+  	pre {
+  		@include monospace-font;
+  		color: $green;
+  	}
+}
+
+.v-app {
+	background: url(img/mosaic-bg.png) !important;
 }

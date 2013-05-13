@@ -27,6 +27,7 @@ public class I18nForCustomLayoutsUsingVelocityDemo extends AbstractDemo {
 		info.setBlogPostURI("http://blog.oio.de/2013/05/07/i18n-for-vaadin-applications-using-customlayouts-and-apache-velocity/");
 		info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/i18n/i18nForCustomLayoutsUsingVelocity");
 		info.setShortDescriptionKey("i18nForCustomLayoutsUsingVelocity.shortDescription");
+		info.setDemoHeadlineKey("i18nForCustomLayoutsUsingVelocity.headline");
 		return info;
 	}
 

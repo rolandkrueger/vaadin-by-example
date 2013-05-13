@@ -21,6 +21,7 @@ public class UsingSessionAndUIScopeDemo extends AbstractDemo {
 		info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/architecture/UsingSessionAndUIScope");
 		info.setBlogPostTitle("Vaadin’s Variable Scopes: VaadinSession and UI");
 		info.setShortDescriptionKey("UsingSessionAndUIScope.shortDescription");
+		info.setDemoHeadlineKey("UsingSessionAndUIScope.headline");
 	}
 
 	@Override

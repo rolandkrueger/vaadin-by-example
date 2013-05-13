@@ -27,7 +27,8 @@ public class CustomLayoutView extends AbstractView {
 		layout = createTranslatedCustomLayout(templateName);
 		if (DemoUI.isDebugMode()) {
 			new ComponentHighlighterExtension(getLayout())
-					.setComponentDebugLabel(getClass().getName());
+					.setComponentDebugLabel(getClass().getName()
+							+ " (template name: " + templateName + ".html)");
 		}
 	}
 

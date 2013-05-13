@@ -34,9 +34,6 @@ public class DemoView extends CustomLayoutView {
 	public void buildLayout() {
 		super.buildLayout();
 
-		getLayout().addComponent(
-				new Label(demo.getDemoInfo().getBlogPostTitle()),
-				"demoHeadline");
 		DemoInfoPanel demoInfoPanel = new DemoInfoPanel(getTemplatingService(),
 				getContext());
 		demoInfoPanel.buildLayout();
@@ -58,6 +55,9 @@ public class DemoView extends CustomLayoutView {
 				new ComponentHighlighterExtension(getLayout());
 			}
 
+			getLayout().addComponent(
+					new Label(messageProvider.getMessage(demo.getDemoInfo()
+							.getDemoHeadlineKey())), "demoHeadline");
 			getLayout().addComponent(
 					new Link(demo.getDemoInfo().getBlogPostTitle(),
 							new ExternalResource(demo.getDemoInfo()
