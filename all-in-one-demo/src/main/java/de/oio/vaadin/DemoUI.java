@@ -59,7 +59,9 @@ public class DemoUI extends UI {
 		VaadinUIServices uiServices = new VaadinUIServices();
 		uiServices.startUp();
 
-		context.setLocale(getLocale());
+		if (context.getLocale() == null) {
+			context.setLocale(getLocale());
+		}
 
 		uriActionHandlerProvider = new URIActionHandlerProvider(
 				uiServices.getUriActionManager());
