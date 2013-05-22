@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.vaadin.appbase.components.CustomLayoutView;
 import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
 
 import com.vaadin.server.ExternalResource;
@@ -24,9 +22,8 @@ public class DemoSelectionView extends CustomLayoutView {
 	@Autowired
 	private IMessageProvider messageProvider;
 
-	public DemoSelectionView(ITemplatingService templatingService,
-			SessionContext context, Collection<AbstractDemo> demos) {
-		super(templatingService, context, "demoselection");
+	public DemoSelectionView(Collection<AbstractDemo> demos) {
+		super("demoselection");
 		this.demos = demos;
 	}
 

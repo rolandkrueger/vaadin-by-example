@@ -33,8 +33,7 @@ public class ComponentHighlighterDemo extends AbstractDemo {
 
 	@Override
 	public Component getView() {
-		ComponentHighlighterDemoView view = new ComponentHighlighterDemoView(
-				getTemplatingService(), getContext());
+		ComponentHighlighterDemoView view = new ComponentHighlighterDemoView();
 		view.buildLayout();
 		return view.getContent();
 	}

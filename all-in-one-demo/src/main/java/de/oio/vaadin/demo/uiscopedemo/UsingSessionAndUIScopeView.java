@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.vaadin.appbase.components.CustomLayoutView;
 import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -46,9 +44,8 @@ public class UsingSessionAndUIScopeView extends CustomLayoutView {
 	 */
 	private Property<String> overviewTableProperty;
 
-	public UsingSessionAndUIScopeView(ITemplatingService templatingService,
-			SessionContext context) {
-		super(templatingService, context, "demos/UsingSessionAndUIScope");
+	public UsingSessionAndUIScopeView() {
+		super("demos/UsingSessionAndUIScope");
 		// create the data property for the overview table
 		overviewTableProperty = new ObjectProperty<String>("");
 		// update the contents of the overview table

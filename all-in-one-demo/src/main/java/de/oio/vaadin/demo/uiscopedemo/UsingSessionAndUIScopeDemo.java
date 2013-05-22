@@ -36,8 +36,7 @@ public class UsingSessionAndUIScopeDemo extends AbstractDemo {
 
 	@Override
 	public Component getView() {
-		UsingSessionAndUIScopeView view = new UsingSessionAndUIScopeView(
-				getTemplatingService(), getContext());
+		UsingSessionAndUIScopeView view = new UsingSessionAndUIScopeView();
 		view.buildLayout();
 		return view.getContent();
 	}

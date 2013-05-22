@@ -42,16 +42,16 @@ public class ViewManager implements IMainView.Presenter {
 	}
 
 	public void showAboutView() {
-		activateView(new AboutView(templatingService, context));
+		activateView(new AboutView());
 	}
 
 	public void showDemoSelectionView() {
-		activateView(new DemoSelectionView(templatingService, context, DemoUI
-				.getCurrent().getDemos().values()));
+		activateView(new DemoSelectionView(DemoUI.getCurrent().getDemos()
+				.values()));
 	}
 
 	public void showHomeView() {
-		activateView(new HomeView(templatingService, context));
+		activateView(new HomeView());
 	}
 
 	private void activateView(IView view) {
@@ -61,7 +61,7 @@ public class ViewManager implements IMainView.Presenter {
 
 	private MainView getMainView() {
 		if (mainView == null) {
-			mainView = new MainView(templatingService, context, messageProvider);
+			mainView = new MainView(messageProvider);
 			mainView.buildLayout();
 			mainView.setPresenter(this);
 		}
@@ -76,7 +76,7 @@ public class ViewManager implements IMainView.Presenter {
 	}
 
 	public void showDemoView(AbstractDemo demo) {
-		activateView(new DemoView(templatingService, context, demo));
+		activateView(new DemoView(demo));
 	}
 
 	@Override
