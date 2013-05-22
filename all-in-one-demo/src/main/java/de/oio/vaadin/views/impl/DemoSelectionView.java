@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.vaadin.appbase.components.CustomLayoutView;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
@@ -15,7 +16,6 @@ import com.vaadin.ui.VerticalLayout;
 
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
-import de.oio.vaadin.views.CustomLayoutView;
 
 @Configurable
 public class DemoSelectionView extends CustomLayoutView {

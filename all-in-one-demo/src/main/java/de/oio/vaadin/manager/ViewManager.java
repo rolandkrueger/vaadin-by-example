@@ -8,13 +8,13 @@ import org.vaadin.appbase.VaadinUIServices;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
+import org.vaadin.appbase.view.IView;
 
 import com.vaadin.ui.UI;
 
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.mvp.IMainView;
-import de.oio.vaadin.views.IView;
 import de.oio.vaadin.views.impl.AboutView;
 import de.oio.vaadin.views.impl.DemoSelectionView;
 import de.oio.vaadin.views.impl.DemoView;

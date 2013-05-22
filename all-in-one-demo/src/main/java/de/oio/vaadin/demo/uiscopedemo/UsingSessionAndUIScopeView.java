@@ -3,6 +3,7 @@ package de.oio.vaadin.demo.uiscopedemo;
 import org.roklib.webapps.uridispatching.AbstractURIActionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.vaadin.appbase.components.CustomLayoutView;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
@@ -22,7 +23,6 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import de.oio.vaadin.DemoUI;
-import de.oio.vaadin.views.CustomLayoutView;
 
 @Configurable(preConstruction = true)
 public class UsingSessionAndUIScopeView extends CustomLayoutView {
