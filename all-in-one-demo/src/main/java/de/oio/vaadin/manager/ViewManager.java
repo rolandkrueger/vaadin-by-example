@@ -8,13 +8,13 @@ import org.vaadin.appbase.VaadinUIServices;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
+import org.vaadin.appbase.view.IView;
 
 import com.vaadin.ui.UI;
 
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.mvp.IMainView;
-import de.oio.vaadin.views.IView;
 import de.oio.vaadin.views.impl.AboutView;
 import de.oio.vaadin.views.impl.DemoSelectionView;
 import de.oio.vaadin.views.impl.DemoView;
@@ -42,16 +42,16 @@ public class ViewManager implements IMainView.Presenter {
 	}
 
 	public void showAboutView() {
-		activateView(new AboutView(templatingService, context));
+		activateView(new AboutView());
 	}
 
 	public void showDemoSelectionView() {
-		activateView(new DemoSelectionView(templatingService, context, DemoUI
-				.getCurrent().getDemos().values()));
+		activateView(new DemoSelectionView(DemoUI.getCurrent().getDemos()
+				.values()));
 	}
 
 	public void showHomeView() {
-		activateView(new HomeView(templatingService, context));
+		activateView(new HomeView());
 	}
 
 	private void activateView(IView view) {
@@ -61,7 +61,7 @@ public class ViewManager implements IMainView.Presenter {
 
 	private MainView getMainView() {
 		if (mainView == null) {
-			mainView = new MainView(templatingService, context, messageProvider);
+			mainView = new MainView(messageProvider);
 			mainView.buildLayout();
 			mainView.setPresenter(this);
 		}
@@ -76,7 +76,7 @@ public class ViewManager implements IMainView.Presenter {
 	}
 
 	public void showDemoView(AbstractDemo demo) {
-		activateView(new DemoView(templatingService, context, demo));
+		activateView(new DemoView(demo));
 	}
 
 	@Override

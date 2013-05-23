@@ -2,9 +2,8 @@ package de.oio.vaadin.views.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.vaadin.appbase.components.CustomLayoutView;
 import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
 
 import com.google.common.base.Preconditions;
@@ -14,7 +13,6 @@ import com.vaadin.ui.Link;
 
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
-import de.oio.vaadin.views.CustomLayoutView;
 
 @Configurable
 public class DemoView extends CustomLayoutView {
@@ -23,9 +21,8 @@ public class DemoView extends CustomLayoutView {
 	@Autowired
 	private IMessageProvider messageProvider;
 
-	public DemoView(ITemplatingService templatingService,
-			SessionContext context, AbstractDemo demo) {
-		super(templatingService, context, "demo");
+	public DemoView(AbstractDemo demo) {
+		super("demo");
 		Preconditions.checkNotNull(demo);
 		this.demo = demo;
 	}
@@ -34,8 +31,7 @@ public class DemoView extends CustomLayoutView {
 	public void buildLayout() {
 		super.buildLayout();
 
-		DemoInfoPanel demoInfoPanel = new DemoInfoPanel(getTemplatingService(),
-				getContext());
+		DemoInfoPanel demoInfoPanel = new DemoInfoPanel();
 		demoInfoPanel.buildLayout();
 		getLayout()
 				.addComponent(demoInfoPanel.getContent(), "descriptionPanel");
@@ -43,9 +39,8 @@ public class DemoView extends CustomLayoutView {
 	}
 
 	private class DemoInfoPanel extends CustomLayoutView {
-		public DemoInfoPanel(ITemplatingService templatingService,
-				SessionContext context) {
-			super(templatingService, context, "demoInfo");
+		public DemoInfoPanel() {
+			super("demoInfo");
 		}
 
 		@Override
@@ -70,7 +65,5 @@ public class DemoView extends CustomLayoutView {
 					new Label(messageProvider.getMessage(demo.getDemoInfo()
 							.getShortDescriptionKey())), "shortDescription");
 		}
-
 	}
-
 }

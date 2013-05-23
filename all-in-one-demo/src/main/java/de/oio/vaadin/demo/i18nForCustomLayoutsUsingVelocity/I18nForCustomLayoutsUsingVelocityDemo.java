@@ -33,8 +33,7 @@ public class I18nForCustomLayoutsUsingVelocityDemo extends AbstractDemo {
 
 	@Override
 	public Component getView() {
-		I18nForCustomLayoutsUsingVelocityView view = new I18nForCustomLayoutsUsingVelocityView(
-				getTemplatingService(), getContext());
+		I18nForCustomLayoutsUsingVelocityView view = new I18nForCustomLayoutsUsingVelocityView();
 		view.buildLayout();
 		return view.getContent();
 	}

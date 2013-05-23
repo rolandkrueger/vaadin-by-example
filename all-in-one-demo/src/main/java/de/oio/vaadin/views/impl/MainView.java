@@ -2,9 +2,8 @@ package de.oio.vaadin.views.impl;
 
 import java.util.Locale;
 
+import org.vaadin.appbase.components.CustomLayoutView;
 import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -12,7 +11,6 @@ import com.vaadin.ui.Component;
 
 import de.oio.vaadin.components.LanguageSelector;
 import de.oio.vaadin.mvp.IMainView;
-import de.oio.vaadin.views.CustomLayoutView;
 
 public class MainView extends CustomLayoutView implements IMainView,
 		Property.ValueChangeListener {
@@ -20,9 +18,8 @@ public class MainView extends CustomLayoutView implements IMainView,
 	private IMainView.Presenter presenter;
 	private LanguageSelector languageSelector;
 
-	public MainView(ITemplatingService templatingService,
-			SessionContext context, IMessageProvider messageProvider) {
-		super(templatingService, context, "main");
+	public MainView(IMessageProvider messageProvider) {
+		super("main");
 		this.messageProvider = messageProvider;
 	}
 
