@@ -7,10 +7,30 @@
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Vaadin By Example - All-in-One Demo Application</name>
+	<inceptionYear>2013</inceptionYear>
+
+	<developers>
+		<developer>
+			<name>Roland Krüger</name>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>MIT license</name>
+			<url>http://opensource.org/licenses/MIT</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git://github.com/rolandkrueger/vaadin-by-example.git</connection>
+		<developerConnection>scm:git:https://github.com/rolandkrueger/vaadin-by-example.git</developerConnection>
+		<url>https://github.com/rolandkrueger/vaadin-by-example</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.0.4</vaadin.version>
+		<vaadin.version>7.0.6</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 		<target.dir>target</target.dir>
 		<jdk.version>1.7</jdk.version>

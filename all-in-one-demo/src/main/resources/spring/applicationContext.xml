@@ -6,7 +6,8 @@
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<import resource="datasource.xml" />
+<!-- DB access currently not needed -->
+<!-- 	<import resource="datasource.xml" /> -->
 
 	<context:annotation-config />
 	<context:spring-configured />
