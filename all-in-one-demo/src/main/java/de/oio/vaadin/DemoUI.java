@@ -1,5 +1,7 @@
 package de.oio.vaadin;
 
+import static org.vaadin.appbase.VaadinUIServices.UIServices;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,14 +58,13 @@ public class DemoUI extends UI {
 
     Page.getCurrent().setTitle("Vaadin By Example Demo");
 
-    VaadinUIServices uiServices = new VaadinUIServices();
-    uiServices.startUp();
+    VaadinUIServices.startUp();
 
     if (context.getLocale() == null) {
       context.setLocale(getLocale());
     }
 
-    uriActionHandlerProvider = new URIActionHandlerProvider(uiServices.getUriActionManager());
+    uriActionHandlerProvider = new URIActionHandlerProvider(UIServices().getUriActionManager());
     uriActionHandlerProvider.buildURILayout();
 
     viewManager = new ViewManager();

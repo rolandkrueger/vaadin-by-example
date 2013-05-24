@@ -25,5 +25,8 @@
     <inherits name="com.vaadin.DefaultWidgetSet" />
     <inherits name="org.vaadin.highlighter.ComponentHighlighterWidgetset" />
     
-	
+	<generate-with class="de.oio.vaadin.OptimizedConnectorBundleLoaderFactory">
+      <when-type-assignable class="com.vaadin.client.metadata.ConnectorBundleLoader" />
+	</generate-with>
+
 </module>

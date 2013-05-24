@@ -30,7 +30,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.0.6</vaadin.version>
+		<vaadin.version>7.1.0.beta1</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 		<target.dir>target</target.dir>
 		<jdk.version>1.7</jdk.version>
@@ -105,6 +105,12 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+		<!-- Needed for compiling optimized widgetsets -->
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client-compiler</artifactId>
 			<version>${vaadin.version}</version>
 		</dependency>
 		<dependency>
