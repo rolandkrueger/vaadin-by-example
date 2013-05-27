@@ -1,8 +1,8 @@
 package de.oio.vaadin.demo.componenthighlighter;
 
-import org.vaadin.appbase.components.CustomLayoutView;
+import org.vaadin.appbase.components.TranslatedCustomLayout;
 
-public class ComponentHighlighterDemoView extends CustomLayoutView {
+public class ComponentHighlighterDemoView extends TranslatedCustomLayout {
 
 	public ComponentHighlighterDemoView() {
 		super("demos/componentHighlighterDemo");

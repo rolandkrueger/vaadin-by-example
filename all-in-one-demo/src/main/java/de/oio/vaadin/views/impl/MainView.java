@@ -2,7 +2,7 @@ package de.oio.vaadin.views.impl;
 
 import java.util.Locale;
 
-import org.vaadin.appbase.components.CustomLayoutView;
+import org.vaadin.appbase.components.TranslatedCustomLayout;
 import org.vaadin.appbase.service.IMessageProvider;
 
 import com.vaadin.data.Property;
@@ -12,7 +12,7 @@ import com.vaadin.ui.Component;
 import de.oio.vaadin.components.LanguageSelector;
 import de.oio.vaadin.mvp.IMainView;
 
-public class MainView extends CustomLayoutView implements IMainView,
+public class MainView extends TranslatedCustomLayout implements IMainView,
 		Property.ValueChangeListener {
 	private IMessageProvider messageProvider;
 	private IMainView.Presenter presenter;

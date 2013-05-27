@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.vaadin.appbase.components.CustomLayoutView;
+import org.vaadin.appbase.components.TranslatedCustomLayout;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
 
@@ -16,7 +16,7 @@ import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 
 @Configurable
-public class DemoSelectionView extends CustomLayoutView {
+public class DemoSelectionView extends TranslatedCustomLayout {
 
 	private Collection<AbstractDemo> demos;
 	@Autowired
