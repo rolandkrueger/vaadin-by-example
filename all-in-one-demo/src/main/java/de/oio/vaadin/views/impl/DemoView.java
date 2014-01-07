@@ -2,7 +2,7 @@ package de.oio.vaadin.views.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.vaadin.appbase.components.CustomLayoutView;
+import org.vaadin.appbase.components.TranslatedCustomLayout;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.view.IView;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
@@ -16,7 +16,7 @@ import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 
 @Configurable
-public class DemoView extends CustomLayoutView {
+public class DemoView extends TranslatedCustomLayout {
 
   private AbstractDemo demo;
   @Autowired
@@ -39,7 +39,7 @@ public class DemoView extends CustomLayoutView {
     return this;
   }
 
-  private class DemoInfoPanel extends CustomLayoutView {
+  private class DemoInfoPanel extends TranslatedCustomLayout {
     public DemoInfoPanel() {
       super("demoInfo");
     }
