@@ -23,8 +23,8 @@ public class ComponentHighlighterDemo extends AbstractDemo {
 	@Override
 	public DemoInfo getDemoInfo() {
 		DemoInfo info = new DemoInfo();
-		info.setBlogPostTitle("<To be done>");
-		info.setBlogPostURI("http://blog.oio.de");
+		info.setBlogPostTitle("Vaadin Extension: Highlighting Custom Components During Development");
+		info.setBlogPostURI("http://blog.oio.de/2014/01/21/vaadin-extension-highlighting-custom-components-during-development/");
 		info.setCodeHostingURI("https://github.com/rolandkrueger/ComponentHighlighter");
 		info.setShortDescriptionKey("componentHighlighter.shortDescription");
 		info.setDemoHeadlineKey("componentHighlighter.headline");
