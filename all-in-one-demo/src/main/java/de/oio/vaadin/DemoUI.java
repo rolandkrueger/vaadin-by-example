@@ -1,11 +1,9 @@
 package de.oio.vaadin;
 
-import static org.vaadin.appbase.VaadinUIServices.UIServices;
+import static org.vaadin.appbase.VaadinUIServices.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import lombok.Getter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -26,8 +24,9 @@ import com.vaadin.ui.UI;
 
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.componenthighlighter.ComponentHighlighterDemo;
-import de.oio.vaadin.demo.i18nForCustomLayoutsUsingVelocity.I18nForCustomLayoutsUsingVelocityDemo;
-import de.oio.vaadin.demo.uiscopedemo.UsingSessionAndUIScopeDemo;
+import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.FieldGroupSelectNestedJavaBeansDemo;
+import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayoutsUsingVelocityDemo;
+import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.manager.URIActionHandlerProvider;
 import de.oio.vaadin.manager.ViewManager;
 
@@ -40,9 +39,8 @@ public class DemoUI extends UI {
   private SessionContext context;
   @Autowired
   private ITemplatingService templatingService;
-  @Getter
   private ViewManager viewManager;
-  @Getter
+
   private URIActionHandlerProvider uriActionHandlerProvider;
 
   /**
@@ -50,7 +48,6 @@ public class DemoUI extends UI {
    */
   private ObjectProperty<String> uiScopedVariable;
 
-  @Getter
   private Map<String, AbstractDemo> demos;
 
   @Override
@@ -82,6 +79,7 @@ public class DemoUI extends UI {
     addDemo(new UsingSessionAndUIScopeDemo(templatingService, context));
     addDemo(new I18nForCustomLayoutsUsingVelocityDemo(templatingService, context));
     addDemo(new ComponentHighlighterDemo(templatingService, context));
+    addDemo(new FieldGroupSelectNestedJavaBeansDemo(templatingService, context));
 
     uriActionHandlerProvider.registerDemos(demos.values());
     uriActionHandlerProvider.getUriActionManager().logActionOverview();
@@ -174,5 +172,17 @@ public class DemoUI extends UI {
    */
   public static ObjectProperty<String> getCurrentUIScopedVariable() {
     return DemoUI.getCurrent().getUIScopedVariable();
+  }
+
+  public ViewManager getViewManager() {
+    return viewManager;
+  }
+
+  public URIActionHandlerProvider getUriActionHandlerProvider() {
+    return uriActionHandlerProvider;
+  }
+
+  public Map<String, AbstractDemo> getDemos() {
+    return demos;
   }
 }

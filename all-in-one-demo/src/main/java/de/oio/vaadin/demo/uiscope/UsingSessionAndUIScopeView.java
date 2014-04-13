@@ -1,4 +1,4 @@
-package de.oio.vaadin.demo.uiscopedemo;
+package de.oio.vaadin.demo.uiscope;
 
 import org.roklib.webapps.uridispatching.AbstractURIActionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
