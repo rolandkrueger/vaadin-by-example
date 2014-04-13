@@ -2,8 +2,8 @@ package de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model;
 
 public class Employee {
 
-  private String firstName;
-  private String lastName;
+  private String firstName = "";
+  private String lastName = "";
   private Department department;
 
   public Employee() {

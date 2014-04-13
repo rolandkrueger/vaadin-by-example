@@ -2,117 +2,114 @@
 package de.oio.vaadin.demo;
 
 public class DemoInfo {
-	private String codeHostingURI;
-	private String blogPostURI;
-	private String blogPostTitle;
-	private String shortDescriptionKey;
-	private String demoHeadlineKey;
+  private String codeHostingURI;
+  private String blogPostURI;
+  private String blogPostTitle;
+  private String shortDescriptionKey;
+  private String demoHeadlineKey;
 
-	@java.lang.SuppressWarnings("all")
-	public DemoInfo() {
-	}
+  public DemoInfo() {
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public String getCodeHostingURI() {
-		return this.codeHostingURI;
-	}
+  public String getCodeHostingURI() {
+    return this.codeHostingURI;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public String getBlogPostURI() {
-		return this.blogPostURI;
-	}
+  public String getBlogPostURI() {
+    return this.blogPostURI;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public String getBlogPostTitle() {
-		return this.blogPostTitle;
-	}
+  public String getBlogPostTitle() {
+    return this.blogPostTitle;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public String getShortDescriptionKey() {
-		return this.shortDescriptionKey;
-	}
+  public String getShortDescriptionKey() {
+    return this.shortDescriptionKey;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public String getDemoHeadlineKey() {
-		return this.demoHeadlineKey;
-	}
+  public String getDemoHeadlineKey() {
+    return this.demoHeadlineKey;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public void setCodeHostingURI(final String codeHostingURI) {
-		this.codeHostingURI = codeHostingURI;
-	}
+  public void setCodeHostingURI(final String codeHostingURI) {
+    this.codeHostingURI = codeHostingURI;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public void setBlogPostURI(final String blogPostURI) {
-		this.blogPostURI = blogPostURI;
-	}
+  public void setBlogPostURI(final String blogPostURI) {
+    this.blogPostURI = blogPostURI;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public void setBlogPostTitle(final String blogPostTitle) {
-		this.blogPostTitle = blogPostTitle;
-	}
+  public void setBlogPostTitle(final String blogPostTitle) {
+    this.blogPostTitle = blogPostTitle;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public void setShortDescriptionKey(final String shortDescriptionKey) {
-		this.shortDescriptionKey = shortDescriptionKey;
-	}
+  public void setShortDescriptionKey(final String shortDescriptionKey) {
+    this.shortDescriptionKey = shortDescriptionKey;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public void setDemoHeadlineKey(final String demoHeadlineKey) {
-		this.demoHeadlineKey = demoHeadlineKey;
-	}
+  public void setDemoHeadlineKey(final String demoHeadlineKey) {
+    this.demoHeadlineKey = demoHeadlineKey;
+  }
 
-	@java.lang.Override
-	@java.lang.SuppressWarnings("all")
-	public boolean equals(final java.lang.Object o) {
-		if (o == this) return true;
-		if (!(o instanceof DemoInfo)) return false;
-		final DemoInfo other = (DemoInfo)o;
-		if (!other.canEqual((java.lang.Object)this)) return false;
-		final java.lang.Object this$codeHostingURI = this.getCodeHostingURI();
-		final java.lang.Object other$codeHostingURI = other.getCodeHostingURI();
-		if (this$codeHostingURI == null ? other$codeHostingURI != null : !this$codeHostingURI.equals(other$codeHostingURI)) return false;
-		final java.lang.Object this$blogPostURI = this.getBlogPostURI();
-		final java.lang.Object other$blogPostURI = other.getBlogPostURI();
-		if (this$blogPostURI == null ? other$blogPostURI != null : !this$blogPostURI.equals(other$blogPostURI)) return false;
-		final java.lang.Object this$blogPostTitle = this.getBlogPostTitle();
-		final java.lang.Object other$blogPostTitle = other.getBlogPostTitle();
-		if (this$blogPostTitle == null ? other$blogPostTitle != null : !this$blogPostTitle.equals(other$blogPostTitle)) return false;
-		final java.lang.Object this$shortDescriptionKey = this.getShortDescriptionKey();
-		final java.lang.Object other$shortDescriptionKey = other.getShortDescriptionKey();
-		if (this$shortDescriptionKey == null ? other$shortDescriptionKey != null : !this$shortDescriptionKey.equals(other$shortDescriptionKey)) return false;
-		final java.lang.Object this$demoHeadlineKey = this.getDemoHeadlineKey();
-		final java.lang.Object other$demoHeadlineKey = other.getDemoHeadlineKey();
-		if (this$demoHeadlineKey == null ? other$demoHeadlineKey != null : !this$demoHeadlineKey.equals(other$demoHeadlineKey)) return false;
-		return true;
-	}
+  @java.lang.Override
+  public boolean equals(final java.lang.Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof DemoInfo))
+      return false;
+    final DemoInfo other = (DemoInfo) o;
+    if (!other.canEqual((java.lang.Object) this))
+      return false;
+    final java.lang.Object this$codeHostingURI = this.getCodeHostingURI();
+    final java.lang.Object other$codeHostingURI = other.getCodeHostingURI();
+    if (this$codeHostingURI == null ? other$codeHostingURI != null : !this$codeHostingURI.equals(other$codeHostingURI))
+      return false;
+    final java.lang.Object this$blogPostURI = this.getBlogPostURI();
+    final java.lang.Object other$blogPostURI = other.getBlogPostURI();
+    if (this$blogPostURI == null ? other$blogPostURI != null : !this$blogPostURI.equals(other$blogPostURI))
+      return false;
+    final java.lang.Object this$blogPostTitle = this.getBlogPostTitle();
+    final java.lang.Object other$blogPostTitle = other.getBlogPostTitle();
+    if (this$blogPostTitle == null ? other$blogPostTitle != null : !this$blogPostTitle.equals(other$blogPostTitle))
+      return false;
+    final java.lang.Object this$shortDescriptionKey = this.getShortDescriptionKey();
+    final java.lang.Object other$shortDescriptionKey = other.getShortDescriptionKey();
+    if (this$shortDescriptionKey == null ? other$shortDescriptionKey != null : !this$shortDescriptionKey
+        .equals(other$shortDescriptionKey))
+      return false;
+    final java.lang.Object this$demoHeadlineKey = this.getDemoHeadlineKey();
+    final java.lang.Object other$demoHeadlineKey = other.getDemoHeadlineKey();
+    if (this$demoHeadlineKey == null ? other$demoHeadlineKey != null : !this$demoHeadlineKey
+        .equals(other$demoHeadlineKey))
+      return false;
+    return true;
+  }
 
-	@java.lang.SuppressWarnings("all")
-	public boolean canEqual(final java.lang.Object other) {
-		return other instanceof DemoInfo;
-	}
+  public boolean canEqual(final java.lang.Object other) {
+    return other instanceof DemoInfo;
+  }
 
-	@java.lang.Override
-	@java.lang.SuppressWarnings("all")
-	public int hashCode() {
-		final int PRIME = 59;
-		int result = 1;
-		final java.lang.Object $codeHostingURI = this.getCodeHostingURI();
-		result = result * PRIME + ($codeHostingURI == null ? 0 : $codeHostingURI.hashCode());
-		final java.lang.Object $blogPostURI = this.getBlogPostURI();
-		result = result * PRIME + ($blogPostURI == null ? 0 : $blogPostURI.hashCode());
-		final java.lang.Object $blogPostTitle = this.getBlogPostTitle();
-		result = result * PRIME + ($blogPostTitle == null ? 0 : $blogPostTitle.hashCode());
-		final java.lang.Object $shortDescriptionKey = this.getShortDescriptionKey();
-		result = result * PRIME + ($shortDescriptionKey == null ? 0 : $shortDescriptionKey.hashCode());
-		final java.lang.Object $demoHeadlineKey = this.getDemoHeadlineKey();
-		result = result * PRIME + ($demoHeadlineKey == null ? 0 : $demoHeadlineKey.hashCode());
-		return result;
-	}
+  @java.lang.Override
+  public int hashCode() {
+    final int PRIME = 59;
+    int result = 1;
+    final java.lang.Object $codeHostingURI = this.getCodeHostingURI();
+    result = result * PRIME + ($codeHostingURI == null ? 0 : $codeHostingURI.hashCode());
+    final java.lang.Object $blogPostURI = this.getBlogPostURI();
+    result = result * PRIME + ($blogPostURI == null ? 0 : $blogPostURI.hashCode());
+    final java.lang.Object $blogPostTitle = this.getBlogPostTitle();
+    result = result * PRIME + ($blogPostTitle == null ? 0 : $blogPostTitle.hashCode());
+    final java.lang.Object $shortDescriptionKey = this.getShortDescriptionKey();
+    result = result * PRIME + ($shortDescriptionKey == null ? 0 : $shortDescriptionKey.hashCode());
+    final java.lang.Object $demoHeadlineKey = this.getDemoHeadlineKey();
+    result = result * PRIME + ($demoHeadlineKey == null ? 0 : $demoHeadlineKey.hashCode());
+    return result;
+  }
 
-	@java.lang.Override
-	@java.lang.SuppressWarnings("all")
-	public java.lang.String toString() {
-		return "DemoInfo(codeHostingURI=" + this.getCodeHostingURI() + ", blogPostURI=" + this.getBlogPostURI() + ", blogPostTitle=" + this.getBlogPostTitle() + ", shortDescriptionKey=" + this.getShortDescriptionKey() + ", demoHeadlineKey=" + this.getDemoHeadlineKey() + ")";
-	}
+  @java.lang.Override
+  public java.lang.String toString() {
+    return "DemoInfo(codeHostingURI=" + this.getCodeHostingURI() + ", blogPostURI=" + this.getBlogPostURI()
+        + ", blogPostTitle=" + this.getBlogPostTitle() + ", shortDescriptionKey=" + this.getShortDescriptionKey()
+        + ", demoHeadlineKey=" + this.getDemoHeadlineKey() + ")";
+  }
 }
