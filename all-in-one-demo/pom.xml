@@ -30,22 +30,14 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.1.0.beta1</vaadin.version>
+		<vaadin.version>7.1.13</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 		<target.dir>target</target.dir>
 		<jdk.version>1.7</jdk.version>
-		<spring.version>3.2.2.RELEASE</spring.version>
-		<aspectj.version>1.7.1</aspectj.version>
+		<spring.version>4.0.3.RELEASE</spring.version>
+		<aspectj.version>1.7.4</aspectj.version>
+		<spring.agent.version>2.5.6.SEC03</spring.agent.version>
 	</properties>
-
-	<profiles>
-		<profile>
-			<id>development</id>
-			<properties>
-				<target.dir>target/${project.build.finalName}/WEB-INF</target.dir>
-			</properties>
-		</profile>
-	</profiles>
 
 	<repositories>
 		<repository>
@@ -79,10 +71,10 @@
 		<dependency>
 			<groupId>org.vaadin.addons.appbase</groupId>
 			<artifactId>appbase4vaadin</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.vaadin.addons.uriactions</groupId>
+			<groupId>org.vaadin.uriactions</groupId>
 			<artifactId>uriactions</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
@@ -105,6 +97,11 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-shared</artifactId>
 			<version>${vaadin.version}</version>
 		</dependency>
 		<!-- Needed for compiling optimized widgetsets -->
@@ -207,15 +204,28 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-agent</artifactId>
+			<version>${spring.agent.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.3.0.RELEASE</version>
+			<version>1.5.1.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>14.0.1</version>
+			<version>16.0.1</version>
 		</dependency>
 
 		<dependency>
@@ -242,11 +252,6 @@
 			<version>4.3.0.Final</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>0.11.8</version>
-		</dependency>
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
@@ -346,58 +351,15 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>compile</goal>
-							<goal>test-compile</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
 				<configuration>
-					<aspectLibraries>
-						<aspectLibrary>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-aspects</artifactId>
-						</aspectLibrary>
-					</aspectLibraries>
-					<showWeaveInfo />
-					<forceAjcCompile>true</forceAjcCompile>
-					<sources />
-					<weaveDirectories>
-						<weaveDirectory>${project.build.directory}/classes</weaveDirectory>
-					</weaveDirectories>
-					<weaveDependencies>
-						<weaveDependency>
-							<groupId>org.vaadin.addons.appbase</groupId>
-							<artifactId>appbase4vaadin</artifactId>
-						</weaveDependency>
-					</weaveDependencies>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<complianceLevel>${jdk.version}</complianceLevel>
-					<encoding>UTF-8</encoding>
-					<verbose>false</verbose>
-					<Xlint>ignore</Xlint>
+					<ajdtVersion>1.5</ajdtVersion>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjrt</artifactId>
-						<version>${aspectj.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjtools</artifactId>
-						<version>${aspectj.version}</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
+
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
@@ -455,4 +417,78 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>development</id>
+			<properties>
+				<target.dir>target/${project.build.finalName}/WEB-INF</target.dir>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>deployment</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>aspectj-maven-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<phase>process-classes</phase>
+								<goals>
+									<goal>compile</goal>
+									<goal>test-compile</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<aspectLibraries>
+								<aspectLibrary>
+									<groupId>org.springframework</groupId>
+									<artifactId>spring-aspects</artifactId>
+								</aspectLibrary>
+							</aspectLibraries>
+							<showWeaveInfo />
+							<forceAjcCompile>true</forceAjcCompile>
+							<sources />
+							<weaveDirectories>
+								<weaveDirectory>${project.build.directory}/classes</weaveDirectory>
+							</weaveDirectories>
+							<weaveDependencies>
+								<weaveDependency>
+									<groupId>org.vaadin.addons.appbase</groupId>
+									<artifactId>appbase4vaadin</artifactId>
+								</weaveDependency>
+							</weaveDependencies>
+							<source>${jdk.version}</source>
+							<target>${jdk.version}</target>
+							<complianceLevel>${jdk.version}</complianceLevel>
+							<encoding>UTF-8</encoding>
+							<verbose>false</verbose>
+							<Xlint>ignore</Xlint>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.aspectj</groupId>
+								<artifactId>aspectjrt</artifactId>
+								<version>${aspectj.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.aspectj</groupId>
+								<artifactId>aspectjtools</artifactId>
+								<version>${aspectj.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>

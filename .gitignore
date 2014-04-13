@@ -6,6 +6,7 @@ gwt-unitCache
 .project
 .classpath
 ajcore.*
+rebel.xml
 
 # Package Files #
 *.jar
