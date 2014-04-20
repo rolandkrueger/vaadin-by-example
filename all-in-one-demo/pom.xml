@@ -419,7 +419,7 @@
 				<target.dir>target/${project.build.finalName}/WEB-INF</target.dir>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>deployment</id>
 			<activation>
@@ -437,7 +437,6 @@
 								<phase>process-classes</phase>
 								<goals>
 									<goal>compile</goal>
-									<goal>test-compile</goal>
 								</goals>
 							</execution>
 						</executions>

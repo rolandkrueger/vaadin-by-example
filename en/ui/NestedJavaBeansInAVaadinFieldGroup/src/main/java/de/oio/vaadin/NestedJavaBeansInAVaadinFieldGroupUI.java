@@ -26,12 +26,12 @@ public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
   private static final long serialVersionUID = -6733290242808872455L;
 
   private static final String DESCRIPTION = "This demo shows how to configure a FieldGroup that contains a selection component for "
-      + "selecting a nested JavaBean property for another JavaBean entity. In this example, there is an entity bean 'Employee' "
+      + "selecting a nested JavaBean property of another JavaBean entity. In this example, there is an entity bean 'Employee' "
       + "which contains a nested JavaBean property 'Department'. In the two forms shown on the tab-sheet you can add new Employee "
       + "objects to the employee table. The first form uses a BeanItemContainer as the container data source of the department "
       + "selection component. The second form uses an IndexedContainer as data model. For this second FieldGroup to work, it is "
-      + "necessary to set a specific converter on the selection component. Of course, for the user both forms behave exactly the same "
-      + "which is the whole purpose of this tutorial, after all. The difference between these two forms is only visible in code.";
+      + "necessary to set a specific converter on the selection component which converts between item ID and Department object. Of course, for the user both forms behave exactly the same "
+      + "which is the whole purpose of this tutorial. The difference between these two forms is only visible in code.";
 
   // @formatter:off
   // Master data list of available Department entities. Typically, such a list is loaded from the database.
@@ -93,7 +93,8 @@ public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
   private void buildIndexedContainerForm() {
     indexedContainerForm = new EmployeeForm(employeeContainer, departmentIndexedContainer,
         "This selection component uses a <strong>com.vaadin.data.util.IndexedContainer</strong> as its container data source:");
-    indexedContainerForm.getDepartmentSelector().setConverter(new IndexToDepartmentConverter(departmentIndexedContainer));
+    indexedContainerForm.getDepartmentSelector().setConverter(
+        new IndexToDepartmentConverter(departmentIndexedContainer));
     indexedContainerForm.getDepartmentSelector().setItemCaptionMode(ItemCaptionMode.ID);
     indexedContainerForm.getDepartmentSelector().setItemCaptionPropertyId("name");
   }
