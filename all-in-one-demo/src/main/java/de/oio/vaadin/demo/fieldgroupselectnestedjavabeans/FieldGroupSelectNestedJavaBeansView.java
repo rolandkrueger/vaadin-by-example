@@ -39,8 +39,8 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
   private Table employeeTable;
   private TabSheet tabsheet;
   private BeanItemContainer<Employee> employeeContainer;
-  private BeanItemContainer<Department> departmentContainer;
-  private IndexedContainer indexedContainer;
+  private BeanItemContainer<Department> departmentBeanItemContainer;
+  private IndexedContainer departmentIndexedContainer;
 
   public FieldGroupSelectNestedJavaBeansView() {
     super("demos/FieldGroupSelectNestedJavaBeans");
@@ -65,13 +65,13 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
 
   @SuppressWarnings("unchecked")
   private void buildIndexedContainer() {
-    indexedContainer = new IndexedContainer();
-    indexedContainer.addContainerProperty("name", String.class, "");
-    indexedContainer.addContainerProperty("bean", Department.class, null);
+    departmentIndexedContainer = new IndexedContainer();
+    departmentIndexedContainer.addContainerProperty("name", String.class, "");
+    departmentIndexedContainer.addContainerProperty("bean", Department.class, null);
 
     for (Department department : DEPARTMENTS) {
-      Object itemId = indexedContainer.addItem();
-      Item item = indexedContainer.getItem(itemId);
+      Object itemId = departmentIndexedContainer.addItem();
+      Item item = departmentIndexedContainer.getItem(itemId);
       item.getItemProperty("name").setValue(department.getName());
       item.getItemProperty("bean").setValue(department);
     }
@@ -93,8 +93,8 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
   }
 
   private void buildDepartmentContainer() {
-    departmentContainer = new BeanItemContainer<Department>(Department.class);
-    departmentContainer.addAll(DEPARTMENTS);
+    departmentBeanItemContainer = new BeanItemContainer<Department>(Department.class);
+    departmentBeanItemContainer.addAll(DEPARTMENTS);
   }
 
   private Table buildEmployeeTable() {
@@ -110,15 +110,15 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
   }
 
   private Component buildBeanItemContainerTab() {
-    EmployeeForm form = new EmployeeForm(employeeContainer, departmentContainer,
+    EmployeeForm form = new EmployeeForm(employeeContainer, departmentBeanItemContainer,
         "FieldGroupSelectNestedJavaBeans.beanItemContainerInfo", messageProvider);
     return form;
   }
 
   private Component buildIndexedContainerTab() {
-    EmployeeForm form = new EmployeeForm(employeeContainer, indexedContainer,
+    EmployeeForm form = new EmployeeForm(employeeContainer, departmentIndexedContainer,
         "FieldGroupSelectNestedJavaBeans.indexedContainerInfo", messageProvider);
-    form.getDepartmentSelector().setConverter(new IndexToDepartmentConverter(indexedContainer));
+    form.getDepartmentSelector().setConverter(new IndexToDepartmentConverter(departmentIndexedContainer));
     form.getDepartmentSelector().setItemCaptionMode(ItemCaptionMode.ID);
     form.getDepartmentSelector().setItemCaptionPropertyId("name");
     return form;

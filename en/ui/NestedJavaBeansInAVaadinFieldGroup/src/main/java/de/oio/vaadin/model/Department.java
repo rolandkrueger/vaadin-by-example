@@ -3,6 +3,9 @@ package de.oio.vaadin.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * A simple JavaBean which is referenced by the {@link Employee} entity bean.
+ */
 public class Department implements Serializable {
 
   private String name;

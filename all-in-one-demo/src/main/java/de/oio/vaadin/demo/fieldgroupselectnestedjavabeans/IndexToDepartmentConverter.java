@@ -10,6 +10,8 @@ import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Department;
 
 public class IndexToDepartmentConverter implements Converter<Object, Department> {
 
+  private static final String BEAN_PROPERTY_ID = "bean";
+
   private static final long serialVersionUID = -4854942758136647077L;
 
   private IndexedContainer container;
@@ -21,6 +23,7 @@ public class IndexToDepartmentConverter implements Converter<Object, Department>
   @Override
   public Department convertToModel(Object itemID, Class<? extends Department> targetType, Locale locale)
       throws com.vaadin.data.util.converter.Converter.ConversionException {
+
     if (itemID == null) {
       return null;
     }
@@ -30,21 +33,21 @@ public class IndexToDepartmentConverter implements Converter<Object, Department>
       return null;
     }
 
-    Department model = (Department) item.getItemProperty("bean").getValue();
-    return model;
+    return (Department) item.getItemProperty(BEAN_PROPERTY_ID).getValue();
   }
 
   @Override
   public Integer convertToPresentation(Department model, Class<? extends Object> targetType, Locale locale)
       throws com.vaadin.data.util.converter.Converter.ConversionException {
 
+    if (model == null) {
+      return null;
+    }
+
     for (Object itemId : container.getItemIds()) {
       Item item = container.getItem(itemId);
-      if (model == null) {
-        return null;
-      }
 
-      if (model.equals((Department) item.getItemProperty("bean").getValue())) {
+      if (model.equals((Department) item.getItemProperty(BEAN_PROPERTY_ID).getValue())) {
         return (Integer) itemId;
       }
     }

@@ -34,6 +34,7 @@ public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
       + "which is the whole purpose of this tutorial, after all. The difference between these two forms is only visible in code.";
 
   // @formatter:off
+  // Master data list of available Department entities. Typically, such a list is loaded from the database.
   private static List<Department> DEPARTMENTS = new ArrayList<Department>(Arrays.asList(
       new Department("Human Resources", "John Smith"),
       new Department("IT", "Dan Developer"),
@@ -45,8 +46,8 @@ public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
   private EmployeeForm beanItemContainerForm;
   private EmployeeForm indexedContainerForm;
   private BeanItemContainer<Employee> employeeContainer;
-  private BeanItemContainer<Department> departmentContainer;
-  private IndexedContainer indexedContainer;
+  private BeanItemContainer<Department> departmentBeanItemContainer;
+  private IndexedContainer departmentIndexedContainer;
 
   @Override
   protected void init(VaadinRequest request) {
@@ -61,8 +62,7 @@ public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
     layout.setMargin(true);
     layout.setSpacing(true);
 
-    beanItemContainerForm = new EmployeeForm(employeeContainer, departmentContainer,
-        "This selection component uses a <strong>com.vaadin.data.util.BeanItemContainer</strong> as its container data source:");
+    buildBeanItemContainerForm();
     buildIndexedContainerForm();
 
     TabSheet tabsheet = new TabSheet();
@@ -76,6 +76,11 @@ public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
     return layout;
   }
 
+  private void buildBeanItemContainerForm() {
+    beanItemContainerForm = new EmployeeForm(employeeContainer, departmentBeanItemContainer,
+        "This selection component uses a <strong>com.vaadin.data.util.BeanItemContainer</strong> as its container data source:");
+  }
+
   private Table buildEmployeeTable() {
     Table employeeTable = new Table();
     employeeTable.setWidth("100%");
@@ -86,30 +91,30 @@ public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
   }
 
   private void buildIndexedContainerForm() {
-    indexedContainerForm = new EmployeeForm(employeeContainer, indexedContainer,
+    indexedContainerForm = new EmployeeForm(employeeContainer, departmentIndexedContainer,
         "This selection component uses a <strong>com.vaadin.data.util.IndexedContainer</strong> as its container data source:");
-    indexedContainerForm.getDepartmentSelector().setConverter(new IndexToDepartmentConverter(indexedContainer));
+    indexedContainerForm.getDepartmentSelector().setConverter(new IndexToDepartmentConverter(departmentIndexedContainer));
     indexedContainerForm.getDepartmentSelector().setItemCaptionMode(ItemCaptionMode.ID);
     indexedContainerForm.getDepartmentSelector().setItemCaptionPropertyId("name");
   }
 
   @SuppressWarnings("unchecked")
   private void buildIndexedContainer() {
-    indexedContainer = new IndexedContainer();
-    indexedContainer.addContainerProperty("name", String.class, "");
-    indexedContainer.addContainerProperty("bean", Department.class, null);
+    departmentIndexedContainer = new IndexedContainer();
+    departmentIndexedContainer.addContainerProperty("name", String.class, "");
+    departmentIndexedContainer.addContainerProperty("bean", Department.class, null);
 
     for (Department department : DEPARTMENTS) {
-      Object itemId = indexedContainer.addItem();
-      Item item = indexedContainer.getItem(itemId);
+      Object itemId = departmentIndexedContainer.addItem();
+      Item item = departmentIndexedContainer.getItem(itemId);
       item.getItemProperty("name").setValue(department.getName());
       item.getItemProperty("bean").setValue(department);
     }
   }
 
   private void buildDepartmentContainer() {
-    departmentContainer = new BeanItemContainer<Department>(Department.class);
-    departmentContainer.addAll(DEPARTMENTS);
+    departmentBeanItemContainer = new BeanItemContainer<Department>(Department.class);
+    departmentBeanItemContainer.addAll(DEPARTMENTS);
   }
 
   private void buildEmployeeContainer() {
