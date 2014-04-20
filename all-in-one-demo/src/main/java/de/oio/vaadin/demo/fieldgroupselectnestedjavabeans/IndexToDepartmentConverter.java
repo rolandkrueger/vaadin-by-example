@@ -40,6 +40,10 @@ public class IndexToDepartmentConverter implements Converter<Object, Department>
 
     for (Object itemId : container.getItemIds()) {
       Item item = container.getItem(itemId);
+      if (model == null) {
+        return null;
+      }
+
       if (model.equals((Department) item.getItemProperty("bean").getValue())) {
         return (Integer) itemId;
       }

@@ -1,15 +1,19 @@
 package de.oio.vaadin.demo.fieldgroupselectnestedjavabeans;
 
+import org.vaadin.appbase.service.IMessageProvider;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 
@@ -21,34 +25,39 @@ public class EmployeeForm extends CustomComponent implements Button.ClickListene
 
   private TextField firstName;
   private TextField lastName;
-  private ComboBox department;
+  private NativeSelect department;
   private Button okBtn, discardBtn;
   private BeanFieldGroup<Employee> fieldGroup;
   private BeanItemContainer<Employee> employeeContainer;
+  private IMessageProvider messageProvider;
 
-  public EmployeeForm(BeanItemContainer<Employee> employeeContainer, Container departments) {
+  public EmployeeForm(BeanItemContainer<Employee> employeeContainer, Container departments,
+      String selectionDescriptionKey, IMessageProvider messageProvider) {
     this.employeeContainer = employeeContainer;
+    this.messageProvider = messageProvider;
 
     FormLayout layout = new FormLayout();
-    firstName = new TextField("First name");
+    firstName = new TextField(messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.firstname"));
     firstName.setRequired(true);
-    lastName = new TextField("Last name");
+    lastName = new TextField(messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.lastname"));
     lastName.setRequired(true);
 
-    department = new ComboBox("Department");
+    department = new NativeSelect(messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.department"));
     department.setContainerDataSource(departments);
     department.setNullSelectionAllowed(false);
     department.setRequired(true);
 
     layout.addComponent(firstName);
     layout.addComponent(lastName);
+    layout.addComponent(new Label(messageProvider.getMessage(selectionDescriptionKey), ContentMode.HTML));
     layout.addComponent(department);
 
     // add form buttons
     HorizontalLayout buttonBar = new HorizontalLayout();
-    okBtn = new Button("Ok");
+    buttonBar.setSpacing(true);
+    okBtn = new Button(messageProvider.getMessage("buttons.ok"));
     okBtn.addClickListener(this);
-    discardBtn = new Button("Discard");
+    discardBtn = new Button(messageProvider.getMessage("buttons.discard"));
     discardBtn.addClickListener(this);
     buttonBar.addComponent(okBtn);
     buttonBar.addComponent(discardBtn);
@@ -62,7 +71,7 @@ public class EmployeeForm extends CustomComponent implements Button.ClickListene
     setCompositionRoot(layout);
   }
 
-  public ComboBox getDepartmentSelector() {
+  public NativeSelect getDepartmentSelector() {
     return department;
   }
 
@@ -74,7 +83,9 @@ public class EmployeeForm extends CustomComponent implements Button.ClickListene
         employeeContainer.addBean(fieldGroup.getItemDataSource().getBean());
         fieldGroup.setItemDataSource(new Employee());
       } catch (CommitException e) {
-        Notification.show("Validation failed: Unable to commit input.", Notification.Type.ERROR_MESSAGE);
+        Notification.show(messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.validationfailed"),
+            messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.validationerrormessage"),
+            Notification.Type.ERROR_MESSAGE);
       }
     } else {
       fieldGroup.discard();

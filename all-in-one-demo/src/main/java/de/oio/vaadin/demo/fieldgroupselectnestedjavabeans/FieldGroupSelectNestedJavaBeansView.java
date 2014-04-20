@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.vaadin.appbase.components.TranslatedCustomLayout;
+import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.view.IView;
 
 import com.vaadin.data.Item;
@@ -14,13 +17,16 @@ import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalLayout;
 
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Department;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Employee;
 
+@Configurable(preConstruction = true)
 public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout {
 
-  private final static Department HUMAN_RESOURCES_DEPARTMENT = new Department("Human Resources", "John Smith");
+  @Autowired
+  private IMessageProvider messageProvider;
 
   // @formatter:off
   private static List<Department> DEPARTMENTS = new ArrayList<Department>(Arrays.asList(
@@ -46,8 +52,13 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
     buildDepartmentContainer();
     buildIndexedContainer();
     buildEmployeeContainer();
-    getLayout().addComponent(buildTabsheet(), "tabsheet");
-    getLayout().addComponent(buildEmployeeTable(), "employeeTable");
+    VerticalLayout layout = new VerticalLayout();
+    layout.setMargin(true);
+    layout.setSpacing(true);
+
+    layout.addComponent(buildTabsheet());
+    layout.addComponent(buildEmployeeTable());
+    getLayout().addComponent(layout, "layout");
 
     return this;
   }
@@ -68,8 +79,10 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
 
   private TabSheet buildTabsheet() {
     tabsheet = new TabSheet();
-    tabsheet.addTab(buildBeanItemContainerTab(), "BeanItemContainer");
-    tabsheet.addTab(buildIndexedContainerTab(), "IndexedContainer");
+    tabsheet.addTab(buildBeanItemContainerTab(),
+        messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.beanItemContainerTab"));
+    tabsheet.addTab(buildIndexedContainerTab(),
+        messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.indexedContainerTab"));
     return tabsheet;
   }
 
@@ -89,17 +102,22 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
     employeeTable.setWidth("100%");
     employeeTable.setContainerDataSource(employeeContainer);
     employeeTable.setVisibleColumns("firstName", "lastName", "department");
+    employeeTable.setColumnHeaders(messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.firstname"),
+        messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.lastname"),
+        messageProvider.getMessage("FieldGroupSelectNestedJavaBeans.department"));
     employeeTable.setSelectable(true);
     return employeeTable;
   }
 
   private Component buildBeanItemContainerTab() {
-    EmployeeForm form = new EmployeeForm(employeeContainer, departmentContainer);
+    EmployeeForm form = new EmployeeForm(employeeContainer, departmentContainer,
+        "FieldGroupSelectNestedJavaBeans.beanItemContainerInfo", messageProvider);
     return form;
   }
 
   private Component buildIndexedContainerTab() {
-    EmployeeForm form = new EmployeeForm(employeeContainer, indexedContainer);
+    EmployeeForm form = new EmployeeForm(employeeContainer, indexedContainer,
+        "FieldGroupSelectNestedJavaBeans.indexedContainerInfo", messageProvider);
     form.getDepartmentSelector().setConverter(new IndexToDepartmentConverter(indexedContainer));
     form.getDepartmentSelector().setItemCaptionMode(ItemCaptionMode.ID);
     form.getDepartmentSelector().setItemCaptionPropertyId("name");

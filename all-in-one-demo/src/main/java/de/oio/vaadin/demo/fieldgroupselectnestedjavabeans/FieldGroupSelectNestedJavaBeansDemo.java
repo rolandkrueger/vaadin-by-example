@@ -19,7 +19,7 @@ public class FieldGroupSelectNestedJavaBeansDemo extends AbstractDemo {
     info = new DemoInfo();
     info.setBlogPostTitle("Select Nested JavaBeans With a Vaadin FieldGroup");
     info.setBlogPostURI("http://blog.oio.de/2014/04/10/select-nested-javabeans-vaadin-fieldgroup");
-    info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/");
+    info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/ui/NestedJavaBeansInAVaadinFieldGroup");
     info.setShortDescriptionKey("FieldGroupSelectNestedJavaBeans.shortDescription");
     info.setDemoHeadlineKey("FieldGroupSelectNestedJavaBeans.headline");
   }

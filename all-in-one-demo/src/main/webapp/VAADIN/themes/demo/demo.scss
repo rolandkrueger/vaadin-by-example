@@ -140,8 +140,10 @@ $gray-gradient-end : #9AA4AB;
   		margin-right: auto;
   	}
   	
-  	.v-captiontext {
-  		color: $link-color-header;
+  	#headline {
+	  	.v-captiontext {
+	  		color: $link-color-header;
+	  	}
   	}
   	
   	.demoSelector, .demoSelectorLink {
