@@ -4,6 +4,7 @@ Select Nested JavaBeans With a Vaadin FieldGroup
 Abstract
 --------
 
+This tutorial shows how you can edit entities that contain nested entity properties by using a drop-down selection to select such a nested entity in a form.
 
 -------------------
 
@@ -24,7 +25,7 @@ To run the example, [Apache Maven](http://maven.apache.org) is needed. You can s
 
 $ mvn package jetty:run
 
-After the Jetty container was successfully started, you can visit the demo application with your browser at the following address: http://localhost:8080/
+After the Jetty container was successfully started, you can visit the demo application with your browser at the following address: http://localhost:8080/NestedJavaBeansInAVaadinFieldGroup/
 
 - - - - - - - - - -
 This project is hosted on GitHub: https://github.com/rolandkrueger/vaadin-by-example
