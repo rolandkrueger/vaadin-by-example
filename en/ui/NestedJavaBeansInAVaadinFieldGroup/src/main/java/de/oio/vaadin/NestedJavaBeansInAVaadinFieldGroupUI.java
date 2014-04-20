@@ -23,7 +23,9 @@ import de.oio.vaadin.model.Employee;
 @PreserveOnRefresh
 public class NestedJavaBeansInAVaadinFieldGroupUI extends UI {
 
-  private static final String DESCRIPTION = "This demo shows how to build a FieldGroup that contains a selection component for "
+  private static final long serialVersionUID = -6733290242808872455L;
+
+  private static final String DESCRIPTION = "This demo shows how to configure a FieldGroup that contains a selection component for "
       + "selecting a nested JavaBean property for another JavaBean entity. In this example, there is an entity bean 'Employee' "
       + "which contains a nested JavaBean property 'Department'. In the two forms shown on the tab-sheet you can add new Employee "
       + "objects to the employee table. The first form uses a BeanItemContainer as the container data source of the department "
