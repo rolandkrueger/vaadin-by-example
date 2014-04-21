@@ -4,7 +4,7 @@ Select Nested JavaBeans With a Vaadin FieldGroup
 Abstract
 --------
 
-This tutorial shows how you can edit entities that contain nested entity properties by using a drop-down selection to select such a nested entity in a form.
+This tutorial shows how to configure a FieldGroup that contains a selection component for selecting a nested JavaBean property of another JavaBean entity. The selection component for choosing the referenced JavaBean instance can be backed by different implementations of com.vaadin.data.Container. Depending on this container implementation, it can be necessary to define an own implementation of Vaadin's Converter interface in order for the FieldGroup's data binding to work properly.
 
 -------------------
 
