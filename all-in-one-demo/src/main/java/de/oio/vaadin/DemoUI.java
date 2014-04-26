@@ -14,9 +14,9 @@ import org.vaadin.appbase.session.SessionContext;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.ObjectProperty;
-import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
@@ -32,6 +32,7 @@ import de.oio.vaadin.manager.ViewManager;
 
 @PreserveOnRefresh
 @Theme("demo")
+@Title("Vaadin By Example Demo")
 @StyleSheet("http://fonts.googleapis.com/css?family=Roboto")
 @Configurable(preConstruction = true)
 public class DemoUI extends UI {
@@ -52,8 +53,6 @@ public class DemoUI extends UI {
 
   @Override
   public void init(VaadinRequest request) {
-
-    Page.getCurrent().setTitle("Vaadin By Example Demo");
 
     VaadinUIServices.startUp();
 
