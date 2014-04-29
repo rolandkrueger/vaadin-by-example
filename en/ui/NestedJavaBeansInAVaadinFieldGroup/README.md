@@ -8,7 +8,7 @@ This tutorial shows how to configure a FieldGroup that contains a selection comp
 
 -------------------
 
-* __Tutorial__: [Select Nested JavaBeans With a Vaadin FieldGroup](http://blog.oio.de/)
+* __Tutorial__: [Select Nested JavaBeans With a Vaadin FieldGroup](http://blog.oio.de/http://blog.oio.de/2014/04/25/select-nested-javabeans-vaadin-fieldgroup/)
 
 * __Author__: Roland Krüger
 
