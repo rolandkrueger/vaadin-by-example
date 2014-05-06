@@ -47,6 +47,13 @@ public class SuggestingContainer extends BeanItemContainer<CountryBean> {
     addAll(countries);
   }
 
+  /**
+   * The sole purpose of this {@link Filter} implementation is to transport the
+   * current filterString (which is a private property of ComboBox) to our
+   * custom container implementation {@link SuggestingContainer}. Our container
+   * needs that filterString in order to fetch a filtered country list from the
+   * database.
+   */
   public static class SuggestionFilter implements Container.Filter {
 
     private String filterString;
@@ -61,11 +68,13 @@ public class SuggestingContainer extends BeanItemContainer<CountryBean> {
 
     @Override
     public boolean passesFilter(Object itemId, Item item) throws UnsupportedOperationException {
+      // will never be used and can hence always return false
       return false;
     }
 
     @Override
     public boolean appliesToProperty(Object propertyId) {
+      // will never be used and can hence always return false
       return false;
     }
 
