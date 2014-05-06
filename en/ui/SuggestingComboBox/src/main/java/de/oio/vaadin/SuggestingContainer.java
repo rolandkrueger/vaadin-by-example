@@ -1,0 +1,73 @@
+package de.oio.vaadin;
+
+import java.util.List;
+
+import com.vaadin.data.Container;
+import com.vaadin.data.Item;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.data.util.filter.UnsupportedFilterException;
+
+/**
+ * This is a specialized {@link BeanItemContainer} which redefines the filtering
+ * functionality by overwriting method
+ * {@link com.vaadin.data.util.AbstractInMemoryContainer#addFilter(Filter)}.
+ * This method is called internally by the filtering code of a ComboBox.
+ */
+public class SuggestingContainer extends BeanItemContainer<CountryBean> {
+
+  private DatabaseAccessService service;
+
+  public SuggestingContainer(DatabaseAccessService service) throws IllegalArgumentException {
+    super(CountryBean.class);
+    this.service = service;
+  }
+
+  /**
+   * This method will be called by ComboBox each time the user has entered a new
+   * value into the text field of the ComboBox. For our custom ComboBox class
+   * {@link SuggestingComboBox} it is assured by
+   * {@link SuggestingComboBox#buildFilter(String, com.vaadin.shared.ui.combobox.FilteringMode)}
+   * that only instances of {@link SuggestionFilter} are passed into this
+   * method. We can therefore safely cast the filter to this class. Then we
+   * simply get the filterString from this filter and call the database service
+   * with this filterString. The database then returns a list of country objects
+   * whose country names begin with the filterString. After having removed all
+   * existing items from the container we add the new list of freshly filtered
+   * country objects.
+   */
+  @Override
+  protected void addFilter(Filter filter) throws UnsupportedFilterException {
+    SuggestionFilter suggestionFilter = (SuggestionFilter) filter;
+    filterItems(suggestionFilter.getFilterString());
+  }
+
+  private void filterItems(String filterString) {
+    removeAllItems();
+    List<CountryBean> countries = service.filterCountryTableInDatabase(filterString);
+    addAll(countries);
+  }
+
+  public static class SuggestionFilter implements Container.Filter {
+
+    private String filterString;
+
+    public SuggestionFilter(String filterString) {
+      this.filterString = filterString;
+    }
+
+    public String getFilterString() {
+      return filterString;
+    }
+
+    @Override
+    public boolean passesFilter(Object itemId, Item item) throws UnsupportedOperationException {
+      return false;
+    }
+
+    @Override
+    public boolean appliesToProperty(Object propertyId) {
+      return false;
+    }
+
+  }
+}
