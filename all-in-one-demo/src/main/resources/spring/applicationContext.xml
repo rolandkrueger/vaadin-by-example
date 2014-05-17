@@ -9,7 +9,7 @@
 <!-- DB access currently not needed -->
 <!-- 	<import resource="datasource.xml" /> -->
 
-	<context:load-time-weaver weaver-class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
+<!-- 	<context:load-time-weaver weaver-class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/> -->
 	<context:annotation-config />
 	<context:spring-configured />
 	<context:component-scan base-package="org.vaadin.appbase" />
