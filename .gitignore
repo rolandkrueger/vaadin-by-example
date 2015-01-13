@@ -7,6 +7,9 @@ gwt-unitCache
 .classpath
 ajcore.*
 rebel.xml
+**/.idea/libraries/
+**/.idea/workspace.xml
+atlassian-ide-plugin.xml
 
 # Package Files #
 *.jar
