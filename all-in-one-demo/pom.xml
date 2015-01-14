@@ -71,12 +71,12 @@
 		<dependency>
 			<groupId>org.vaadin.addons.appbase</groupId>
 			<artifactId>appbase4vaadin</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.vaadin.addons.uriactions</groupId>
 			<artifactId>uriactions</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
