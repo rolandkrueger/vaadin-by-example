@@ -1,7 +1,7 @@
 package de.oio.vaadin.springboot.app.services.impl;
 
 import de.oio.vaadin.springboot.app.VaadinSessionContext;
-import de.oio.vaadin.springboot.app.services.IMessageProvider;
+import de.oio.vaadin.springboot.app.services.MessageProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 @Service
 @VaadinSessionScope
-public class MessageProviderImpl implements IMessageProvider, Serializable {
+public class MessageProviderImpl implements MessageProvider, Serializable {
   @Autowired
   private VaadinSessionContext context;
 

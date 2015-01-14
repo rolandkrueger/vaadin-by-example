@@ -3,7 +3,7 @@ package de.oio.vaadin.springboot.app.services;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 
-public interface IMessageProvider {
+public interface MessageProvider {
   public abstract String getMessage(String code) throws NoSuchMessageException;
 
   public abstract String getMessage(String code, Object[] args,

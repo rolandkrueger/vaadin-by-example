@@ -13,7 +13,7 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 
 import de.oio.vaadin.springboot.app.data.Contact;
-import de.oio.vaadin.springboot.app.mvp.IContactFormView;
+import de.oio.vaadin.springboot.app.mvp.ContactFormView;
 
 /**
  * Eingabemaske für Kontaktdaten. Die Eingabefelder für die Kontaktinformationen
@@ -28,9 +28,9 @@ import de.oio.vaadin.springboot.app.mvp.IContactFormView;
  * wird vollständig vom Presenter übernommen.
  */
 
-public class ContactForm extends FormLayout implements IContactFormView {
+public class ContactForm extends FormLayout implements ContactFormView {
 
-	private IContactFormView.Presenter presenter;
+	private ContactFormView.Presenter presenter;
 
 	/**
 	 * Die FieldGroup und der Datencontainer werden von außen vorgegeben.

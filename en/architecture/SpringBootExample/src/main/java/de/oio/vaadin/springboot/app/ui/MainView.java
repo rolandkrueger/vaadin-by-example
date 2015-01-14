@@ -9,11 +9,10 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnHeaderMode;
 import com.vaadin.ui.Table.RowHeaderMode;
 import com.vaadin.ui.VerticalLayout;
-import de.oio.vaadin.springboot.app.mvp.IMainView;
 
-public class MainView extends VerticalLayout implements IMainView {
+public class MainView extends VerticalLayout implements de.oio.vaadin.springboot.app.mvp.MainView {
 
-	private IMainView.Presenter presenter;
+	private de.oio.vaadin.springboot.app.mvp.MainView.Presenter presenter;
 	private ContactForm contactForm;
 
 	public MainView() {

@@ -11,10 +11,10 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.Notification;
 import de.oio.vaadin.springboot.app.data.Contact;
 import de.oio.vaadin.springboot.app.jpa.ContactRepository;
-import de.oio.vaadin.springboot.app.mvp.IContactFormView;
-import de.oio.vaadin.springboot.app.mvp.IContactFormView.Presenter;
-import de.oio.vaadin.springboot.app.mvp.IMainView;
-import de.oio.vaadin.springboot.app.services.IMessageProvider;
+import de.oio.vaadin.springboot.app.mvp.ContactFormView;
+import de.oio.vaadin.springboot.app.mvp.ContactFormView.Presenter;
+import de.oio.vaadin.springboot.app.mvp.MainView;
+import de.oio.vaadin.springboot.app.services.MessageProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.vaadin.spring.UIScope;
@@ -24,21 +24,21 @@ import java.util.Date;
 
 @UIScope
 @Component
-public class ContactFormPresenter implements IContactFormView.Presenter,
-		IMainView.Presenter, Serializable {
+public class ContactFormPresenter implements ContactFormView.Presenter,
+		MainView.Presenter, Serializable {
 
 	private boolean isNewContact = true;
 	private FieldGroup contactFieldGroup;
 	private BeanItemContainer<Contact> contactContainer;
-	private IMainView mainView;
+	private MainView mainView;
 	private ContactRepository contactRepository;
 
-	private IMessageProvider messageProvider;
+	private MessageProvider messageProvider;
 
 	public ContactFormPresenter() {
 	}
 
-	public void setMainView(IMainView mainView) {
+	public void setMainView(MainView mainView) {
 		this.mainView = mainView;
 		createFieldGroup();
 
@@ -70,7 +70,7 @@ public class ContactFormPresenter implements IContactFormView.Presenter,
 	}
 
 	@Override
-	public IMessageProvider getMessageProvider() {
+	public MessageProvider getMessageProvider() {
 		return messageProvider;
 	}
 
@@ -156,7 +156,7 @@ public class ContactFormPresenter implements IContactFormView.Presenter,
 	}
 
 	@Autowired
-	public void setMessageProvider(IMessageProvider messageProvider) {
+	public void setMessageProvider(MessageProvider messageProvider) {
 		this.messageProvider = messageProvider;
 	}
 
