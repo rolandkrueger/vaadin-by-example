@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/vaadin-by-example-demo.iml" filepath="$PROJECT_DIR$/vaadin-by-example-demo.iml" />
+    </modules>
+  </component>
+</project>
+
