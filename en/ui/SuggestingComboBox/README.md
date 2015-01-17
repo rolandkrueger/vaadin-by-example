@@ -4,15 +4,15 @@ Building a ComboBox which autocompletes with suggestions from the database
 Abstract
 --------
 
-This code demonstrates a simple hack for writing a specialized ComboBox which gets its suggestions directly from the database without having to load all possible selection items up front.
+This code demonstrates a simple hack for writing a specialized ComboBox which gets its suggestions directly from the database without having to load all possible selection items into the user session up front.
 
 -------------------
 
-* __Tutorial__: [none](http://blog.oio.de/)
+* __Tutorial__: [How to get autocomplete suggestions from the database for Vaadin’s ComboBox](http://blog.oio.de/2015/01/17/write-simple-auto-complete-combobox-vaadin/)
 
 * __Author__: Roland Krüger
 
-* __Publishing Date__: 
+* __Publishing Date__: January 17th, 2015 
 
 * __Tutorial Language__: English
 
