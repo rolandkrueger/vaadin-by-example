@@ -12,7 +12,7 @@ This tutorial shows how to configure a FieldGroup that contains a selection comp
 
 * __Author__: Roland Krüger
 
-* __Publishing Date__: 
+* __Publishing Date__: April 25th, 2014
 
 * __Tutorial Language__: English
 
