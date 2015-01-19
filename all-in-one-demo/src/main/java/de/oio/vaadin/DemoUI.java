@@ -1,27 +1,16 @@
 package de.oio.vaadin;
 
-import static org.vaadin.appbase.VaadinUIServices.*;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.vaadin.appbase.VaadinUIServices;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
-
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
-
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.componenthighlighter.ComponentHighlighterDemo;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.FieldGroupSelectNestedJavaBeansDemo;
@@ -29,18 +18,38 @@ import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayouts
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.manager.URIActionHandlerProvider;
 import de.oio.vaadin.manager.ViewManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.vaadin.appbase.VaadinUIServices;
+import org.vaadin.appbase.service.IMessageProvider;
+import org.vaadin.appbase.service.templating.ITemplatingService;
+import org.vaadin.appbase.session.SessionContext;
+import org.vaadin.spring.VaadinUI;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @PreserveOnRefresh
 @Theme("demo")
 @Title("Vaadin By Example Demo")
 @StyleSheet("http://fonts.googleapis.com/css?family=Roboto")
-@Configurable(preConstruction = true)
+@VaadinUI
+@Widgetset("de.oio.vaadin.AllInOneDemoWidgetset")
 public class DemoUI extends UI {
+
   @Autowired
   private SessionContext context;
+
   @Autowired
   private ITemplatingService templatingService;
+
+  @Autowired
   private ViewManager viewManager;
+
+  @Autowired
+  private VaadinUIServices uiServices;
+
+  @Autowired
+  private IMessageProvider messageProvider;
 
   private URIActionHandlerProvider uriActionHandlerProvider;
 
@@ -54,16 +63,15 @@ public class DemoUI extends UI {
   @Override
   public void init(VaadinRequest request) {
 
-    VaadinUIServices.startUp();
-
     if (context.getLocale() == null) {
       context.setLocale(getLocale());
     }
 
-    uriActionHandlerProvider = new URIActionHandlerProvider(UIServices().getUriActionManager());
+    uiServices.init();
+
+    uriActionHandlerProvider = new URIActionHandlerProvider(UIServices().getUriActionManager(), uiServices.getEventbus());
     uriActionHandlerProvider.buildURILayout();
 
-    viewManager = new ViewManager();
     viewManager.buildLayout(this);
 
     buildDemos();
@@ -75,10 +83,10 @@ public class DemoUI extends UI {
 
   private void buildDemos() {
     demos = new HashMap<>();
-    addDemo(new UsingSessionAndUIScopeDemo(templatingService, context));
+    addDemo(new UsingSessionAndUIScopeDemo(templatingService, context, messageProvider));
     addDemo(new I18nForCustomLayoutsUsingVelocityDemo(templatingService, context));
     addDemo(new ComponentHighlighterDemo(templatingService, context));
-    addDemo(new FieldGroupSelectNestedJavaBeansDemo(templatingService, context));
+    addDemo(new FieldGroupSelectNestedJavaBeansDemo(templatingService, context, messageProvider));
 
     uriActionHandlerProvider.registerDemos(demos.values());
     uriActionHandlerProvider.getUriActionManager().logActionOverview();
@@ -183,5 +191,9 @@ public class DemoUI extends UI {
 
   public Map<String, AbstractDemo> getDemos() {
     return demos;
+  }
+
+  public static VaadinUIServices UIServices() {
+    return getCurrent().uiServices;
   }
 }

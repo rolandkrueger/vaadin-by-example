@@ -1,5 +1,6 @@
 package de.oio.vaadin.demo.uiscope;
 
+import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 
@@ -12,9 +13,11 @@ public class UsingSessionAndUIScopeDemo extends AbstractDemo {
   public final static String SESSION_SCOPED_VALUE_ID = "sessionScopedValue";
   public final static String DEMO_NAME = "UsingSessionAndUIScope";
   private DemoInfo info;
+  private final IMessageProvider messageProvider;
 
-  public UsingSessionAndUIScopeDemo(ITemplatingService templatingService, SessionContext context) {
+  public UsingSessionAndUIScopeDemo(ITemplatingService templatingService, SessionContext context, IMessageProvider messageProvider) {
     super(templatingService, context);
+    this.messageProvider = messageProvider;
     info = new DemoInfo();
     info.setBlogPostURI("http://blog.oio.de/2013/02/22/vaadins-variable-scopes-vaadinsession-and-ui/");
     info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/architecture/UsingSessionAndUIScope");
@@ -35,7 +38,8 @@ public class UsingSessionAndUIScopeDemo extends AbstractDemo {
 
   @Override
   public Component getView() {
-    UsingSessionAndUIScopeView view = new UsingSessionAndUIScopeView();
+    UsingSessionAndUIScopeView view = new UsingSessionAndUIScopeView(messageProvider, getTemplatingService()
+            .getLayoutTemplate("demos/UsingSessionAndUIScope"));
     view.buildLayout();
     return view.getContent();
   }

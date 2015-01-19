@@ -1,12 +1,5 @@
 package de.oio.vaadin.demo.uiscope;
 
-import org.roklib.webapps.uridispatching.AbstractURIActionHandler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.view.IView;
-
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -20,13 +13,15 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-
 import de.oio.vaadin.DemoUI;
+import org.roklib.webapps.uridispatching.AbstractURIActionHandler;
+import org.vaadin.appbase.components.TranslatedCustomLayout;
+import org.vaadin.appbase.service.IMessageProvider;
+import org.vaadin.appbase.service.templating.TemplateData;
+import org.vaadin.appbase.view.IView;
 
-@Configurable(preConstruction = true)
 public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
-  @Autowired
-  private IMessageProvider messageProvider;
+  private final IMessageProvider messageProvider;
 
   /**
    * Textfield for changing the UI-scoped variable.
@@ -45,8 +40,9 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
    */
   private Property<String> overviewTableProperty;
 
-  public UsingSessionAndUIScopeView() {
-    super("demos/UsingSessionAndUIScope");
+  public UsingSessionAndUIScopeView(IMessageProvider messageProvider, TemplateData layoutData) {
+    super(layoutData);
+    this.messageProvider = messageProvider;
     // create the data property for the overview table
     overviewTableProperty = new ObjectProperty<String>("");
     // update the contents of the overview table

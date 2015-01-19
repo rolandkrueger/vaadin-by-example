@@ -22,12 +22,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="appbase4vaadin" />
         <module name="vaadin-by-example-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="appbase4vaadin" target="1.7" />
       <module name="vaadin-by-example-demo" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
-

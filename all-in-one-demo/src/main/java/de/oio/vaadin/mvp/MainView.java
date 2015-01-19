@@ -2,7 +2,7 @@ package de.oio.vaadin.mvp;
 
 import java.util.Locale;
 
-public interface IMainView {
+public interface MainView {
 	public void setPresenter(Presenter presenter);
 
 	public void setCurrentLocale(Locale currentLocale);

@@ -1,28 +1,29 @@
 package de.oio.vaadin.manager;
 
-import java.util.Locale;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.vaadin.appbase.VaadinUIServices;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
-import org.vaadin.appbase.view.IView;
-
 import com.vaadin.ui.UI;
-
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
-import de.oio.vaadin.mvp.IMainView;
+import de.oio.vaadin.mvp.MainView;
 import de.oio.vaadin.views.impl.AboutView;
 import de.oio.vaadin.views.impl.DemoSelectionView;
 import de.oio.vaadin.views.impl.DemoView;
 import de.oio.vaadin.views.impl.HomeView;
-import de.oio.vaadin.views.impl.MainView;
+import de.oio.vaadin.views.impl.MainViewImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.vaadin.appbase.places.PlaceManager;
+import org.vaadin.appbase.service.IMessageProvider;
+import org.vaadin.appbase.service.templating.ITemplatingService;
+import org.vaadin.appbase.session.SessionContext;
+import org.vaadin.appbase.view.IView;
+import org.vaadin.spring.UIScope;
 
-@Configurable
-public class ViewManager implements IMainView.Presenter {
+import java.io.Serializable;
+import java.util.Locale;
+
+@UIScope
+@Component
+public class ViewManager implements MainView.Presenter, Serializable {
 
   @Autowired
   private ITemplatingService templatingService;
@@ -30,8 +31,10 @@ public class ViewManager implements IMainView.Presenter {
   private SessionContext context;
   @Autowired
   private IMessageProvider messageProvider;
+  @Autowired
+  private PlaceManager placeManager;
 
-  private MainView mainView;
+  private MainViewImpl mainView;
 
   private UI ui;
 
@@ -42,15 +45,16 @@ public class ViewManager implements IMainView.Presenter {
   }
 
   public void showAboutView() {
-    activateView(new AboutView());
+    activateView(new AboutView(templatingService.getLayoutTemplate("about")));
   }
 
   public void showDemoSelectionView() {
-    activateView(new DemoSelectionView(DemoUI.getCurrent().getDemos().values()));
+    activateView(new DemoSelectionView(DemoUI.getCurrent().getDemos().values(), messageProvider, templatingService
+            .getLayoutTemplate("demoselection")));
   }
 
   public void showHomeView() {
-    activateView(new HomeView());
+    activateView(new HomeView(templatingService.getLayoutTemplate("home")));
   }
 
   private void activateView(IView view) {
@@ -58,9 +62,9 @@ public class ViewManager implements IMainView.Presenter {
     getMainView().setContent(view.getContent());
   }
 
-  private MainView getMainView() {
+  private MainViewImpl getMainView() {
     if (mainView == null) {
-      mainView = new MainView(messageProvider);
+      mainView = new MainViewImpl(messageProvider, templatingService.getLayoutTemplate("main"));
       mainView.buildLayout();
       mainView.setPresenter(this);
     }
@@ -70,12 +74,12 @@ public class ViewManager implements IMainView.Presenter {
   public void resetViews() {
     mainView = null;
     ui.setContent(getMainView().getContent());
-    VaadinUIServices.UIServices().getPlaceManager().reactivateCurrentPlace();
+    placeManager.reactivateCurrentPlace();
     getMainView().setCurrentLocale(context.getLocale());
   }
 
   public void showDemoView(AbstractDemo demo) {
-    activateView(new DemoView(demo));
+    activateView(new DemoView(demo, messageProvider, templatingService));
   }
 
   @Override

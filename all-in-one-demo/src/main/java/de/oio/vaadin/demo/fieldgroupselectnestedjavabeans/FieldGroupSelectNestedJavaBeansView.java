@@ -1,15 +1,5 @@
 package de.oio.vaadin.demo.fieldgroupselectnestedjavabeans;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.view.IView;
-
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.IndexedContainer;
@@ -18,15 +8,20 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
-
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Department;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Employee;
+import org.vaadin.appbase.components.TranslatedCustomLayout;
+import org.vaadin.appbase.service.IMessageProvider;
+import org.vaadin.appbase.service.templating.TemplateData;
+import org.vaadin.appbase.view.IView;
 
-@Configurable(preConstruction = true)
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout {
 
-  @Autowired
-  private IMessageProvider messageProvider;
+  private final IMessageProvider messageProvider;
 
   // @formatter:off
   private static List<Department> DEPARTMENTS = new ArrayList<Department>(Arrays.asList(
@@ -42,8 +37,9 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
   private BeanItemContainer<Department> departmentBeanItemContainer;
   private IndexedContainer departmentIndexedContainer;
 
-  public FieldGroupSelectNestedJavaBeansView() {
-    super("demos/FieldGroupSelectNestedJavaBeans");
+  public FieldGroupSelectNestedJavaBeansView(TemplateData layoutData, IMessageProvider messageProvider) {
+    super(layoutData);
+    this.messageProvider = messageProvider;
   }
 
   @Override

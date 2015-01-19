@@ -1,31 +1,29 @@
 package de.oio.vaadin.views.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.view.IView;
-import org.vaadin.highlighter.ComponentHighlighterExtension;
-
-import com.google.common.base.Preconditions;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
+import org.vaadin.appbase.components.TranslatedCustomLayout;
+import org.vaadin.appbase.service.IMessageProvider;
+import org.vaadin.appbase.service.templating.ITemplatingService;
+import org.vaadin.appbase.view.IView;
+import org.vaadin.highlighter.ComponentHighlighterExtension;
 
-@Configurable
+import static com.google.common.base.Preconditions.*;
+
 public class DemoView extends TranslatedCustomLayout {
 
   private AbstractDemo demo;
-  @Autowired
   private IMessageProvider messageProvider;
+  private final ITemplatingService templatingService;
 
-  public DemoView(AbstractDemo demo) {
-    super("demo");
-    Preconditions.checkNotNull(demo);
-    this.demo = demo;
+  public DemoView(AbstractDemo demo, IMessageProvider messageProvider, ITemplatingService templatingService) {
+    super(templatingService.getLayoutTemplate("demo"));
+    this.templatingService = checkNotNull(templatingService);
+    this.demo = checkNotNull(demo);
+    this.messageProvider = checkNotNull(messageProvider);
   }
 
   @Override
@@ -41,7 +39,7 @@ public class DemoView extends TranslatedCustomLayout {
 
   private class DemoInfoPanel extends TranslatedCustomLayout {
     public DemoInfoPanel() {
-      super("demoInfo");
+      super(templatingService.getLayoutTemplate("demoInfo"));
     }
 
     @Override
