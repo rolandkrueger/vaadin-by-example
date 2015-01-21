@@ -15,6 +15,8 @@ import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.componenthighlighter.ComponentHighlighterDemo;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.FieldGroupSelectNestedJavaBeansDemo;
 import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayoutsUsingVelocityDemo;
+import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
+import de.oio.vaadin.demo.suggestingcombobox.component.WikipediaPageTitleAccessServiceImpl;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.manager.URIActionHandlerProvider;
 import de.oio.vaadin.manager.ViewManager;
@@ -25,7 +27,7 @@ import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 import org.vaadin.spring.VaadinUI;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @PreserveOnRefresh
@@ -50,6 +52,9 @@ public class DemoUI extends UI {
 
   @Autowired
   private IMessageProvider messageProvider;
+
+  @Autowired
+  private WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService;
 
   private URIActionHandlerProvider uriActionHandlerProvider;
 
@@ -82,11 +87,12 @@ public class DemoUI extends UI {
   }
 
   private void buildDemos() {
-    demos = new HashMap<>();
+    demos = new LinkedHashMap<>();
     addDemo(new UsingSessionAndUIScopeDemo(templatingService, context, messageProvider));
     addDemo(new I18nForCustomLayoutsUsingVelocityDemo(templatingService, context));
     addDemo(new ComponentHighlighterDemo(templatingService, context));
     addDemo(new FieldGroupSelectNestedJavaBeansDemo(templatingService, context, messageProvider));
+    addDemo(new SuggestingComboBoxDemo(templatingService, context, wikipediaPageTitleAccessService, messageProvider));
 
     uriActionHandlerProvider.registerDemos(demos.values());
     uriActionHandlerProvider.getUriActionManager().logActionOverview();

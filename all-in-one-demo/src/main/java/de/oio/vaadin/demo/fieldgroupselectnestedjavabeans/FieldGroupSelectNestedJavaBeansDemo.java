@@ -13,18 +13,11 @@ public class FieldGroupSelectNestedJavaBeansDemo extends AbstractDemo {
 
   public final static String DEMO_NAME = "FieldGroupSelectNestedJavaBeans";
 
-  private DemoInfo info;
   private final IMessageProvider messageProvider;
 
   public FieldGroupSelectNestedJavaBeansDemo(ITemplatingService templatingService, SessionContext context, IMessageProvider messageProvider) {
     super(templatingService, context);
     this.messageProvider = messageProvider;
-    info = new DemoInfo();
-    info.setBlogPostTitle("Select Nested JavaBeans With a Vaadin FieldGroup");
-    info.setBlogPostURI("http://blog.oio.de/2014/04/25/select-nested-javabeans-vaadin-fieldgroup/");
-    info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/ui/NestedJavaBeansInAVaadinFieldGroup");
-    info.setShortDescriptionKey("FieldGroupSelectNestedJavaBeans.shortDescription");
-    info.setDemoHeadlineKey("FieldGroupSelectNestedJavaBeans.headline");
   }
 
   @Override
@@ -34,6 +27,12 @@ public class FieldGroupSelectNestedJavaBeansDemo extends AbstractDemo {
 
   @Override
   public DemoInfo getDemoInfo() {
+    DemoInfo info = new DemoInfo();
+    info.setBlogPostTitle("Select Nested JavaBeans With a Vaadin FieldGroup");
+    info.setBlogPostURI("http://blog.oio.de/2014/04/25/select-nested-javabeans-vaadin-fieldgroup/");
+    info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/ui/NestedJavaBeansInAVaadinFieldGroup");
+    info.setShortDescriptionKey("FieldGroupSelectNestedJavaBeans.shortDescription");
+    info.setDemoHeadlineKey("FieldGroupSelectNestedJavaBeans.headline");
     return info;
   }
 

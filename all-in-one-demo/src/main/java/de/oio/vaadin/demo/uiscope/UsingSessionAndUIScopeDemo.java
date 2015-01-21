@@ -12,18 +12,11 @@ import de.oio.vaadin.demo.DemoInfo;
 public class UsingSessionAndUIScopeDemo extends AbstractDemo {
   public final static String SESSION_SCOPED_VALUE_ID = "sessionScopedValue";
   public final static String DEMO_NAME = "UsingSessionAndUIScope";
-  private DemoInfo info;
   private final IMessageProvider messageProvider;
 
   public UsingSessionAndUIScopeDemo(ITemplatingService templatingService, SessionContext context, IMessageProvider messageProvider) {
     super(templatingService, context);
     this.messageProvider = messageProvider;
-    info = new DemoInfo();
-    info.setBlogPostURI("http://blog.oio.de/2013/02/22/vaadins-variable-scopes-vaadinsession-and-ui/");
-    info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/architecture/UsingSessionAndUIScope");
-    info.setBlogPostTitle("Vaadin’s Variable Scopes: VaadinSession and UI");
-    info.setShortDescriptionKey("UsingSessionAndUIScope.shortDescription");
-    info.setDemoHeadlineKey("UsingSessionAndUIScope.headline");
   }
 
   @Override
@@ -33,6 +26,12 @@ public class UsingSessionAndUIScopeDemo extends AbstractDemo {
 
   @Override
   public DemoInfo getDemoInfo() {
+    DemoInfo info = new DemoInfo();
+    info.setBlogPostURI("http://blog.oio.de/2013/02/22/vaadins-variable-scopes-vaadinsession-and-ui/");
+    info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/architecture/UsingSessionAndUIScope");
+    info.setBlogPostTitle("Vaadin's Variable Scopes: VaadinSession and UI");
+    info.setShortDescriptionKey("UsingSessionAndUIScope.shortDescription");
+    info.setDemoHeadlineKey("UsingSessionAndUIScope.headline");
     return info;
   }
 
