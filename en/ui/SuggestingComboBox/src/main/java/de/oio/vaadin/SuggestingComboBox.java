@@ -7,12 +7,17 @@ import de.oio.vaadin.SuggestingContainer.SuggestionFilter;
 
 public class SuggestingComboBox extends ComboBox {
 
-  public SuggestingComboBox() {
+  public SuggestingComboBox(String caption) {
+    super(caption);
     // the item caption mode has to be PROPERTY for the filtering to work
     setItemCaptionMode(ItemCaptionMode.PROPERTY);
 
     // define the property name of the CountryBean to use as item caption
     setItemCaptionPropertyId("name");
+  }
+
+  public SuggestingComboBox() {
+    this(null);
   }
 
   /**
