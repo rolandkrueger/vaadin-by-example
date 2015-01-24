@@ -68,7 +68,7 @@ public class SuggestingContainer extends BeanItemContainer<CountryBean> {
    * this is explicitly opened with the arrow icon. If such a method is omitted, the dropdown list will contain the
    * most recently suggested items.
    */
-  public void setSelected_this_is_a_custom_method(CountryBean country) {
+  public void setSelectedCountryBean(CountryBean country) {
     removeAllItems();
     addBean(country);
   }

@@ -32,7 +32,7 @@ public class SuggestingComboBoxUI extends UI {
                 Notification.show("Selected item: " + event.getProperty().getValue(), Type.HUMANIZED_MESSAGE);
                 // tell the custom container that a value has been selected. This is necessary to ensure that the
                 // selected value is displayed by the ComboBox
-                container.setSelected_this_is_a_custom_method((CountryBean) event.getProperty().getValue());
+                container.setSelectedCountryBean((CountryBean) event.getProperty().getValue());
             }
         });
         comboBox.setContainerDataSource(container);
@@ -55,7 +55,7 @@ public class SuggestingComboBoxUI extends UI {
                 Notification.show("Selected item: " + event.getProperty().getValue(), Type.HUMANIZED_MESSAGE);
                 // tell the custom container that a value has been selected. This is necessary to ensure that the
                 // selected value is displayed by the ComboBox
-                suggestingContainerWithDefaultValue.setSelected_this_is_a_custom_method((CountryBean) event.getProperty().getValue());
+                suggestingContainerWithDefaultValue.setSelectedCountryBean((CountryBean) event.getProperty().getValue());
             }
         });
 
