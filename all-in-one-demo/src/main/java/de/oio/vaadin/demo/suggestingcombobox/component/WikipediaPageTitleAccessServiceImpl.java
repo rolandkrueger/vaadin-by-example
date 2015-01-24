@@ -40,7 +40,6 @@ public class WikipediaPageTitleAccessServiceImpl implements WikipediaPageTitleAc
 
     @PostConstruct
     public void populateSearchMap() throws Exception{
-        System.out.println("Reading wikipedia pages...");
         long id = 0;
         ZipInputStream zis = new ZipInputStream(DemoUI.class.getResourceAsStream("/wikipedia-pages-extract-en.zip"));
         final ZipEntry entry = zis.getNextEntry();
@@ -50,6 +49,5 @@ public class WikipediaPageTitleAccessServiceImpl implements WikipediaPageTitleAc
         while ((line = reader.readLine()) != null ) {
             searchMap.add(line);
         }
-        System.out.println("Read pages: " + id);
     }
 }

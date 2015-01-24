@@ -37,10 +37,15 @@ public class SuggestingComboBoxView extends TranslatedCustomLayout {
             @Override
             public void valueChange(Property.ValueChangeEvent event) {
                 final WikipediaPage selectedPage = (WikipediaPage) comboBox.getValue();
-                wikipediaLink.setResource(new ExternalResource("http://en.wikipedia.org/wiki/" + selectedPage.getTitle()
-                        .replace
-                                (' ', '_')));
-                wikipediaLink.setCaption(messageProvider.getMessage("SuggestingComboBox.linkToPage") + selectedPage.getTitle() + "'");
+                if (selectedPage != null) {
+                    wikipediaLink.setResource(new ExternalResource("http://en.wikipedia.org/wiki/" + selectedPage.getTitle()
+                            .replace
+                                    (' ', '_')));
+                    wikipediaLink.setCaption(messageProvider.getMessage("SuggestingComboBox.linkToPage") + selectedPage.getTitle() + "'");
+                } else {
+                    wikipediaLink.setResource(new ExternalResource("http://en.wikipedia.org/"));
+                    wikipediaLink.setCaption(messageProvider.getMessage("SuggestingComboBox.linkToWikipedia"));
+                }
                 container.setSelected(selectedPage);
             }
         });
