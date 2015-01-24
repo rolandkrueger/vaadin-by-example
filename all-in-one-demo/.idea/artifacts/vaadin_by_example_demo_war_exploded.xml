@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="vaadin-by-example-demo:war exploded">
-    <output-path>$PROJECT_DIR$/target/vaadin-by-example-demo-1.0-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/vaadin-by-example-demo-1.1-SNAPSHOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
