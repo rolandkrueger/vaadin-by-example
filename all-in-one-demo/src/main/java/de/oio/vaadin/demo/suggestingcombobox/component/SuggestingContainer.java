@@ -42,11 +42,25 @@ public class SuggestingContainer extends BeanItemContainer<WikipediaPage> {
   }
 
   private void filterItems(String filterString) {
+    if ("".equals(filterString)) {
+      return;
+    }
+
     removeAllItems();
     if (filterString.length() > 2) {
       List<WikipediaPage> countries = service.filterCountryTableInDatabase(filterString);
       addAll(countries);
     }
+  }
+
+  /**
+   * This method makes sure that the selected value is the only value shown in the dropdown list of the ComboBox when
+   * this is explicitly opened with the arrow icon. If such a method is omitted, the dropdown list will contain the
+   * most recently suggested items.
+   */
+  public void setSelected(WikipediaPage page) {
+    removeAllItems();
+    addBean(page);
   }
 
   /**

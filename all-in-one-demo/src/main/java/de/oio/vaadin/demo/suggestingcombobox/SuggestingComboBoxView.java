@@ -29,7 +29,7 @@ public class SuggestingComboBoxView extends TranslatedCustomLayout {
     @Override
     public IView buildLayout() {
         super.buildLayout();
-        SuggestingContainer container = new SuggestingContainer(wikipediaPageTitleAccessService);
+        final SuggestingContainer container = new SuggestingContainer(wikipediaPageTitleAccessService);
         comboBox = new SuggestingComboBox();
         comboBox.setImmediate(true);
         comboBox.setContainerDataSource(container);
@@ -41,6 +41,7 @@ public class SuggestingComboBoxView extends TranslatedCustomLayout {
                         .replace
                                 (' ', '_')));
                 wikipediaLink.setCaption(messageProvider.getMessage("SuggestingComboBox.linkToPage") + selectedPage.getTitle() + "'");
+                container.setSelected(selectedPage);
             }
         });
 

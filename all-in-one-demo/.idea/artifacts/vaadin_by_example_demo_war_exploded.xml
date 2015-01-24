@@ -18,11 +18,6 @@
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.2" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.2" />
           <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.14" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:1.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.0.15" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.0.15" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.15" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:8.0.15" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.4.4" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.4" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.4" />

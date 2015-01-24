@@ -40,6 +40,7 @@
         <vaadin.version>7.3.8</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
         <java.version>1.7</java.version>
+        <start-class>de.oio.vaadin.MainApplication</start-class>
     </properties>
 
     <repositories>
@@ -80,6 +81,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-velocity</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
