@@ -7,6 +7,7 @@ import com.vaadin.annotations.Title;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.ObjectProperty;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
@@ -20,6 +21,8 @@ import de.oio.vaadin.demo.suggestingcombobox.component.WikipediaPageTitleAccessS
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.manager.URIActionHandlerProvider;
 import de.oio.vaadin.manager.ViewManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.appbase.VaadinUIServices;
 import org.vaadin.appbase.service.IMessageProvider;
@@ -36,7 +39,9 @@ import java.util.Map;
 @StyleSheet("http://fonts.googleapis.com/css?family=Roboto")
 @VaadinUI
 @Widgetset("de.oio.vaadin.AllInOneDemoWidgetset")
-public class DemoUI extends UI {
+public class DemoUI extends UI implements Page.UriFragmentChangedListener {
+
+  private final static Logger LOG = LoggerFactory.getLogger(DemoUI.class);
 
   @Autowired
   private SessionContext context;
@@ -68,6 +73,8 @@ public class DemoUI extends UI {
   @Override
   public void init(VaadinRequest request) {
 
+    LOG.info("Creating new UI with ID {} from session {}.",getUIId(), getSession().getSession().getId());
+
     if (context.getLocale() == null) {
       context.setLocale(getLocale());
     }
@@ -80,10 +87,15 @@ public class DemoUI extends UI {
     viewManager.buildLayout(this);
 
     buildDemos();
+    registerNavigationLogging();
 
     // initializations for demo UsingSessionAndUIScopeDemo
     initSessionScopedVariable();
     initUIScopedVariable();
+  }
+
+  private void registerNavigationLogging() {
+    Page.getCurrent().addUriFragmentChangedListener(this);
   }
 
   private void buildDemos() {
@@ -201,5 +213,11 @@ public class DemoUI extends UI {
 
   public static VaadinUIServices UIServices() {
     return getCurrent().uiServices;
+  }
+
+  @Override
+  public void uriFragmentChanged(Page.UriFragmentChangedEvent event) {
+    LOG.info("[{}::{}] visiting fragment '{}'", VaadinSession.getCurrent().getSession().getId(), getUIId(), event
+                .getUriFragment());
   }
 }
