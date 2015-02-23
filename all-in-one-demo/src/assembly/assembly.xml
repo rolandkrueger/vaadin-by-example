@@ -12,8 +12,14 @@
             <directory>src/main/docker/</directory>
             <outputDirectory>/</outputDirectory>
             <includes>
-                <include>Dockerfile</include>
                 <include>Dockerrun.aws.json</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>target/docker/</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>Dockerfile</include>
             </includes>
         </fileSet>
         <fileSet>

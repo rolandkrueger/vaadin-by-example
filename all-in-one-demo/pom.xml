@@ -166,6 +166,16 @@
     <build>
 
         <resources>
+            <!-- include Dockerfile -->
+            <resource>
+                <directory>src/main/docker</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>Dockerfile</include>
+                </includes>
+                <targetPath>../docker</targetPath>
+            </resource>
+
             <!-- include application.properties -->
             <resource>
                 <directory>src/main/resources</directory>
