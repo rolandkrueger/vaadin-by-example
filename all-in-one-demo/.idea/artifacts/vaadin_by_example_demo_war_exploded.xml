@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="vaadin-by-example-demo:war exploded">
-    <output-path>$PROJECT_DIR$/target/vaadin-by-example-demo-1.1-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/vaadin-by-example-demo-1.1.2</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -84,7 +84,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="C:\workspaces\IntelliJ\vaadin-by-example\all-in-one-demo\target/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="vaadin-by-example-demo/web/Web" />
       <element id="directory" name="VAADIN">
