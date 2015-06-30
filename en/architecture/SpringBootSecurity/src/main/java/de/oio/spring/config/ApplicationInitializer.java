@@ -1,4 +1,4 @@
-package de.oio;
+package de.oio.spring.config;
 
 import de.oio.model.Role;
 import de.oio.model.User;

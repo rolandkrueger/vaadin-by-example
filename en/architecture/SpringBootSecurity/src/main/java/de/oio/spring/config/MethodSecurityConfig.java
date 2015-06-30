@@ -1,4 +1,4 @@
-package de.oio;
+package de.oio.spring.config;
 
 import de.oio.service.impl.VaadinAccessDecisionManager;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package de.oio;
+package de.oio.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

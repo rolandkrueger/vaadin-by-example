@@ -70,6 +70,8 @@ public class MainUI extends UI {
                     } else if (!MainUI.getCurrent().isUserAnonymous()) {
                         eventbus.post(new NavigationEvent(this, AccessDeniedView.NAME));
                     }
+                } else {
+                    event.getThrowable().printStackTrace();
                 }
             }
         });
