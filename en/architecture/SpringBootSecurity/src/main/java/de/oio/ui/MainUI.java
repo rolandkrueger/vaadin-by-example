@@ -15,7 +15,6 @@ import de.oio.model.User;
 import de.oio.service.impl.VaadinAccessDecisionManager;
 import de.oio.ui.events.LogoutEvent;
 import de.oio.ui.events.NavigationEvent;
-import de.oio.ui.vaadin.FixedNavigator;
 import de.oio.ui.views.AccessDeniedView;
 import de.oio.ui.views.ErrorView;
 import de.oio.ui.views.LoginView;
@@ -75,7 +74,7 @@ public class MainUI extends UI {
                 }
             }
         });
-        Navigator navigator = new FixedNavigator(this, this);
+        Navigator navigator = new Navigator(this, this);
         navigator.addProvider(viewProvider);
         navigator.setErrorView(ErrorView.class);
         setNavigator(navigator);
