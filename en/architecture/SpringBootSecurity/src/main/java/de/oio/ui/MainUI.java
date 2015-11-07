@@ -5,30 +5,22 @@ import com.google.common.eventbus.Subscribe;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.*;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.UI;
 import de.oio.model.User;
-import de.oio.spring.security.VaadinAccessDecisionManager;
 import de.oio.ui.events.LogoutEvent;
 import de.oio.ui.events.NavigationEvent;
 import de.oio.ui.security.SecurityErrorHandler;
+import de.oio.ui.security.ViewAccessDecisionManager;
 import de.oio.ui.views.ErrorView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.annotation.SecuredAnnotationSecurityMetadataSource;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.util.SimpleMethodInvocation;
-import org.springframework.util.ReflectionUtils;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
-import java.util.Collection;
 
 @SpringUI(path = "")
 @Theme("valo")
@@ -39,7 +31,7 @@ public class MainUI extends UI {
     private SpringViewProvider viewProvider;
 
     @Autowired
-    private VaadinAccessDecisionManager accessDecisionManager;
+    private ViewAccessDecisionManager viewAccessDecisionManager;
 
     private EventBus eventbus;
 
@@ -52,7 +44,7 @@ public class MainUI extends UI {
         buildNavigator();
         VaadinSession.getCurrent().setErrorHandler(new SecurityErrorHandler(eventbus, getNavigator()));
 
-        checkAccessRestrictionForRequestedView();
+        viewAccessDecisionManager.checkAccessRestrictionForRequestedView(getNavigator());
 
         Page.getCurrent().setTitle("Vaadin and Spring Security Demo");
     }
@@ -62,20 +54,6 @@ public class MainUI extends UI {
         navigator.addProvider(viewProvider);
         navigator.setErrorView(ErrorView.class);
         setNavigator(navigator);
-    }
-
-    private void checkAccessRestrictionForRequestedView() {
-        final View targetView = viewProvider.getView(getNavigator().getState());
-
-        if (targetView != null) {
-            final Collection<ConfigAttribute> attributes = new SecuredAnnotationSecurityMetadataSource()
-                    .getAttributes(new SimpleMethodInvocation(targetView, ReflectionUtils.findMethod(View.class, "enter", ViewChangeListener.ViewChangeEvent.class)));
-            try {
-                accessDecisionManager.decide(SecurityContextHolder.getContext().getAuthentication(), targetView, attributes);
-            } catch (AccessDeniedException adExc) {
-                // must be ignored as this exception is already handled in the AccessDecisionManager
-            }
-        }
     }
 
     public EventBus getEventbus() {
