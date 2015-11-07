@@ -1,4 +1,4 @@
-package de.oio.spring.config;
+package de.oio.spring;
 
 import de.oio.model.Role;
 import de.oio.model.User;
@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+/**
+ * Application initializer that creates two demo accounts 'admin' and 'user' along with corresponding roles.
+ */
 @Configuration
 public class ApplicationInitializer implements ServletContextInitializer {
 

@@ -1,7 +1,6 @@
-package de.oio.service.impl;
+package de.oio.service;
 
 import de.oio.model.User;
-import de.oio.service.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

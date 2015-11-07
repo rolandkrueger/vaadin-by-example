@@ -1,4 +1,4 @@
-package de.oio.service.impl;
+package de.oio.service;
 
 import com.vaadin.ui.Notification;
 import org.springframework.security.access.annotation.Secured;

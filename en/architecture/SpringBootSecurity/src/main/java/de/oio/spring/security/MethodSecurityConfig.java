@@ -1,6 +1,5 @@
-package de.oio.spring.config;
+package de.oio.spring.security;
 
-import de.oio.service.impl.VaadinAccessDecisionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
