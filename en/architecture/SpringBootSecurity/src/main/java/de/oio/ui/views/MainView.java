@@ -12,7 +12,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import de.oio.model.User;
-import de.oio.service.impl.AdminService;
+import de.oio.service.AdminService;
 import de.oio.ui.MainUI;
 import de.oio.ui.components.LogoutLink;
 import de.oio.ui.events.LogoutEvent;

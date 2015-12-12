@@ -11,7 +11,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import de.oio.ui.MainUI;
-import de.oio.service.impl.UserAuthenticationService;
+import de.oio.spring.security.UserAuthenticationService;
 import de.oio.ui.components.GoToMainViewLink;
 import de.oio.ui.events.NavigationEvent;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
-package de.oio.service.impl;
+package de.oio.service;
 
 import de.oio.model.User;
-import de.oio.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;

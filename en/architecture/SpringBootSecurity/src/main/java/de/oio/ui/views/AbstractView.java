@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PreDestroy;
 
 public abstract class AbstractView extends Panel implements View {
-	private Logger LOG = LoggerFactory.getLogger(ProfileView.class);
+	private Logger LOG = LoggerFactory.getLogger(AbstractView.class);
 
 	private VerticalLayout layout;
 
@@ -33,7 +33,7 @@ public abstract class AbstractView extends Panel implements View {
 
 	@PreDestroy
 	public void destroy() {
-		LOG.debug("About to detroy {}", getClass().getName());
+		LOG.debug("About to destroy {}", getClass().getName());
 		MainUI.getCurrent().getEventbus().unregister(this);
 	}
 }

@@ -1,4 +1,4 @@
-package de.oio.service.impl;
+package de.oio.spring.security;
 
 import com.google.common.eventbus.EventBus;
 import com.vaadin.ui.UI;
@@ -25,9 +25,6 @@ public class VaadinAccessDecisionManager implements AccessDecisionManager {
     private AccessDecisionManager delegate;
     public static final VaadinUIService UI_SERVICE = MainUI.getUiService();
 
-    public VaadinAccessDecisionManager() {
-    }
-
     public void setAccessDecisionManager(AccessDecisionManager accessDecisionManager) {
         this.delegate = accessDecisionManager;
     }
@@ -39,12 +36,16 @@ public class VaadinAccessDecisionManager implements AccessDecisionManager {
                 // no action if an object with no access restrictions is visited
                 return;
             }
+            // delegate access decision itself to super class
             delegate.decide(authentication, object, configAttributes);
         } catch (AccessDeniedException adExc) {
+            // we handle security exceptions in the Vaadin way, i. e. we publish appropriate events on the event bus instead
+            // of redirecting to some error page (remember that we've a single-page application)
             if (UI_SERVICE.isUserAnonymous()) {
                 UI_SERVICE.postNavigationEvent(this, LoginView.loginPathForRequestedView(UI.getCurrent().getNavigator().getState()));
                 throw adExc;
             } else {
+                // if she is logged in but doesn't have adequate access rights, send her to the access denied view
                 UI_SERVICE.postNavigationEvent(this, AccessDeniedView.NAME);
                 throw adExc;
             }

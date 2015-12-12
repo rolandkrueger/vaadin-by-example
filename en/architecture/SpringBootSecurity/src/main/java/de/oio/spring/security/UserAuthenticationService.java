@@ -1,4 +1,4 @@
-package de.oio.service.impl;
+package de.oio.spring.security;
 
 import com.vaadin.ui.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
