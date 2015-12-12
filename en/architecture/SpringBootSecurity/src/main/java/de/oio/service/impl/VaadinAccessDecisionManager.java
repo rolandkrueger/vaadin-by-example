@@ -1,6 +1,8 @@
 package de.oio.service.impl;
 
 import com.google.common.eventbus.EventBus;
+import com.vaadin.ui.UI;
+import de.oio.service.VaadinUIService;
 import de.oio.ui.MainUI;
 import de.oio.ui.events.NavigationEvent;
 import de.oio.ui.views.AccessDeniedView;
@@ -21,6 +23,7 @@ public class VaadinAccessDecisionManager implements AccessDecisionManager {
     private Logger LOG = LoggerFactory.getLogger(VaadinAccessDecisionManager.class);
 
     private AccessDecisionManager delegate;
+    public static final VaadinUIService UI_SERVICE = MainUI.getUiService();
 
     public VaadinAccessDecisionManager() {
     }
@@ -38,12 +41,11 @@ public class VaadinAccessDecisionManager implements AccessDecisionManager {
             }
             delegate.decide(authentication, object, configAttributes);
         } catch (AccessDeniedException adExc) {
-            final EventBus eventbus = MainUI.getCurrent().getEventbus();
-            if (MainUI.getCurrent().isUserAnonymous()) {
-                eventbus.post(new NavigationEvent(this, LoginView.loginPathForRequestedView(MainUI.getCurrent().getNavigator().getState())));
+            if (UI_SERVICE.isUserAnonymous()) {
+                UI_SERVICE.postNavigationEvent(this, LoginView.loginPathForRequestedView(UI.getCurrent().getNavigator().getState()));
                 throw adExc;
             } else {
-                eventbus.post(new NavigationEvent(this, AccessDeniedView.NAME));
+                UI_SERVICE.postNavigationEvent(this, AccessDeniedView.NAME);
                 throw adExc;
             }
         } catch (Exception exc) {

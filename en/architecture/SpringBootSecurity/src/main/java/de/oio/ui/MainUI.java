@@ -12,7 +12,9 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.UI;
 import de.oio.model.User;
+import de.oio.service.VaadinUIService;
 import de.oio.service.impl.VaadinAccessDecisionManager;
+import de.oio.service.impl.VaadinUIServiceImpl;
 import de.oio.ui.events.LogoutEvent;
 import de.oio.ui.events.NavigationEvent;
 import de.oio.ui.vaadin.FixedNavigator;
@@ -40,7 +42,8 @@ import java.util.Collection;
 @PreserveOnRefresh
 public class MainUI extends UI {
 
-    private static Logger LOG = LoggerFactory.getLogger(MainUI.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MainUI.class);
+    private static final VaadinUIService uiService = new VaadinUIServiceImpl();
 
     @Autowired
     private SpringViewProvider viewProvider;
@@ -132,5 +135,9 @@ public class MainUI extends UI {
     @Subscribe
     public void handleNavigation(NavigationEvent event) {
         getNavigator().navigateTo(event.getTarget());
+    }
+
+    public static VaadinUIService getUiService() {
+        return uiService;
     }
 }
