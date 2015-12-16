@@ -22,14 +22,14 @@ import javax.servlet.annotation.WebServlet;
  * @author Roland Krüger
  */
 @Theme("valo")
-public class ApplicationUI extends UI {
+public class MyCountingUI extends UI {
 
     private int counter = 0;
     private Label counterLabel;
 
     // Annotationsbasierte Konfiguration des Vaadin Servlets mit Servlet 3.0
     @WebServlet(value = "/*")
-    @VaadinServletConfiguration(productionMode = false, ui = ApplicationUI.class)
+    @VaadinServletConfiguration(productionMode = false, ui = MyCountingUI.class)
     public static class Servlet extends VaadinServlet {
     }
 
