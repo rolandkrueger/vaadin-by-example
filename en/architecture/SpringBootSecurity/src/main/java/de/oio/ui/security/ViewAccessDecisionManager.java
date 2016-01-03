@@ -15,6 +15,7 @@ import org.springframework.security.util.SimpleMethodInvocation;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -22,7 +23,7 @@ import java.util.Collection;
  */
 @Component
 @UIScope
-public class ViewAccessDecisionManager {
+public class ViewAccessDecisionManager implements Serializable{
 
     @Autowired
     private SpringViewProvider viewProvider;
