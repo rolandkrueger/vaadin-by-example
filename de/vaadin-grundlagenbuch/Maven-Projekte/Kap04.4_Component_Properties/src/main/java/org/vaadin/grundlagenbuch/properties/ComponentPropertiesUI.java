@@ -51,7 +51,14 @@ public class ComponentPropertiesUI extends UI {
         Button styledButton = new Button("Ein Button mit geändertem Primary Style");
         styledButton.setPrimaryStyleName("my-own-style");
 
-        mainLayout.addComponents(heading, button, textField, disabledTextField, readOnlyTextField, styledButton);
+        DateField dateField = new DateField();
+        dateField.setDescription("<i>DateField</i> mit einer <ul>" +
+                "<li>mehrere</li>" +
+                "<li>Punkte</li>" +
+                "<li>umfassenden</li>" +
+                "</ul> Beschreibung");
+
+        mainLayout.addComponents(heading, button, textField, disabledTextField, readOnlyTextField, styledButton, dateField);
         setContent(mainLayout);
     }
 }
