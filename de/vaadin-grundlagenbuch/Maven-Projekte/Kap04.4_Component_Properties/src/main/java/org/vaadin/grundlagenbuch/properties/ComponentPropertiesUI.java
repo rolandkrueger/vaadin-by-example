@@ -27,6 +27,9 @@ public class ComponentPropertiesUI extends UI {
         mainLayout.setSpacing(true);
         mainLayout.setMargin(true);
 
+        Label heading = new Label("Standardeigenschaften von Vaadin-Komponenten");
+        heading.setStyleName("h1");
+
         Button button = new Button();
         button.setCaption("Caption einer Schaltfläche");
         button.setIcon(FontAwesome.REBEL, "Icon der Schaltfläche");
@@ -48,7 +51,7 @@ public class ComponentPropertiesUI extends UI {
         Button styledButton = new Button("Ein Button mit geändertem Primary Style");
         styledButton.setPrimaryStyleName("my-own-style");
 
-        mainLayout.addComponents(button, textField, disabledTextField, readOnlyTextField, styledButton);
+        mainLayout.addComponents(heading, button, textField, disabledTextField, readOnlyTextField, styledButton);
         setContent(mainLayout);
     }
 }
