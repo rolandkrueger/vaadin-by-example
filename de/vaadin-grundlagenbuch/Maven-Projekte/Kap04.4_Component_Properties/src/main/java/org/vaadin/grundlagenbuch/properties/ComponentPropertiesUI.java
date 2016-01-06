@@ -51,6 +51,10 @@ public class ComponentPropertiesUI extends UI {
         // Deaktivieren des Textfeldes
         disabledTextField.setEnabled(false);
 
+        Label invisibleTextFieldLabel = new Label("Hier folgt ein unsichtbares Textfeld:");
+        TextField invisibleTextField = new TextField("Unsichtbar");
+        invisibleTextField.setVisible(false);
+
         TextField readOnlyTextField = new TextField("Read-only Textfeld");
         readOnlyTextField.setValue("Unveränderlicher Text");
         // Setzen des Textfeldes als Read Only
@@ -66,9 +70,9 @@ public class ComponentPropertiesUI extends UI {
                 "<li>mehrere</li>" +
                 "<li>Punkte</li>" +
                 "<li>umfassenden</li>" +
-                "</ul> Beschreibung");
+                "</ul>Beschreibung");
 
-        mainLayout.addComponents(heading, button, textField, disabledTextField, readOnlyTextField, styledButton, dateField);
+        mainLayout.addComponents(heading, button, textField, disabledTextField, invisibleTextFieldLabel, invisibleTextField, readOnlyTextField, styledButton, dateField);
         setContent(mainLayout);
     }
 }
