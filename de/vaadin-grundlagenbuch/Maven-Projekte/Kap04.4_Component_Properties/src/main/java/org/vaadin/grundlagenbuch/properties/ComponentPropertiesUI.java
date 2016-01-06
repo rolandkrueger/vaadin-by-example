@@ -27,31 +27,41 @@ public class ComponentPropertiesUI extends UI {
         mainLayout.setSpacing(true);
         mainLayout.setMargin(true);
 
+        // Setzen der Caption über den Konstruktor
         Label heading = new Label("Standardeigenschaften von Vaadin-Komponenten");
         heading.setStyleName("h1");
 
         Button button = new Button();
+        // Setzen der Caption über explizite Setter-Methode
         button.setCaption("Caption einer Schaltfläche");
-        button.setIcon(FontAwesome.REBEL, "Icon der Schaltfläche");
+        // Setzen eines Icons
+        button.setIcon(FontAwesome.REBEL);
+        // Setzen der Id
         button.setId("rebel-button");
+        // Setzen des Style Names
         button.setStyleName("rebel-style");
 
         TextField textField = new TextField("Caption eines Textfeldes");
         textField.setIcon(FontAwesome.EMPIRE);
+        // Setzen der Beschreibung (wird als Tooltip angezeigt)
         textField.setDescription("Beschreibung des Textfeldes");
 
         TextField disabledTextField = new TextField("Deaktiviertes Textfeld");
         disabledTextField.setValue("Text ...");
+        // Deaktivieren des Textfeldes
         disabledTextField.setEnabled(false);
 
         TextField readOnlyTextField = new TextField("Read-only Textfeld");
         readOnlyTextField.setValue("Unveränderlicher Text");
+        // Setzen des Textfeldes als Read Only
         readOnlyTextField.setReadOnly(true);
 
         Button styledButton = new Button("Ein Button mit geändertem Primary Style");
+        // Setzen des Primary Styles
         styledButton.setPrimaryStyleName("my-own-style");
 
         DateField dateField = new DateField();
+        // Setzen einer Beschreibung mit HTML-Elementen
         dateField.setDescription("<i>DateField</i> mit einer <ul>" +
                 "<li>mehrere</li>" +
                 "<li>Punkte</li>" +
