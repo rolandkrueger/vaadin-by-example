@@ -19,6 +19,7 @@
         <module>Kap03_Multi-Tabbed_Browsing</module>
         <module>Kap04.4_Component_Properties</module>
         <module>Kap04.6_Field_Properties</module>
+        <module>Kap10.4_StreamResource</module>
     </modules>
 
     <dependencyManagement>
