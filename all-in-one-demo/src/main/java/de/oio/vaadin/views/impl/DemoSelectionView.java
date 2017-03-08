@@ -5,6 +5,7 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
+import de.oio.vaadin.services.application.UriActionMapperTreeService;
 import org.vaadin.appbase.components.TranslatedCustomLayout;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.TemplateData;
@@ -13,17 +14,19 @@ import org.vaadin.highlighter.ComponentHighlighterExtension;
 
 import java.util.Collection;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class DemoSelectionView extends TranslatedCustomLayout {
 
   private Collection<AbstractDemo> demos;
   private IMessageProvider messageProvider;
+  private final UriActionMapperTreeService uriActionMapperTreeService;
 
-  public DemoSelectionView(Collection<AbstractDemo> demos, IMessageProvider messageProvider, TemplateData layoutData) {
+  public DemoSelectionView(Collection<AbstractDemo> demos, IMessageProvider messageProvider, TemplateData layoutData, UriActionMapperTreeService uriActionMapperTreeService) {
     super(layoutData);
     this.demos = checkNotNull(demos);
     this.messageProvider = checkNotNull(messageProvider);
+    this.uriActionMapperTreeService = uriActionMapperTreeService;
   }
 
   @Override
@@ -44,8 +47,9 @@ public class DemoSelectionView extends TranslatedCustomLayout {
 
       for (AbstractDemo demo : demos) {
         // FIXME: hard-coded #!
-        Link link = new Link(messageProvider.getMessage(demo.getDemoInfo().getDemoHeadlineKey()), new ExternalResource(
-            "#!" + demo.getUriHandler().getParameterizedActionURI(true).toString()));
+
+        Link link = new Link(messageProvider.getMessage(demo.getDemoInfo().getDemoHeadlineKey()),
+            new ExternalResource("#!" + uriActionMapperTreeService.getUriActionMapperTree().assembleUriFragment(uriActionMapperTreeService.getActionMapperForName(demo.getName()))));
         link.addStyleName("demoSelectorLink");
         addComponent(link);
       }

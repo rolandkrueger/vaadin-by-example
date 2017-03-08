@@ -1,10 +1,6 @@
 package de.oio.vaadin;
 
-import com.vaadin.annotations.PreserveOnRefresh;
-import com.vaadin.annotations.StyleSheet;
-import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.Title;
-import com.vaadin.annotations.Widgetset;
+import com.vaadin.annotations.*;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.server.Page;
@@ -19,8 +15,8 @@ import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayouts
 import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.suggestingcombobox.component.WikipediaPageTitleAccessServiceImpl;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
-import de.oio.vaadin.manager.URIActionHandlerProvider;
-import de.oio.vaadin.manager.ViewManager;
+import de.oio.vaadin.services.ViewManager;
+import de.oio.vaadin.services.application.UriActionMapperTreeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +24,7 @@ import org.vaadin.appbase.VaadinUIServices;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
+import org.vaadin.appbase.uriactions.RoutingContextData;
 import org.vaadin.spring.VaadinUI;
 
 import java.util.LinkedHashMap;
@@ -61,7 +58,8 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   @Autowired
   private WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService;
 
-  private URIActionHandlerProvider uriActionHandlerProvider;
+  @Autowired
+  private UriActionMapperTreeService uriActionMapperTreeService;
 
   /**
    * The UI-scoped variable for demo {@link UsingSessionAndUIScopeDemo}.
@@ -74,15 +72,12 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   public void init(VaadinRequest request) {
 
     LOG.info("Creating new UI with ID {} from session {}.",getUIId(), getSession().getSession().getId());
+    uiServices.getUriActionManager().initialize(uriActionMapperTreeService.getUriActionMapperTree(),
+        new RoutingContextData(uiServices.getEventbus(), uriActionMapperTreeService.getUriActionMapperTree()));
 
     if (context.getLocale() == null) {
       context.setLocale(getLocale());
     }
-
-    uiServices.init();
-
-    uriActionHandlerProvider = new URIActionHandlerProvider(UIServices().getUriActionManager(), uiServices.getEventbus());
-    uriActionHandlerProvider.buildURILayout();
 
     viewManager.buildLayout(this);
 
@@ -100,14 +95,11 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 
   private void buildDemos() {
     demos = new LinkedHashMap<>();
-    addDemo(new UsingSessionAndUIScopeDemo(templatingService, context, messageProvider));
+    addDemo(new UsingSessionAndUIScopeDemo(templatingService, context, messageProvider, uriActionMapperTreeService));
     addDemo(new I18nForCustomLayoutsUsingVelocityDemo(templatingService, context));
     addDemo(new ComponentHighlighterDemo(templatingService, context));
     addDemo(new FieldGroupSelectNestedJavaBeansDemo(templatingService, context, messageProvider));
     addDemo(new SuggestingComboBoxDemo(templatingService, context, wikipediaPageTitleAccessService, messageProvider));
-
-    uriActionHandlerProvider.registerDemos(demos.values());
-    uriActionHandlerProvider.getUriActionManager().logActionOverview();
   }
 
   private void addDemo(AbstractDemo demo) {
@@ -146,7 +138,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
         // property as the data of the session variable so that the data
         // can be changed with a textfield and displayed in a label.
         VaadinSession.getCurrent().setAttribute(UsingSessionAndUIScopeDemo.SESSION_SCOPED_VALUE_ID,
-            new ObjectProperty<String>(""));
+            new ObjectProperty<>(""));
       } finally {
         // safely unlock the session in a finally block
         VaadinSession.getCurrent().getLockInstance().unlock();
@@ -177,7 +169,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
    */
   private void initUIScopedVariable() {
     // create the instance for the UI-scoped variable
-    uiScopedVariable = new ObjectProperty<String>("");
+    uiScopedVariable = new ObjectProperty<>("");
   }
 
   /**
@@ -203,8 +195,8 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
     return viewManager;
   }
 
-  public URIActionHandlerProvider getUriActionHandlerProvider() {
-    return uriActionHandlerProvider;
+  public UriActionMapperTreeService getUriActionMapperTreeService() {
+    return uriActionMapperTreeService;
   }
 
   public Map<String, AbstractDemo> getDemos() {

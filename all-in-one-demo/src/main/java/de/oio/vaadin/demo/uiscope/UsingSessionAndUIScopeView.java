@@ -6,15 +6,11 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Button;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 import de.oio.vaadin.DemoUI;
-import org.roklib.webapps.uridispatching.AbstractURIActionHandler;
+import de.oio.vaadin.services.application.UriActionMapperTreeService;
+import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
 import org.vaadin.appbase.components.TranslatedCustomLayout;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.TemplateData;
@@ -22,6 +18,7 @@ import org.vaadin.appbase.view.IView;
 
 public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
   private final IMessageProvider messageProvider;
+  private final UriActionMapperTreeService uriActionMapperTreeService;
 
   /**
    * Textfield for changing the UI-scoped variable.
@@ -40,11 +37,12 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
    */
   private Property<String> overviewTableProperty;
 
-  public UsingSessionAndUIScopeView(IMessageProvider messageProvider, TemplateData layoutData) {
+  public UsingSessionAndUIScopeView(IMessageProvider messageProvider, UriActionMapperTreeService uriActionMapperTreeService, TemplateData layoutData) {
     super(layoutData);
     this.messageProvider = messageProvider;
+    this.uriActionMapperTreeService = uriActionMapperTreeService;
     // create the data property for the overview table
-    overviewTableProperty = new ObjectProperty<String>("");
+    overviewTableProperty = new ObjectProperty<>("");
     // update the contents of the overview table
     refreshOverviewTable();
   }
@@ -56,8 +54,8 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
     layout.setSpacing(true);
     layout.setMargin(true);
 
-    AbstractURIActionHandler demoHandler = DemoUI.getCurrent().getUriActionHandlerProvider().getDemoHandlersMap()
-        .get(UsingSessionAndUIScopeDemo.DEMO_NAME);
+    UriPathSegmentActionMapper demoActionMapper = DemoUI.getCurrent().getUriActionMapperTreeService()
+        .getActionMapperForName(UsingSessionAndUIScopeDemo.DEMO_NAME);
 
     // we add a label that contains a link to the demo application itself.
     // When this link is opened in a new browser window or tab, a new UI
@@ -65,7 +63,7 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
     // variables of this class live in this new UI object and are thus
     // multiplied in memory for every new UI object.
     layout.addComponent(new Label(messageProvider.getMessage("UsingSessionAndUIScope.openThisApplication",
-        new Object[] { demoHandler.getParameterizedActionURI(true).toString() }), ContentMode.HTML));
+        new Object[]{uriActionMapperTreeService.getUriActionMapperTree().assembleUriFragment(demoActionMapper)}), ContentMode.HTML));
 
     DemoUI.getCurrentUIScopedVariable().addValueChangeListener(new ValueChangeListener() {
       @Override
@@ -110,8 +108,8 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
     buf.append(messageProvider.getMessage("UsingSessionAndUIScope.overviewHeadline"));
 
     // add the number of currently active UI objects
-    buf.append(messageProvider.getMessage("UsingSessionAndUIScope.activeUIobjects", new Object[] {
-        VaadinSession.getCurrent().getUIs().size(), VaadinSession.getCurrent().getSession().getId() }));
+    buf.append(messageProvider.getMessage("UsingSessionAndUIScope.activeUIobjects", new Object[]{
+        VaadinSession.getCurrent().getUIs().size(), VaadinSession.getCurrent().getSession().getId()}));
 
     // add a table showing the UI-scoped variable values for each currently
     // active UI object
@@ -131,7 +129,7 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
 
     buf.append("</table>");
 
-    // update the lable with the new table contents
+    // update the label with the new table contents
     overviewTableProperty.setValue(buf.toString());
   }
 

@@ -1,23 +1,23 @@
 package de.oio.vaadin.demo.componenthighlighter;
 
+import com.vaadin.ui.Component;
+import de.oio.vaadin.demo.AbstractDemo;
+import de.oio.vaadin.demo.DemoInfo;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 
-import com.vaadin.ui.Component;
-
-import de.oio.vaadin.demo.AbstractDemo;
-import de.oio.vaadin.demo.DemoInfo;
-
 public class ComponentHighlighterDemo extends AbstractDemo {
 
+	public static final String DEMO_NAME = "ComponentHighlighterDemo";
+
 	public ComponentHighlighterDemo(ITemplatingService templatingService,
-			SessionContext context) {
+																	SessionContext context) {
 		super(templatingService, context);
 	}
 
 	@Override
 	public String getName() {
-		return "ComponentHighlighterDemo";
+		return DEMO_NAME;
 	}
 
 	@Override

@@ -1,17 +1,16 @@
 package de.oio.vaadin.demo;
 
-import org.roklib.webapps.uridispatching.AbstractURIActionHandler;
+import com.vaadin.ui.Component;
+import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
-
-import com.vaadin.ui.Component;
 
 public abstract class AbstractDemo {
 
   private ITemplatingService templatingService;
   private SessionContext context;
 
-  private AbstractURIActionHandler uriHandler;
+  private UriPathSegmentActionMapper uriActionManager;
 
   public AbstractDemo(ITemplatingService templatingService, SessionContext context) {
     super();
@@ -24,14 +23,6 @@ public abstract class AbstractDemo {
   public abstract DemoInfo getDemoInfo();
 
   public abstract Component getView();
-
-  public AbstractURIActionHandler getUriHandler() {
-    return uriHandler;
-  }
-
-  public void setUriHandler(AbstractURIActionHandler uriHandler) {
-    this.uriHandler = uriHandler;
-  }
 
   protected ITemplatingService getTemplatingService() {
     return templatingService;

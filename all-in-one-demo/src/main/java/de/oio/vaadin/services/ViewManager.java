@@ -1,14 +1,11 @@
-package de.oio.vaadin.manager;
+package de.oio.vaadin.services;
 
 import com.vaadin.ui.UI;
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.mvp.MainView;
-import de.oio.vaadin.views.impl.AboutView;
-import de.oio.vaadin.views.impl.DemoSelectionView;
-import de.oio.vaadin.views.impl.DemoView;
-import de.oio.vaadin.views.impl.HomeView;
-import de.oio.vaadin.views.impl.MainViewImpl;
+import de.oio.vaadin.services.application.UriActionMapperTreeService;
+import de.oio.vaadin.views.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.vaadin.appbase.places.PlaceManager;
@@ -33,6 +30,8 @@ public class ViewManager implements MainView.Presenter, Serializable {
   private IMessageProvider messageProvider;
   @Autowired
   private PlaceManager placeManager;
+  @Autowired
+  private UriActionMapperTreeService uriActionMapperTreeService;
 
   private MainViewImpl mainView;
 
@@ -50,7 +49,7 @@ public class ViewManager implements MainView.Presenter, Serializable {
 
   public void showDemoSelectionView() {
     activateView(new DemoSelectionView(DemoUI.getCurrent().getDemos().values(), messageProvider, templatingService
-            .getLayoutTemplate("demoselection")));
+            .getLayoutTemplate("demoselection"), uriActionMapperTreeService));
   }
 
   public void showHomeView() {
@@ -78,7 +77,8 @@ public class ViewManager implements MainView.Presenter, Serializable {
     getMainView().setCurrentLocale(context.getLocale());
   }
 
-  public void showDemoView(AbstractDemo demo) {
+  public void showDemoView(String demoName) {
+    AbstractDemo demo = DemoUI.getCurrent().getDemos().get(demoName);
     activateView(new DemoView(demo, messageProvider, templatingService));
   }
 

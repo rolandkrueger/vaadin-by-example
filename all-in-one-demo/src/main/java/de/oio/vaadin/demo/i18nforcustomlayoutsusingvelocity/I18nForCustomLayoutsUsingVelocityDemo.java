@@ -1,14 +1,14 @@
 package de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity;
 
+import com.vaadin.ui.Component;
+import de.oio.vaadin.demo.AbstractDemo;
+import de.oio.vaadin.demo.DemoInfo;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
 
-import com.vaadin.ui.Component;
-
-import de.oio.vaadin.demo.AbstractDemo;
-import de.oio.vaadin.demo.DemoInfo;
-
 public class I18nForCustomLayoutsUsingVelocityDemo extends AbstractDemo {
+
+	public static final String DEMO_NAME = "i18nForCustomLayoutsUsingVelocity";
 
 	public I18nForCustomLayoutsUsingVelocityDemo(
 			ITemplatingService templatingService, SessionContext context) {
@@ -17,7 +17,7 @@ public class I18nForCustomLayoutsUsingVelocityDemo extends AbstractDemo {
 
 	@Override
 	public String getName() {
-		return "i18nForCustomLayoutsUsingVelocity";
+		return DEMO_NAME;
 	}
 
 	@Override

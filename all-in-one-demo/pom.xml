@@ -37,9 +37,9 @@
 
     <properties>
         <spring.boot.version>1.2.1.RELEASE</spring.boot.version>
-        <vaadin.version>7.3.8</vaadin.version>
+        <vaadin.version>7.7.0</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <start-class>de.oio.vaadin.MainApplication</start-class>
     </properties>
 
@@ -99,12 +99,12 @@
         <dependency>
             <groupId>org.vaadin.addons.appbase</groupId>
             <artifactId>appbase4vaadin</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>2.0</version>
         </dependency>
         <dependency>
-            <groupId>org.vaadin.addons.uriactions</groupId>
-            <artifactId>uriactions</artifactId>
-            <version>1.0</version>
+            <groupId>org.roklib</groupId>
+            <artifactId>RoKlib</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -200,13 +200,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
 
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>${spring.boot.version}</version>
-                    </dependency>
-                </dependencies>
+                
 
                 <configuration>
                     <excludes>
