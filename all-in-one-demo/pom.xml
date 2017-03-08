@@ -5,7 +5,7 @@
     <groupId>de.oio.vaadin</groupId>
     <artifactId>vaadin-by-example-demo</artifactId>
     <packaging>war</packaging>
-    <version>1.1.2</version>
+    <version>1.2.0</version>
     <name>Vaadin By Example - All-in-One Demo Application</name>
     <inceptionYear>2013</inceptionYear>
 
