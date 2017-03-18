@@ -15,6 +15,7 @@ import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayouts
 import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.suggestingcombobox.component.WikipediaPageTitleAccessServiceImpl;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
+import de.oio.vaadin.demo.urifragmentactions.UriFragmentActionsDemo;
 import de.oio.vaadin.services.ViewManager;
 import de.oio.vaadin.services.application.UriActionMapperTreeService;
 import org.slf4j.Logger;
@@ -40,33 +41,36 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 
   private final static Logger LOG = LoggerFactory.getLogger(DemoUI.class);
 
-  @Autowired
-  private SessionContext context;
-
-  @Autowired
-  private ITemplatingService templatingService;
-
-  @Autowired
-  private ViewManager viewManager;
-
-  @Autowired
-  private VaadinUIServices uiServices;
-
-  @Autowired
-  private IMessageProvider messageProvider;
-
-  @Autowired
-  private WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService;
-
-  @Autowired
-  private UriActionMapperTreeService uriActionMapperTreeService;
+  private final SessionContext context;
+  private final ITemplatingService templatingService;
+  private final ViewManager viewManager;
+  private final VaadinUIServices uiServices;
+  private final IMessageProvider messageProvider;
+  private final WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService;
+  private final UriActionMapperTreeService uriActionMapperTreeService;
 
   /**
    * The UI-scoped variable for demo {@link UsingSessionAndUIScopeDemo}.
    */
   private ObjectProperty<String> uiScopedVariable;
-
   private Map<String, AbstractDemo> demos;
+
+  @Autowired
+  public DemoUI(SessionContext context,
+                ITemplatingService templatingService,
+                ViewManager viewManager,
+                VaadinUIServices uiServices,
+                IMessageProvider messageProvider,
+                WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService,
+                UriActionMapperTreeService uriActionMapperTreeService) {
+    this.context = context;
+    this.templatingService = templatingService;
+    this.viewManager = viewManager;
+    this.uiServices = uiServices;
+    this.messageProvider = messageProvider;
+    this.wikipediaPageTitleAccessService = wikipediaPageTitleAccessService;
+    this.uriActionMapperTreeService = uriActionMapperTreeService;
+  }
 
   @Override
   public void init(VaadinRequest request) {
@@ -100,6 +104,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
     addDemo(new ComponentHighlighterDemo(templatingService, context));
     addDemo(new FieldGroupSelectNestedJavaBeansDemo(templatingService, context, messageProvider));
     addDemo(new SuggestingComboBoxDemo(templatingService, context, wikipediaPageTitleAccessService, messageProvider));
+    addDemo(new UriFragmentActionsDemo(templatingService, context));
   }
 
   private void addDemo(AbstractDemo demo) {
