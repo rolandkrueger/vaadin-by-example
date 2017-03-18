@@ -8,7 +8,6 @@ import de.oio.vaadin.services.application.UriActionMapperTreeService;
 import de.oio.vaadin.views.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.vaadin.appbase.places.PlaceManager;
 import org.vaadin.appbase.service.IMessageProvider;
 import org.vaadin.appbase.service.templating.ITemplatingService;
 import org.vaadin.appbase.session.SessionContext;
@@ -22,20 +21,25 @@ import java.util.Locale;
 @Component
 public class ViewManager implements MainView.Presenter, Serializable {
 
-  @Autowired
-  private ITemplatingService templatingService;
-  @Autowired
-  private SessionContext context;
-  @Autowired
-  private IMessageProvider messageProvider;
-  @Autowired
-  private PlaceManager placeManager;
-  @Autowired
-  private UriActionMapperTreeService uriActionMapperTreeService;
+  private final ITemplatingService templatingService;
+  private final SessionContext context;
+  private final IMessageProvider messageProvider;
+  private final UriActionMapperTreeService uriActionMapperTreeService;
 
   private MainViewImpl mainView;
 
   private UI ui;
+
+  @Autowired
+  public ViewManager(ITemplatingService templatingService,
+                     SessionContext context,
+                     IMessageProvider messageProvider,
+                     UriActionMapperTreeService uriActionMapperTreeService) {
+    this.templatingService = templatingService;
+    this.context = context;
+    this.messageProvider = messageProvider;
+    this.uriActionMapperTreeService = uriActionMapperTreeService;
+  }
 
   public void buildLayout(UI ui) {
     this.ui = ui;
@@ -49,7 +53,7 @@ public class ViewManager implements MainView.Presenter, Serializable {
 
   public void showDemoSelectionView() {
     activateView(new DemoSelectionView(DemoUI.getCurrent().getDemos().values(), messageProvider, templatingService
-            .getLayoutTemplate("demoselection"), uriActionMapperTreeService));
+        .getLayoutTemplate("demoselection"), uriActionMapperTreeService));
   }
 
   public void showHomeView() {
@@ -73,8 +77,8 @@ public class ViewManager implements MainView.Presenter, Serializable {
   public void resetViews() {
     mainView = null;
     ui.setContent(getMainView().getContent());
-    placeManager.reactivateCurrentPlace();
     getMainView().setCurrentLocale(context.getLocale());
+    UI.getCurrent().getNavigator().navigateTo(UI.getCurrent().getNavigator().getState());
   }
 
   public void showDemoView(String demoName) {
