@@ -4,22 +4,22 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import de.oio.vaadin.DemoUI;
+import de.oio.vaadin.components.TranslatedCustomLayout;
 import de.oio.vaadin.demo.AbstractDemo;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.view.IView;
+import de.oio.vaadin.services.MessageProvider;
+import de.oio.vaadin.services.templating.TemplatingService;
+import de.oio.vaadin.views.View;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class DemoView extends TranslatedCustomLayout {
 
   private AbstractDemo demo;
-  private IMessageProvider messageProvider;
-  private final ITemplatingService templatingService;
+  private MessageProvider messageProvider;
+  private final TemplatingService templatingService;
 
-  public DemoView(AbstractDemo demo, IMessageProvider messageProvider, ITemplatingService templatingService) {
+  public DemoView(AbstractDemo demo, MessageProvider messageProvider, TemplatingService templatingService) {
     super(templatingService.getLayoutTemplate("demo"));
     this.templatingService = checkNotNull(templatingService);
     this.demo = checkNotNull(demo);
@@ -27,7 +27,7 @@ public class DemoView extends TranslatedCustomLayout {
   }
 
   @Override
-  public IView buildLayout() {
+  public View buildLayout() {
     super.buildLayout();
 
     DemoInfoPanel demoInfoPanel = new DemoInfoPanel();
@@ -43,7 +43,7 @@ public class DemoView extends TranslatedCustomLayout {
     }
 
     @Override
-    public IView buildLayout() {
+    public View buildLayout() {
       super.buildLayout();
       if (DemoUI.isDebugMode()) {
         new ComponentHighlighterExtension(getLayout());
@@ -51,13 +51,14 @@ public class DemoView extends TranslatedCustomLayout {
 
       getLayout().addComponent(new Label(messageProvider.getMessage(demo.getDemoInfo().getDemoHeadlineKey())),
           "demoHeadline");
-      getLayout().addComponent(
-          new Link(demo.getDemoInfo().getBlogPostTitle(), new ExternalResource(demo.getDemoInfo().getBlogPostURI())),
-          "linkToBlogPost");
+      if (demo.getDemoInfo().getBlogPostTitle() != null) {
+        getLayout().addComponent(
+            new Link(demo.getDemoInfo().getBlogPostTitle(), new ExternalResource(demo.getDemoInfo().getBlogPostURI())),
+            "linkToBlogPost");
+      }
       getLayout()
           .addComponent(
-              new Link(demo.getDemoInfo().getCodeHostingURI(), new ExternalResource(demo.getDemoInfo()
-                  .getCodeHostingURI())), "linkToDemoCode");
+              new Link(demo.getDemoInfo().getCodeHostingURI(), new ExternalResource(demo.getDemoInfo().getCodeHostingURI())), "linkToDemoCode");
       getLayout().addComponent(new Label(messageProvider.getMessage(demo.getDemoInfo().getShortDescriptionKey())),
           "shortDescription");
       return this;

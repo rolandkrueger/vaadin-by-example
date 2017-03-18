@@ -16,16 +16,16 @@ import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.suggestingcombobox.component.WikipediaPageTitleAccessServiceImpl;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.demo.urifragmentactions.UriFragmentActionsDemo;
+import de.oio.vaadin.services.MessageProvider;
+import de.oio.vaadin.services.VaadinUIServices;
 import de.oio.vaadin.services.ViewManager;
 import de.oio.vaadin.services.application.UriActionMapperTreeService;
+import de.oio.vaadin.services.templating.TemplatingService;
+import de.oio.vaadin.session.SessionContext;
+import de.oio.vaadin.uriactions.RoutingContextData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.appbase.VaadinUIServices;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
-import org.vaadin.appbase.uriactions.RoutingContextData;
 import org.vaadin.spring.VaadinUI;
 
 import java.util.LinkedHashMap;
@@ -42,10 +42,10 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   private final static Logger LOG = LoggerFactory.getLogger(DemoUI.class);
 
   private final SessionContext context;
-  private final ITemplatingService templatingService;
+  private final TemplatingService templatingService;
   private final ViewManager viewManager;
   private final VaadinUIServices uiServices;
-  private final IMessageProvider messageProvider;
+  private final MessageProvider messageProvider;
   private final WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService;
   private final UriActionMapperTreeService uriActionMapperTreeService;
 
@@ -57,10 +57,10 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 
   @Autowired
   public DemoUI(SessionContext context,
-                ITemplatingService templatingService,
+                TemplatingService templatingService,
                 ViewManager viewManager,
                 VaadinUIServices uiServices,
-                IMessageProvider messageProvider,
+                MessageProvider messageProvider,
                 WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService,
                 UriActionMapperTreeService uriActionMapperTreeService) {
     this.context = context;
@@ -75,7 +75,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   @Override
   public void init(VaadinRequest request) {
 
-    LOG.info("Creating new UI with ID {} from session {}.",getUIId(), getSession().getSession().getId());
+    LOG.info("Creating new UI with ID {} from session {}.", getUIId(), getSession().getSession().getId());
     uiServices.getUriActionManager().initialize(uriActionMapperTreeService.getUriActionMapperTree(),
         new RoutingContextData(uiServices.getEventbus(), uriActionMapperTreeService.getUriActionMapperTree()));
 
@@ -215,6 +215,6 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   @Override
   public void uriFragmentChanged(Page.UriFragmentChangedEvent event) {
     LOG.info("[{}::{}] visiting fragment '{}'", VaadinSession.getCurrent().getSession().getId(), getUIId(), event
-                .getUriFragment());
+        .getUriFragment());
   }
 }

@@ -8,12 +8,12 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
+import de.oio.vaadin.components.TranslatedCustomLayout;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Department;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Employee;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.TemplateData;
-import org.vaadin.appbase.view.IView;
+import de.oio.vaadin.services.MessageProvider;
+import de.oio.vaadin.services.templating.TemplateData;
+import de.oio.vaadin.views.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ import java.util.List;
 
 public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout {
 
-  private final IMessageProvider messageProvider;
+  private final MessageProvider messageProvider;
 
   // @formatter:off
   private static List<Department> DEPARTMENTS = new ArrayList<Department>(Arrays.asList(
@@ -29,7 +29,7 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
       new Department("IT", "Dan Developer"),
       new Department("Accounting", "Jane Doe"),
       new Department("Engineering", "Marc Jones")
-      ));
+  ));
   // @formatter:on
   private Table employeeTable;
   private TabSheet tabsheet;
@@ -37,13 +37,13 @@ public class FieldGroupSelectNestedJavaBeansView extends TranslatedCustomLayout 
   private BeanItemContainer<Department> departmentBeanItemContainer;
   private IndexedContainer departmentIndexedContainer;
 
-  public FieldGroupSelectNestedJavaBeansView(TemplateData layoutData, IMessageProvider messageProvider) {
+  public FieldGroupSelectNestedJavaBeansView(TemplateData layoutData, MessageProvider messageProvider) {
     super(layoutData);
     this.messageProvider = messageProvider;
   }
 
   @Override
-  public IView buildLayout() {
+  public View buildLayout() {
     super.buildLayout();
     buildDepartmentContainer();
     buildIndexedContainer();

@@ -5,13 +5,12 @@ import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.mvp.MainView;
 import de.oio.vaadin.services.application.UriActionMapperTreeService;
+import de.oio.vaadin.services.templating.TemplatingService;
+import de.oio.vaadin.session.SessionContext;
+import de.oio.vaadin.views.View;
 import de.oio.vaadin.views.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
-import org.vaadin.appbase.view.IView;
 import org.vaadin.spring.UIScope;
 
 import java.io.Serializable;
@@ -21,19 +20,17 @@ import java.util.Locale;
 @Component
 public class ViewManager implements MainView.Presenter, Serializable {
 
-  private final ITemplatingService templatingService;
+  private final TemplatingService templatingService;
   private final SessionContext context;
-  private final IMessageProvider messageProvider;
+  private final MessageProvider messageProvider;
   private final UriActionMapperTreeService uriActionMapperTreeService;
-
   private MainViewImpl mainView;
-
   private UI ui;
 
   @Autowired
-  public ViewManager(ITemplatingService templatingService,
+  public ViewManager(TemplatingService templatingService,
                      SessionContext context,
-                     IMessageProvider messageProvider,
+                     MessageProvider messageProvider,
                      UriActionMapperTreeService uriActionMapperTreeService) {
     this.templatingService = templatingService;
     this.context = context;
@@ -60,7 +57,7 @@ public class ViewManager implements MainView.Presenter, Serializable {
     activateView(new HomeView(templatingService.getLayoutTemplate("home")));
   }
 
-  private void activateView(IView view) {
+  private void activateView(View view) {
     view.buildLayout();
     getMainView().setContent(view.getContent());
   }

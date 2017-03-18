@@ -17,7 +17,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="appbase4vaadin" />
         <module name="vaadin-by-example-demo" />
       </profile>
     </annotationProcessing>

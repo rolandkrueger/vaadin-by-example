@@ -1,12 +1,11 @@
 package de.oio.vaadin.demo.fieldgroupselectnestedjavabeans;
 
-import java.util.Locale;
-
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.data.util.converter.Converter;
-
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Department;
+
+import java.util.Locale;
 
 public class IndexToDepartmentConverter implements Converter<Object, Department> {
 

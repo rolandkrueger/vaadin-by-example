@@ -1,21 +1,20 @@
 package de.oio.vaadin.demo.fieldgroupselectnestedjavabeans;
 
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
 
 import com.vaadin.ui.Component;
-
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.DemoInfo;
+import de.oio.vaadin.services.MessageProvider;
+import de.oio.vaadin.services.templating.TemplatingService;
+import de.oio.vaadin.session.SessionContext;
 
 public class FieldGroupSelectNestedJavaBeansDemo extends AbstractDemo {
 
   public final static String DEMO_NAME = "FieldGroupSelectNestedJavaBeans";
 
-  private final IMessageProvider messageProvider;
+  private final MessageProvider messageProvider;
 
-  public FieldGroupSelectNestedJavaBeansDemo(ITemplatingService templatingService, SessionContext context, IMessageProvider messageProvider) {
+  public FieldGroupSelectNestedJavaBeansDemo(TemplatingService templatingService, SessionContext context, MessageProvider messageProvider) {
     super(templatingService, context);
     this.messageProvider = messageProvider;
   }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {"de.oio.vaadin", "org.vaadin.appbase"})
 public class MainApplication extends SpringBootServletInitializer {
-    public static void main(String[] args) {
-        SpringApplication.run(new Class[]{MainApplication.class}, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(new Class[]{MainApplication.class}, args);
+  }
 }

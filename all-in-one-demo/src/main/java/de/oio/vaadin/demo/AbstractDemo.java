@@ -1,18 +1,18 @@
 package de.oio.vaadin.demo;
 
 import com.vaadin.ui.Component;
+import de.oio.vaadin.services.templating.TemplatingService;
+import de.oio.vaadin.session.SessionContext;
 import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
-import org.vaadin.appbase.service.templating.ITemplatingService;
-import org.vaadin.appbase.session.SessionContext;
 
 public abstract class AbstractDemo {
 
-  private ITemplatingService templatingService;
+  private TemplatingService templatingService;
   private SessionContext context;
 
   private UriPathSegmentActionMapper uriActionManager;
 
-  public AbstractDemo(ITemplatingService templatingService, SessionContext context) {
+  public AbstractDemo(TemplatingService templatingService, SessionContext context) {
     super();
     this.templatingService = templatingService;
     this.context = context;
@@ -24,7 +24,7 @@ public abstract class AbstractDemo {
 
   public abstract Component getView();
 
-  protected ITemplatingService getTemplatingService() {
+  protected TemplatingService getTemplatingService() {
     return templatingService;
   }
 

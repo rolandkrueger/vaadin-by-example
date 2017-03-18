@@ -1,23 +1,15 @@
 package de.oio.vaadin.demo.fieldgroupselectnestedjavabeans;
 
-import org.vaadin.appbase.service.IMessageProvider;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Button;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.TextField;
-
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.model.Employee;
+import de.oio.vaadin.services.MessageProvider;
 
 public class EmployeeForm extends CustomComponent implements Button.ClickListener {
 
@@ -29,10 +21,10 @@ public class EmployeeForm extends CustomComponent implements Button.ClickListene
   private Button okBtn, discardBtn;
   private BeanFieldGroup<Employee> fieldGroup;
   private BeanItemContainer<Employee> employeeContainer;
-  private IMessageProvider messageProvider;
+  private MessageProvider messageProvider;
 
   public EmployeeForm(BeanItemContainer<Employee> employeeContainer, Container departments,
-      String selectionDescriptionKey, IMessageProvider messageProvider) {
+                      String selectionDescriptionKey, MessageProvider messageProvider) {
     this.employeeContainer = employeeContainer;
     this.messageProvider = messageProvider;
 

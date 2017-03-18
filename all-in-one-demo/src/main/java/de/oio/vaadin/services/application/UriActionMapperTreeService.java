@@ -5,16 +5,16 @@ import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.FieldGroupSelectNested
 import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayoutsUsingVelocityDemo;
 import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
-import de.oio.vaadin.places.AboutPlace;
-import de.oio.vaadin.places.DemoPlace;
-import de.oio.vaadin.places.DemoSelectionPlace;
-import de.oio.vaadin.places.HomePlace;
+import de.oio.vaadin.demo.urifragmentactions.UriFragmentActionsDemo;
+import de.oio.vaadin.uriactions.ShowAboutViewUriActionCommand;
+import de.oio.vaadin.uriactions.ShowDemoSelectionViewUriActionCommand;
+import de.oio.vaadin.uriactions.ShowDemoUriActionCommand;
+import de.oio.vaadin.uriactions.ShowHomeUriActionCommand;
+import de.oio.vaadin.uriactions.command.RedirectActionCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.roklib.urifragmentrouting.UriActionMapperTree;
 import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
 import org.springframework.stereotype.Component;
-import org.vaadin.appbase.uriactions.commands.PlaceRequestActionCommand;
-import org.vaadin.appbase.uriactions.commands.RedirectActionCommand;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -48,20 +48,21 @@ public class UriActionMapperTreeService {
         SuggestingComboBoxDemo.DEMO_NAME,
         ComponentHighlighterDemo.DEMO_NAME,
         I18nForCustomLayoutsUsingVelocityDemo.DEMO_NAME,
-        FieldGroupSelectNestedJavaBeansDemo.DEMO_NAME
+        FieldGroupSelectNestedJavaBeansDemo.DEMO_NAME,
+        UriFragmentActionsDemo.DEMO_NAME
     ));
 
     UriActionMapperTree.MapperTreeBuilder mapperTreeBuilder = UriActionMapperTree.create()
         .setRootActionCommandFactory(() -> new RedirectActionCommand(actionMappers.get(HOME)))
         .buildMapperTree()
-        .map(HOME).onActionFactory(() -> new PlaceRequestActionCommand(new HomePlace())).finishMapper(mapper -> actionMappers.put(HOME, mapper))
-        .map("about").onActionFactory(() -> new PlaceRequestActionCommand(new AboutPlace())).finishMapper()
-        .map("demos").onActionFactory(() -> new PlaceRequestActionCommand(new DemoSelectionPlace())).finishMapper()
+        .map(HOME).onActionFactory(ShowHomeUriActionCommand::new).finishMapper(mapper -> actionMappers.put(HOME, mapper))
+        .map("about").onActionFactory(ShowAboutViewUriActionCommand::new).finishMapper()
+        .map("demos").onActionFactory(ShowDemoSelectionViewUriActionCommand::new).finishMapper()
         .mapSubtree("demo").onSubtree();
 
     for (String demoName : demos) {
       mapperTreeBuilder = mapperTreeBuilder.map(demoName)
-          .onActionFactory(() -> new PlaceRequestActionCommand(new DemoPlace(demoName)))
+          .onActionFactory(() -> new ShowDemoUriActionCommand(demoName))
           .finishMapper(mapper -> actionMappers.put(demoName, mapper));
     }
 

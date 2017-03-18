@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="vaadin-by-example-demo:war exploded">
-    <output-path>$PROJECT_DIR$/target/vaadin-by-example-demo-1.1.2</output-path>
+    <output-path>$PROJECT_DIR$/target/vaadin-by-example-demo-1.2.0</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -33,6 +33,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-velocity:1.2.1.RELEASE" />
@@ -55,17 +57,12 @@
           <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
           <element id="library" level="project" name="Maven: org.vaadin.spring:spring-boot-vaadin:0.0.3" />
           <element id="library" level="project" name="Maven: org.vaadin.spring:spring-vaadin:0.0.3" />
-          <element id="archive" name="appbase4vaadin-2.0.jar">
-            <element id="module-output" name="appbase4vaadin" />
-          </element>
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.6.4" />
-          <element id="library" level="project" name="Maven: com.google.guava:guava:21.0" />
-          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.14.8" />
           <element id="library" level="project" name="Maven: org.vaadin.addons.uriactions:uri-fragment-actions-for-vaadin:1.0.2" />
           <element id="library" level="project" name="Maven: org.roklib:uri-fragment-routing:1.2.0" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.14.8" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:21.0" />
           <element id="library" level="project" name="Maven: org.roklib:RoKlib:1.0.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.6.4" />
           <element id="library" level="project" name="Maven: com.vaadin:vaadin-server:7.7.0" />
           <element id="library" level="project" name="Maven: com.vaadin:vaadin-sass-compiler:0.9.13" />
           <element id="library" level="project" name="Maven: org.w3c.css:sac:1.3" />
@@ -82,7 +79,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/vaadin-by-example-demo-1.1.2/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/vaadin-by-example-demo-1.2.0/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="vaadin-by-example-demo/web/Web" />
       <element id="directory" name="VAADIN">

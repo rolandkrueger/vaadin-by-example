@@ -1,10 +1,11 @@
 package de.oio.vaadin.views.impl;
 
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.templating.TemplateData;
+
+import de.oio.vaadin.components.TranslatedCustomLayout;
+import de.oio.vaadin.services.templating.TemplateData;
 
 public class HomeView extends TranslatedCustomLayout {
-	public HomeView(TemplateData layoutData) {
-		super(layoutData);
-	}
+  public HomeView(TemplateData layoutData) {
+    super(layoutData);
+  }
 }

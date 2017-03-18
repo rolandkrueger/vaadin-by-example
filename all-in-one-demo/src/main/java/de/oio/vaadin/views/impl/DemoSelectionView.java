@@ -4,12 +4,12 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 import de.oio.vaadin.DemoUI;
+import de.oio.vaadin.components.TranslatedCustomLayout;
 import de.oio.vaadin.demo.AbstractDemo;
+import de.oio.vaadin.services.MessageProvider;
 import de.oio.vaadin.services.application.UriActionMapperTreeService;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.TemplateData;
-import org.vaadin.appbase.view.IView;
+import de.oio.vaadin.services.templating.TemplateData;
+import de.oio.vaadin.views.View;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
 
 import java.util.Collection;
@@ -19,10 +19,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class DemoSelectionView extends TranslatedCustomLayout {
 
   private Collection<AbstractDemo> demos;
-  private IMessageProvider messageProvider;
+  private MessageProvider messageProvider;
   private final UriActionMapperTreeService uriActionMapperTreeService;
 
-  public DemoSelectionView(Collection<AbstractDemo> demos, IMessageProvider messageProvider, TemplateData layoutData, UriActionMapperTreeService uriActionMapperTreeService) {
+  public DemoSelectionView(Collection<AbstractDemo> demos, MessageProvider messageProvider, TemplateData layoutData, UriActionMapperTreeService uriActionMapperTreeService) {
     super(layoutData);
     this.demos = checkNotNull(demos);
     this.messageProvider = checkNotNull(messageProvider);
@@ -30,7 +30,7 @@ public class DemoSelectionView extends TranslatedCustomLayout {
   }
 
   @Override
-  public IView buildLayout() {
+  public View buildLayout() {
     super.buildLayout();
     DemoSelector selector = new DemoSelector(demos);
 

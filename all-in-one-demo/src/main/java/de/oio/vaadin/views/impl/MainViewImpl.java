@@ -4,21 +4,21 @@ import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.ui.Component;
 import de.oio.vaadin.components.LanguageSelector;
+import de.oio.vaadin.components.TranslatedCustomLayout;
 import de.oio.vaadin.mvp.MainView;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.TemplateData;
-import org.vaadin.appbase.view.IView;
+import de.oio.vaadin.services.MessageProvider;
+import de.oio.vaadin.services.templating.TemplateData;
+import de.oio.vaadin.views.View;
 
 import java.util.Locale;
 
 public class MainViewImpl extends TranslatedCustomLayout implements MainView,
-		Property.ValueChangeListener {
-	private IMessageProvider messageProvider;
-	private MainView.Presenter presenter;
-	private LanguageSelector languageSelector;
+    Property.ValueChangeListener {
+  private MessageProvider messageProvider;
+  private MainView.Presenter presenter;
+  private LanguageSelector languageSelector;
 
-  public MainViewImpl(IMessageProvider messageProvider, TemplateData layoutData) {
+  public MainViewImpl(MessageProvider messageProvider, TemplateData layoutData) {
     super(layoutData);
     this.messageProvider = messageProvider;
   }
@@ -28,7 +28,7 @@ public class MainViewImpl extends TranslatedCustomLayout implements MainView,
   }
 
   @Override
-  public IView buildLayout() {
+  public View buildLayout() {
     super.buildLayout();
     languageSelector = new LanguageSelector(messageProvider);
     languageSelector.addValueChangeListener(this);

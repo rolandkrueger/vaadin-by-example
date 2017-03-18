@@ -9,15 +9,15 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
 import de.oio.vaadin.DemoUI;
+import de.oio.vaadin.components.TranslatedCustomLayout;
+import de.oio.vaadin.services.MessageProvider;
 import de.oio.vaadin.services.application.UriActionMapperTreeService;
+import de.oio.vaadin.services.templating.TemplateData;
+import de.oio.vaadin.views.View;
 import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
-import org.vaadin.appbase.components.TranslatedCustomLayout;
-import org.vaadin.appbase.service.IMessageProvider;
-import org.vaadin.appbase.service.templating.TemplateData;
-import org.vaadin.appbase.view.IView;
 
 public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
-  private final IMessageProvider messageProvider;
+  private final MessageProvider messageProvider;
   private final UriActionMapperTreeService uriActionMapperTreeService;
 
   /**
@@ -37,7 +37,7 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
    */
   private Property<String> overviewTableProperty;
 
-  public UsingSessionAndUIScopeView(IMessageProvider messageProvider, UriActionMapperTreeService uriActionMapperTreeService, TemplateData layoutData) {
+  public UsingSessionAndUIScopeView(MessageProvider messageProvider, UriActionMapperTreeService uriActionMapperTreeService, TemplateData layoutData) {
     super(layoutData);
     this.messageProvider = messageProvider;
     this.uriActionMapperTreeService = uriActionMapperTreeService;
@@ -48,7 +48,7 @@ public class UsingSessionAndUIScopeView extends TranslatedCustomLayout {
   }
 
   @Override
-  public IView buildLayout() {
+  public View buildLayout() {
     super.buildLayout();
     VerticalLayout layout = new VerticalLayout();
     layout.setSpacing(true);
