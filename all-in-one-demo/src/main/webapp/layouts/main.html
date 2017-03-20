@@ -1,0 +1,16 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div id="headline" th:text="#{appname}">Vaadin By Example Demo Application</div>
+	<div id="headNavigation">
+		<div id="headNavigationLeft">
+			<a class="navlink" href="#!/home" th:text="#{home}">Home</a>
+			<a class="navlink" href="#!/demos" th:text="#{demos}">Demos</a>
+			<a class="navlink" href="#!/about" th:text="#{about}">About this page</a>
+		</div>
+		<div id="headNavigationRight">
+			<div location="languageSelector"></div>
+		</div>
+	</div>
+	
+	<div location="_main_panel_"></div>
+
+</div>

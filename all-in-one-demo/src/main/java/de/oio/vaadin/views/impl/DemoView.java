@@ -1,6 +1,7 @@
 package de.oio.vaadin.views.impl;
 
 import com.vaadin.server.ExternalResource;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import de.oio.vaadin.DemoUI;
@@ -59,7 +60,7 @@ public class DemoView extends TranslatedCustomLayout {
       getLayout()
           .addComponent(
               new Link(demo.getDemoInfo().getCodeHostingURI(), new ExternalResource(demo.getDemoInfo().getCodeHostingURI())), "linkToDemoCode");
-      getLayout().addComponent(new Label(messageProvider.getMessage(demo.getDemoInfo().getShortDescriptionKey())),
+      getLayout().addComponent(new Label(messageProvider.getMessage(demo.getDemoInfo().getShortDescriptionKey()), ContentMode.HTML),
           "shortDescription");
       return this;
     }

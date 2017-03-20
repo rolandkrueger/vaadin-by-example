@@ -1,5 +1,6 @@
 package de.oio.vaadin.uriactions;
 
+import com.vaadin.server.VaadinService;
 import de.oio.vaadin.event.EventBus;
 import org.roklib.urifragmentrouting.UriActionMapperTree;
 
@@ -18,5 +19,10 @@ public class RoutingContextData {
 
   public UriActionMapperTree getUriActionMapperTree() {
     return uriActionMapperTree;
+  }
+
+  @Override
+  public String toString() {
+    return "RoutingContextData [RemoteAddr: " + VaadinService.getCurrentRequest().getRemoteAddr() + "]";
   }
 }

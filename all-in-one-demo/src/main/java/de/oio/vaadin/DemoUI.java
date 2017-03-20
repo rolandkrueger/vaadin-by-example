@@ -11,7 +11,7 @@ import com.vaadin.ui.UI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.componenthighlighter.ComponentHighlighterDemo;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.FieldGroupSelectNestedJavaBeansDemo;
-import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayoutsUsingVelocityDemo;
+import de.oio.vaadin.demo.i18nforcustomlayoutsusingthymeleaf.I18nForCustomLayoutsUsingThymeleafDemo;
 import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.suggestingcombobox.component.WikipediaPageTitleAccessServiceImpl;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
@@ -100,7 +100,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   private void buildDemos() {
     demos = new LinkedHashMap<>();
     addDemo(new UsingSessionAndUIScopeDemo(templatingService, context, messageProvider, uriActionMapperTreeService));
-    addDemo(new I18nForCustomLayoutsUsingVelocityDemo(templatingService, context));
+    addDemo(new I18nForCustomLayoutsUsingThymeleafDemo(templatingService, context));
     addDemo(new ComponentHighlighterDemo(templatingService, context));
     addDemo(new FieldGroupSelectNestedJavaBeansDemo(templatingService, context, messageProvider));
     addDemo(new SuggestingComboBoxDemo(templatingService, context, wikipediaPageTitleAccessService, messageProvider));

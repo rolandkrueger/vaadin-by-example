@@ -1,1 +1,0 @@
-#macro( msg $key )$messages.getMessage($key, null, $locale)#end

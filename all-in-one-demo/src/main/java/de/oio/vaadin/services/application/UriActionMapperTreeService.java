@@ -2,7 +2,7 @@ package de.oio.vaadin.services.application;
 
 import de.oio.vaadin.demo.componenthighlighter.ComponentHighlighterDemo;
 import de.oio.vaadin.demo.fieldgroupselectnestedjavabeans.FieldGroupSelectNestedJavaBeansDemo;
-import de.oio.vaadin.demo.i18nforcustomlayoutsusingvelocity.I18nForCustomLayoutsUsingVelocityDemo;
+import de.oio.vaadin.demo.i18nforcustomlayoutsusingthymeleaf.I18nForCustomLayoutsUsingThymeleafDemo;
 import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.demo.urifragmentactions.UriFragmentActionsDemo;
@@ -47,7 +47,7 @@ public class UriActionMapperTreeService {
         UsingSessionAndUIScopeDemo.DEMO_NAME,
         SuggestingComboBoxDemo.DEMO_NAME,
         ComponentHighlighterDemo.DEMO_NAME,
-        I18nForCustomLayoutsUsingVelocityDemo.DEMO_NAME,
+        I18nForCustomLayoutsUsingThymeleafDemo.DEMO_NAME,
         FieldGroupSelectNestedJavaBeansDemo.DEMO_NAME,
         UriFragmentActionsDemo.DEMO_NAME
     ));

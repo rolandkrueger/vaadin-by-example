@@ -22,6 +22,8 @@ public class UriFragmentActionsDemo extends AbstractDemo {
   @Override
   public DemoInfo getDemoInfo() {
     DemoInfo info = new DemoInfo();
+    info.setBlogPostTitle("Add-on Documentation");
+    info.setBlogPostURI("http://roklib.org/uri-fragment-actions-for-vaadin/usage.html");
     info.setCodeHostingURI("https://github.com/rolandkrueger/vaadin-by-example/tree/master/en/ui/URIFragmentActionsForVaadinDemo");
     info.setShortDescriptionKey("UriFragmentActions.shortDescription");
     info.setDemoHeadlineKey("UriFragmentActions.headline");
