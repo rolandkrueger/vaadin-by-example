@@ -78,6 +78,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 
   @Override
   public void init(VaadinRequest request) {
+    buildDemos();
 
     LOG.info("Creating new UI with ID {} from session {}.", getUIId(), getSession().getSession().getId());
     uiServices.getUriActionManager().initialize(uriActionMapperTreeService.getUriActionMapperTree(),
@@ -89,7 +90,6 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 
     viewManager.buildLayout(this);
 
-    buildDemos();
     registerNavigationLogging();
 
     // initializations for demo UsingSessionAndUIScopeDemo
