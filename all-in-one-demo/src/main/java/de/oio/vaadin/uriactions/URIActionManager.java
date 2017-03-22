@@ -1,6 +1,7 @@
 package de.oio.vaadin.uriactions;
 
 import com.google.common.eventbus.Subscribe;
+import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.UI;
 import de.oio.vaadin.event.impl.navigation.NavigateToURIEvent;
 import de.oio.vaadin.services.AbstractUsesServiceProvider;
@@ -8,7 +9,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.roklib.urifragmentrouting.UriActionMapperTree;
 import org.springframework.stereotype.Component;
-import org.vaadin.spring.UIScope;
 import org.vaadin.uriactions.UriFragmentActionNavigatorWrapper;
 
 import java.util.List;

@@ -4,7 +4,7 @@ import com.google.common.eventbus.SubscriberExceptionContext;
 import com.google.common.eventbus.SubscriberExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.vaadin.spring.UIScope;
+import com.vaadin.spring.annotation.UIScope;
 
 @Component
 @UIScope

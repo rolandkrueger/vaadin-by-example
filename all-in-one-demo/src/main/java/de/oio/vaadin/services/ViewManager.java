@@ -1,5 +1,6 @@
 package de.oio.vaadin.services;
 
+import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.UI;
 import de.oio.vaadin.DemoUI;
 import de.oio.vaadin.demo.AbstractDemo;
@@ -11,7 +12,6 @@ import de.oio.vaadin.views.View;
 import de.oio.vaadin.views.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.vaadin.spring.UIScope;
 
 import java.io.Serializable;
 import java.util.Locale;

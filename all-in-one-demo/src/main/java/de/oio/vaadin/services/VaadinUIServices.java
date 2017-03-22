@@ -1,5 +1,6 @@
 package de.oio.vaadin.services;
 
+import com.vaadin.spring.annotation.UIScope;
 import de.oio.vaadin.event.EventBus;
 import de.oio.vaadin.services.templating.TemplatingService;
 import de.oio.vaadin.session.SessionContext;
@@ -8,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.vaadin.spring.UIScope;
 
 import java.io.Serializable;
 

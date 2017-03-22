@@ -4,7 +4,7 @@ import com.vaadin.ui.UI;
 import de.oio.vaadin.event.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.vaadin.spring.UIScope;
+import com.vaadin.spring.annotation.UIScope;
 
 @Component
 @UIScope

@@ -7,6 +7,9 @@ import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
+import com.vaadin.spring.annotation.EnableVaadin;
+import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.server.SpringVaadinServlet;
 import com.vaadin.ui.UI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.componenthighlighter.ComponentHighlighterDemo;
@@ -26,8 +29,9 @@ import de.oio.vaadin.uriactions.RoutingContextData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.spring.VaadinUI;
+import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.annotation.WebServlet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -35,7 +39,7 @@ import java.util.Map;
 @Theme("demo")
 @Title("Vaadin By Example Demo")
 @StyleSheet("http://fonts.googleapis.com/css?family=Roboto")
-@VaadinUI
+@SpringUI
 @Widgetset("de.oio.vaadin.AllInOneDemoWidgetset")
 public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 

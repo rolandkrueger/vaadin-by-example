@@ -7,63 +7,59 @@
           <element id="module-output" name="vaadin-by-example-demo" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:1.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:1.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-logging:1.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.8" />
-          <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.8" />
-          <element id="library" level="project" name="Maven: org.slf4j:log4j-over-slf4j:1.7.8" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.2" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.2" />
-          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.14" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:1.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.0.15" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.0.15" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.15" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:8.0.15" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.4.4" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.4" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.4" />
-          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.1.3.Final" />
-          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.1.3.GA" />
-          <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.0.0" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: com.vaadin:vaadin-spring-boot-starter:1.2.0" />
+          <element id="library" level="project" name="Maven: com.vaadin:vaadin-spring-boot:1.2.0" />
+          <element id="library" level="project" name="Maven: com.vaadin:vaadin-spring:1.2.0" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:1.5.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.5.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:1.5.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-logging:1.5.2.RELEASE" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.11" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.11" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.24" />
+          <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.24" />
+          <element id="library" level="project" name="Maven: org.slf4j:log4j-over-slf4j:1.7.24" />
+          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.17" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:1.5.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.11" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.5.11" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:8.5.11" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.3.4.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" />
+          <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.3.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.7" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.7" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: com.vaadin:vaadin-themes:7.7.7" />
+          <element id="library" level="project" name="Maven: com.vaadin:vaadin-client-compiled:7.7.7" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:3.0.3.RELEASE" />
           <element id="library" level="project" name="Maven: ognl:ognl:3.1.12" />
-          <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.1-GA" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.21.0-GA" />
           <element id="library" level="project" name="Maven: org.attoparser:attoparser:2.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.unbescape:unbescape:1.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
-          <element id="library" level="project" name="Maven: org.vaadin.spring:spring-boot-vaadin:0.0.3" />
-          <element id="library" level="project" name="Maven: org.vaadin.spring:spring-vaadin:0.0.3" />
           <element id="library" level="project" name="Maven: org.vaadin.addons.uriactions:uri-fragment-actions-for-vaadin:1.0.2" />
           <element id="library" level="project" name="Maven: org.roklib:uri-fragment-routing:1.2.0" />
-          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.14.8" />
-          <element id="library" level="project" name="Maven: com.google.guava:guava:21.0" />
-          <element id="library" level="project" name="Maven: org.roklib:RoKlib:1.0.0-SNAPSHOT" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.6.4" />
-          <element id="library" level="project" name="Maven: com.vaadin:vaadin-server:7.7.0" />
+          <element id="library" level="project" name="Maven: com.vaadin:vaadin-server:7.7.7" />
           <element id="library" level="project" name="Maven: com.vaadin:vaadin-sass-compiler:0.9.13" />
           <element id="library" level="project" name="Maven: org.w3c.css:sac:1.3" />
           <element id="library" level="project" name="Maven: com.vaadin.external.flute:flute:1.3.0.gg2" />
-          <element id="library" level="project" name="Maven: com.yahoo.platform.yui:yuicompressor:2.4.8" />
-          <element id="library" level="project" name="Maven: rhino:js:1.7R2" />
+          <element id="library" level="project" name="Maven: com.vaadin:vaadin-shared:7.7.7" />
           <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.8.3" />
-          <element id="library" level="project" name="Maven: com.vaadin:vaadin-client-compiled:7.7.0" />
-          <element id="library" level="project" name="Maven: com.vaadin:vaadin-themes:7.7.0" />
-          <element id="library" level="project" name="Maven: com.vaadin:vaadin-shared:7.7.0" />
-          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.14.8" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:21.0" />
+          <element id="library" level="project" name="Maven: org.roklib:RoKlib:1.0.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.7.24" />
           <element id="library" level="project" name="Maven: org.vaadin.addons.componenthighlighter:componenthighlighter:1.0" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.8" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.24" />
         </element>
       </element>
       <element id="directory" name="META-INF">

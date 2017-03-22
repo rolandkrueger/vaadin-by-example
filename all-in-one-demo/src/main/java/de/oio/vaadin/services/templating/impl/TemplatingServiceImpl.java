@@ -1,6 +1,7 @@
 package de.oio.vaadin.services.templating.impl;
 
 import com.vaadin.server.VaadinServletService;
+import com.vaadin.spring.annotation.VaadinSessionScope;
 import de.oio.vaadin.services.templating.TemplateData;
 import de.oio.vaadin.services.templating.TemplatingService;
 import de.oio.vaadin.session.SessionContext;
@@ -14,7 +15,6 @@ import org.thymeleaf.context.WebContext;
 import org.thymeleaf.messageresolver.AbstractMessageResolver;
 import org.thymeleaf.messageresolver.StandardMessageResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-import org.vaadin.spring.VaadinSessionScope;
 
 import javax.servlet.ServletContext;
 import java.io.ByteArrayInputStream;

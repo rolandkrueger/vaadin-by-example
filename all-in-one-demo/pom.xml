@@ -13,7 +13,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.1.RELEASE</version>
+        <version>1.5.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <developers>
@@ -36,8 +37,8 @@
     </scm>
 
     <properties>
-        <spring.boot.version>1.2.1.RELEASE</spring.boot.version>
-        <vaadin.version>7.7.0</vaadin.version>
+        <spring.boot.version>1.5.2.RELEASE</spring.boot.version>
+        <vaadin.version>7.7.7</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
         <java.version>1.8</java.version>
         <start-class>de.oio.vaadin.MainApplication</start-class>
@@ -59,6 +60,7 @@
             </snapshots>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>vaadin-snapshots</id>
@@ -74,8 +76,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+            <version>1.2.0</version>
         </dependency>
 
         <dependency>
@@ -88,13 +91,6 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>1.1.0.Final</version>
-        </dependency>
-
-        <!--Spring Boot for Vaadin. Adds all necessary vaadin4spring dependencies -->
-        <dependency>
-            <groupId>org.vaadin.spring</groupId>
-            <artifactId>spring-boot-vaadin</artifactId>
-            <version>0.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.uriactions</groupId>
@@ -123,44 +119,6 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-server</artifactId>
-            <version>${vaadin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-client-compiled</artifactId>
-            <version>${vaadin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-client</artifactId>
-            <version>${vaadin.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-themes</artifactId>
-            <version>${vaadin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-shared</artifactId>
-            <version>${vaadin.version}</version>
-        </dependency>
-        <!-- Needed for compiling optimized widgetsets -->
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-client-compiler</artifactId>
-            <version>${vaadin.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.vaadin.addons.componenthighlighter</groupId>
             <artifactId>componenthighlighter</artifactId>
             <version>1.0</version>
@@ -178,6 +136,18 @@
         </dependency>
 
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
 

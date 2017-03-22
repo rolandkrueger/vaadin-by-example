@@ -1,8 +1,8 @@
 package de.oio.vaadin.session;
 
+import com.vaadin.spring.annotation.VaadinSessionScope;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.vaadin.spring.VaadinSessionScope;
 
 import java.io.Serializable;
 import java.util.Locale;
