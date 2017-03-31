@@ -80,6 +80,10 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   public void init(VaadinRequest request) {
     buildDemos();
 
+    // initializations for demo UsingSessionAndUIScopeDemo
+    initSessionScopedVariable();
+    initUIScopedVariable();
+
     LOG.info("Creating new UI with ID {} from session {}.", getUIId(), getSession().getSession().getId());
     uiServices.getUriActionManager().initialize(uriActionMapperTreeService.getUriActionMapperTree(),
         new RoutingContextData(uiServices.getEventbus(), uriActionMapperTreeService.getUriActionMapperTree()));
@@ -91,10 +95,6 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
     viewManager.buildLayout(this);
 
     registerNavigationLogging();
-
-    // initializations for demo UsingSessionAndUIScopeDemo
-    initSessionScopedVariable();
-    initUIScopedVariable();
   }
 
   private void registerNavigationLogging() {
