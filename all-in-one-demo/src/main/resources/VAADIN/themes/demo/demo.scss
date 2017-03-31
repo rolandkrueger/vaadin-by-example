@@ -1,4 +1,4 @@
-@import "../reindeer/reindeer.scss";
+@import "../valo/valo";
 
 $link-color-header : white;
 $link-color : #008AE6;
@@ -53,7 +53,7 @@ $gray-gradient-end : #9AA4AB;
 }
 	
 @mixin demo { 
-	@include reindeer;
+	@include valo;
 	
 	* {
 		font-family: 'Roboto', Verdana, sans-serif;
@@ -74,10 +74,13 @@ $gray-gradient-end : #9AA4AB;
   	.v-link a:visited span {
   		@include link;
   	}
-  	
+
+	.v-link {
+		text-decoration: none;
+	}
+
   	#headNavigation {
   		background: #383738;
-  		font-size: 2em;
   		padding: 3px;
   		padding-left: 20px;
   		height: 50px;
@@ -96,8 +99,8 @@ $gray-gradient-end : #9AA4AB;
   			text-decoration: none;
   			border-bottom: 0;
   			background-color: $link-color;
-  			padding-top: 13px;
-  			padding-bottom: 15px;
+  			padding-top: 16px;
+  			padding-bottom: 14px;
   		}
   	}
   	
@@ -112,13 +115,17 @@ $gray-gradient-end : #9AA4AB;
   	}
   	
   	#headline {
-  		font-size: 3em;
   		font-weight: bold;
+		font-size: 3em;
   		padding: 20px;
   		background: url(img/mosaic-dark.png) !important;
   		color: white;
   	}
-  	
+
+	.navlink {
+		font-size: 1.4em;
+	}
+
   	.demoHeadline {
   		.v-label {
   			font-size: 2em;
@@ -139,12 +146,12 @@ $gray-gradient-end : #9AA4AB;
   		margin-left: auto;
   		margin-right: auto;
   	}
-  	
-  	#headline {
-	  	.v-captiontext {
-	  		color: $link-color-header;
-	  	}
-  	}
+
+	.v-captiontext {
+		color: $link-color-header;
+		padding-right: 10px;
+		padding-top: 8px;
+	}
   	
   	.demoSelector, .demoSelectorLink {
   		@include margin;
