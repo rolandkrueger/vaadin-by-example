@@ -7,9 +7,7 @@ import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.spring.annotation.EnableVaadin;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.spring.server.SpringVaadinServlet;
 import com.vaadin.ui.UI;
 import de.oio.vaadin.demo.AbstractDemo;
 import de.oio.vaadin.demo.componenthighlighter.ComponentHighlighterDemo;
@@ -19,19 +17,18 @@ import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.suggestingcombobox.component.WikipediaPageTitleAccessServiceImpl;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.demo.urifragmentactions.UriFragmentActionsDemo;
+import de.oio.vaadin.event.EventBus;
 import de.oio.vaadin.services.MessageProvider;
-import de.oio.vaadin.services.VaadinUIServices;
 import de.oio.vaadin.services.ViewManager;
 import de.oio.vaadin.services.application.UriActionMapperTreeService;
 import de.oio.vaadin.services.templating.TemplatingService;
 import de.oio.vaadin.session.SessionContext;
 import de.oio.vaadin.uriactions.RoutingContextData;
+import de.oio.vaadin.uriactions.URIActionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.annotation.WebServlet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -48,10 +45,11 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   private final SessionContext context;
   private final TemplatingService templatingService;
   private final ViewManager viewManager;
-  private final VaadinUIServices uiServices;
   private final MessageProvider messageProvider;
   private final WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService;
   private final UriActionMapperTreeService uriActionMapperTreeService;
+  private final URIActionManager uriActionManager;
+  private final EventBus eventBus;
 
   /**
    * The UI-scoped variable for demo {@link UsingSessionAndUIScopeDemo}.
@@ -63,17 +61,19 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   public DemoUI(SessionContext context,
                 TemplatingService templatingService,
                 ViewManager viewManager,
-                VaadinUIServices uiServices,
                 MessageProvider messageProvider,
                 WikipediaPageTitleAccessServiceImpl wikipediaPageTitleAccessService,
-                UriActionMapperTreeService uriActionMapperTreeService) {
+                UriActionMapperTreeService uriActionMapperTreeService,
+                URIActionManager uriActionManager,
+                EventBus eventBus) {
     this.context = context;
     this.templatingService = templatingService;
     this.viewManager = viewManager;
-    this.uiServices = uiServices;
     this.messageProvider = messageProvider;
     this.wikipediaPageTitleAccessService = wikipediaPageTitleAccessService;
     this.uriActionMapperTreeService = uriActionMapperTreeService;
+    this.uriActionManager = uriActionManager;
+    this.eventBus = eventBus;
   }
 
   @Override
@@ -85,8 +85,8 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
     initUIScopedVariable();
 
     LOG.info("Creating new UI with ID {} from session {}.", getUIId(), getSession().getSession().getId());
-    uiServices.getUriActionManager().initialize(uriActionMapperTreeService.getUriActionMapperTree(),
-        new RoutingContextData(uiServices.getEventbus(), uriActionMapperTreeService.getUriActionMapperTree()));
+    uriActionManager.initialize(uriActionMapperTreeService.getUriActionMapperTree(),
+        new RoutingContextData(eventBus, uriActionMapperTreeService.getUriActionMapperTree()));
 
     if (context.getLocale() == null) {
       context.setLocale(getLocale());
@@ -210,10 +210,6 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 
   public Map<String, AbstractDemo> getDemos() {
     return demos;
-  }
-
-  public static VaadinUIServices UIServices() {
-    return getCurrent().uiServices;
   }
 
   @Override
