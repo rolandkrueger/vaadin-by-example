@@ -57,6 +57,10 @@ public class ViewManager implements MainView.Presenter, Serializable {
     activateView(new HomeView(templatingService.getLayoutTemplate("home")));
   }
 
+  public void showErrorView(String currentUriFragment) {
+    activateView(new ErrorView(currentUriFragment, templatingService.getLayoutTemplate("error")));
+  }
+
   private void activateView(View view) {
     view.buildLayout();
     getMainView().setContent(view.getContent());
@@ -71,7 +75,7 @@ public class ViewManager implements MainView.Presenter, Serializable {
     return mainView;
   }
 
-  public void resetViews() {
+  private void resetViews() {
     mainView = null;
     ui.setContent(getMainView().getContent());
     getMainView().setCurrentLocale(context.getLocale());

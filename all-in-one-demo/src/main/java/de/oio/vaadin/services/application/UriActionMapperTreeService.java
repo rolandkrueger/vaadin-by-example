@@ -49,6 +49,7 @@ public class UriActionMapperTreeService {
     ));
 
     UriActionMapperTree.MapperTreeBuilder mapperTreeBuilder = UriActionMapperTree.create()
+        .useDefaultActionCommandFactory(ShowErrorActionCommand::new)
         .setRootActionCommandFactory(() -> new RedirectActionCommand(actionMappers.get(HOME)))
         .buildMapperTree()
         .map(HOME).onActionFactory(ShowHomeUriActionCommand::new).finishMapper(mapper -> actionMappers.put(HOME, mapper))
