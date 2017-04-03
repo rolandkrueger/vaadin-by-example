@@ -1,4 +1,4 @@
-package de.oio.vaadin.uriactions;
+package de.oio.vaadin.uriactions.command;
 
 import de.oio.vaadin.DemoUI;
 import org.roklib.urifragmentrouting.UriActionCommand;

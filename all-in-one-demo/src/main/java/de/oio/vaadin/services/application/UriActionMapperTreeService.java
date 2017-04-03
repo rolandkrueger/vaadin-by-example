@@ -6,11 +6,7 @@ import de.oio.vaadin.demo.i18nforcustomlayoutsusingthymeleaf.I18nForCustomLayout
 import de.oio.vaadin.demo.suggestingcombobox.SuggestingComboBoxDemo;
 import de.oio.vaadin.demo.uiscope.UsingSessionAndUIScopeDemo;
 import de.oio.vaadin.demo.urifragmentactions.UriFragmentActionsDemo;
-import de.oio.vaadin.uriactions.ShowAboutViewUriActionCommand;
-import de.oio.vaadin.uriactions.ShowDemoSelectionViewUriActionCommand;
-import de.oio.vaadin.uriactions.ShowDemoUriActionCommand;
-import de.oio.vaadin.uriactions.ShowHomeUriActionCommand;
-import de.oio.vaadin.uriactions.command.RedirectActionCommand;
+import de.oio.vaadin.uriactions.command.*;
 import lombok.extern.slf4j.Slf4j;
 import org.roklib.urifragmentrouting.UriActionMapperTree;
 import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
