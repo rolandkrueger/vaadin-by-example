@@ -95,7 +95,7 @@
         <dependency>
             <groupId>org.vaadin.addons.uriactions</groupId>
             <artifactId>uri-fragment-actions-for-vaadin</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
