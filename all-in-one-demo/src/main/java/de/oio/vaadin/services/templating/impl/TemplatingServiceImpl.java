@@ -2,6 +2,8 @@ package de.oio.vaadin.services.templating.impl;
 
 import com.vaadin.server.VaadinServletService;
 import com.vaadin.spring.annotation.VaadinSessionScope;
+import de.oio.vaadin.DemoUI;
+import de.oio.vaadin.services.application.UriActionMapperTreeService;
 import de.oio.vaadin.services.templating.TemplateData;
 import de.oio.vaadin.services.templating.TemplatingService;
 import de.oio.vaadin.session.SessionContext;
@@ -20,6 +22,8 @@ import javax.servlet.ServletContext;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.Charset;
 
+import static de.oio.vaadin.services.application.UriActionMapperTreeService.*;
+
 @Service
 @VaadinSessionScope
 @Slf4j
@@ -29,10 +33,12 @@ public class TemplatingServiceImpl implements TemplatingService {
   private final MessageSource messageSource;
   private final SessionContext sessionContext;
   private ServletContext servletContext;
+  private final UriActionMapperTreeService uriActionMapperTreeService;
 
   @Autowired
-  public TemplatingServiceImpl(MessageSource messageSource, SessionContext sessionContext, ServletContext servletContext) {
+  public TemplatingServiceImpl(MessageSource messageSource, SessionContext sessionContext, ServletContext servletContext, UriActionMapperTreeService uriActionMapperTreeService) {
     this.servletContext = servletContext;
+    this.uriActionMapperTreeService = uriActionMapperTreeService;
     ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
     templateResolver.setCacheable(true);
     templateResolver.setPrefix("layouts/");
@@ -53,8 +59,17 @@ public class TemplatingServiceImpl implements TemplatingService {
         VaadinServletService.getCurrentResponse().getHttpServletResponse(),
         servletContext,
         sessionContext.getLocale());
+    context.setVariable("homeHref", getLinkTargetFor(HOME));
+    context.setVariable("demosHref", getLinkTargetFor(DEMOS));
+    context.setVariable("aboutHref", getLinkTargetFor(ABOUT));
+
     String mergedTemplate = templateEngine.process(templatePath, context);
     return TemplateData.of(templatePath, new ByteArrayInputStream(mergedTemplate.getBytes(Charset.forName("UTF-8"))));
+  }
+
+  public String getLinkTargetFor(String actionMapperName) {
+    return "#!" + uriActionMapperTreeService.getUriActionMapperTree().assembleUriFragment(DemoUI.getCurrent().createCapturedParameterValues(),
+        uriActionMapperTreeService.getActionMapperForName(actionMapperName));
   }
 
   private class MyMessageResolver extends AbstractMessageResolver {

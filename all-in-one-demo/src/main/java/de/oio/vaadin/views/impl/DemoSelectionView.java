@@ -10,6 +10,7 @@ import de.oio.vaadin.services.MessageProvider;
 import de.oio.vaadin.services.application.UriActionMapperTreeService;
 import de.oio.vaadin.services.templating.TemplateData;
 import de.oio.vaadin.views.View;
+import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
 import org.vaadin.highlighter.ComponentHighlighterExtension;
 
 import java.util.Collection;
@@ -46,10 +47,9 @@ public class DemoSelectionView extends TranslatedCustomLayout {
       }
 
       for (AbstractDemo demo : demos) {
-        // FIXME: hard-coded #!
-
+        UriPathSegmentActionMapper demoActionMapper = uriActionMapperTreeService.getActionMapperForName(demo.getName());
         Link link = new Link(messageProvider.getMessage(demo.getDemoInfo().getDemoHeadlineKey()),
-            new ExternalResource("#!" + uriActionMapperTreeService.getUriActionMapperTree().assembleUriFragment(uriActionMapperTreeService.getActionMapperForName(demo.getName()))));
+            new ExternalResource("#!" + uriActionMapperTreeService.getUriActionMapperTree().assembleUriFragment(DemoUI.getCurrent().createCapturedParameterValues(), demoActionMapper)));
         link.addStyleName("demoSelectorLink");
         addComponent(link);
       }

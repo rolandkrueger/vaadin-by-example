@@ -10,6 +10,7 @@ import de.oio.vaadin.uriactions.command.*;
 import lombok.extern.slf4j.Slf4j;
 import org.roklib.urifragmentrouting.UriActionMapperTree;
 import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
+import org.roklib.urifragmentrouting.parameter.SingleStringUriParameter;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +21,9 @@ import java.util.*;
 public class UriActionMapperTreeService {
 
   public final static String HOME = "home";
+  public final static String DEMOS = "demos";
+  public final static String ABOUT = "about";
+  public final static String LANG_PARAMETER = "lang";
 
   private UriActionMapperTree uriActionMapperTree;
   private Map<String, UriPathSegmentActionMapper> actionMappers;
@@ -48,13 +52,17 @@ public class UriActionMapperTreeService {
         UriFragmentActionsDemo.DEMO_NAME
     ));
 
+    SingleStringUriParameter languageParameter = new SingleStringUriParameter(LANG_PARAMETER);
+    languageParameter.setOptional("en");
+
     UriActionMapperTree.MapperTreeBuilder mapperTreeBuilder = UriActionMapperTree.create()
         .useDefaultActionCommandFactory(ShowErrorActionCommand::new)
         .setRootActionCommandFactory(() -> new RedirectActionCommand(actionMappers.get(HOME)))
+        .registerRootActionMapperParameter(languageParameter)
         .buildMapperTree()
         .map(HOME).onActionFactory(ShowHomeUriActionCommand::new).finishMapper(mapper -> actionMappers.put(HOME, mapper))
-        .map("about").onActionFactory(ShowAboutViewUriActionCommand::new).finishMapper()
-        .map("demos").onActionFactory(ShowDemoSelectionViewUriActionCommand::new).finishMapper()
+        .map(ABOUT).onActionFactory(ShowAboutViewUriActionCommand::new).finishMapper(mapper -> actionMappers.put(ABOUT, mapper))
+        .map(DEMOS).onActionFactory(ShowDemoSelectionViewUriActionCommand::new).finishMapper(mapper -> actionMappers.put(DEMOS, mapper))
         .mapSubtree("demo").onSubtree();
 
     for (String demoName : demos) {

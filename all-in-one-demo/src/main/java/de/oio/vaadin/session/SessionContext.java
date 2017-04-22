@@ -24,9 +24,4 @@ public class SessionContext implements Serializable {
   public Locale getLocale() {
     return locale;
   }
-
-  public Locale getDefaultLocale() {
-    return Locale.ENGLISH;
-  }
-
 }

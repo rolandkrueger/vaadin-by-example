@@ -25,12 +25,18 @@ import de.oio.vaadin.services.templating.TemplatingService;
 import de.oio.vaadin.session.SessionContext;
 import de.oio.vaadin.uriactions.RoutingContextData;
 import de.oio.vaadin.uriactions.URIActionManager;
+import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
+import org.roklib.urifragmentrouting.parameter.value.CapturedParameterValues;
+import org.roklib.urifragmentrouting.parameter.value.ParameterValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static de.oio.vaadin.services.application.UriActionMapperTreeService.LANG_PARAMETER;
+import static org.roklib.urifragmentrouting.UriActionMapperTree.ROOT_MAPPER;
 
 @PreserveOnRefresh
 @Theme("demo")
@@ -50,6 +56,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
   private final UriActionMapperTreeService uriActionMapperTreeService;
   private final URIActionManager uriActionManager;
   private final EventBus eventBus;
+  private UriPathSegmentActionMapper currentActionMapper;
 
   /**
    * The UI-scoped variable for demo {@link UsingSessionAndUIScopeDemo}.
@@ -86,7 +93,7 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
 
     LOG.info("Creating new UI with ID {} from session {}.", getUIId(), getSession().getSession().getId());
     uriActionManager.initialize(uriActionMapperTreeService.getUriActionMapperTree(),
-        new RoutingContextData(eventBus, uriActionMapperTreeService.getUriActionMapperTree()));
+        new RoutingContextData(eventBus, uriActionMapperTreeService.getUriActionMapperTree(), context));
 
     if (context.getLocale() == null) {
       context.setLocale(getLocale());
@@ -198,6 +205,20 @@ public class DemoUI extends UI implements Page.UriFragmentChangedListener {
    */
   public static ObjectProperty<String> getCurrentUIScopedVariable() {
     return DemoUI.getCurrent().getUIScopedVariable();
+  }
+
+  public void setCurrentActionMapper(UriPathSegmentActionMapper currentActionMapper) {
+    this.currentActionMapper = currentActionMapper;
+  }
+
+  public UriPathSegmentActionMapper getCurrentActionMapper() {
+    return currentActionMapper;
+  }
+
+  public CapturedParameterValues createCapturedParameterValues() {
+    CapturedParameterValues parameterValues = new CapturedParameterValues();
+    parameterValues.setValueFor(ROOT_MAPPER, LANG_PARAMETER, ParameterValue.forValue(context.getLocale().getLanguage()));
+    return parameterValues;
   }
 
   public ViewManager getViewManager() {
