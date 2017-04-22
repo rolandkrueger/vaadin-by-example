@@ -4,7 +4,7 @@ import de.oio.vaadin.DemoUI;
 import org.roklib.urifragmentrouting.UriActionCommand;
 import org.roklib.urifragmentrouting.annotation.CurrentUriFragment;
 
-public class ShowErrorActionCommand implements UriActionCommand {
+public class ShowErrorActionCommand extends AbstractUriActionCommand {
 
   private String currentUriFragment;
 

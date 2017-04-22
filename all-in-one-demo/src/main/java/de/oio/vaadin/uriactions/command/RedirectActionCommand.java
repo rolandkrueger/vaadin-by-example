@@ -10,9 +10,8 @@ import org.roklib.urifragmentrouting.mapper.UriPathSegmentActionMapper;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class RedirectActionCommand implements UriActionCommand {
+public class RedirectActionCommand extends AbstractUriActionCommand {
   private final UriPathSegmentActionMapper redirectToHandler;
-  private RoutingContextData context;
 
   public RedirectActionCommand(final UriPathSegmentActionMapper redirectToHandler) {
     this.redirectToHandler = checkNotNull(redirectToHandler);
@@ -20,18 +19,13 @@ public class RedirectActionCommand implements UriActionCommand {
 
   @Override
   public void run() {
-    context.getEventBus().post(new NavigateToURIEvent(this, context.getUriActionMapperTree().assembleUriFragment(redirectToHandler)));
+    routingContext.getEventBus().post(new NavigateToURIEvent(this, routingContext.getUriActionMapperTree().assembleUriFragment(redirectToHandler)));
   }
 
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-        .add("target", context.getUriActionMapperTree().assembleUriFragment(redirectToHandler))
+        .add("target", routingContext.getUriActionMapperTree().assembleUriFragment(redirectToHandler))
         .toString();
-  }
-
-  @RoutingContext
-  public void setRoutingContext(RoutingContextData context) {
-    this.context = context;
   }
 }
