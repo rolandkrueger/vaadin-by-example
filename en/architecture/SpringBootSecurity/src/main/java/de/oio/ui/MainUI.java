@@ -11,7 +11,6 @@ import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.UI;
 import de.oio.model.User;
 import de.oio.service.VaadinUIService;
-import de.oio.service.impl.VaadinAccessDecisionManager;
 import de.oio.service.impl.VaadinUIServiceImpl;
 import de.oio.ui.events.LogoutEvent;
 import de.oio.ui.events.NavigationEvent;
@@ -24,6 +23,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SpringUI(path = "")
 @Theme("valo")
