@@ -2,12 +2,13 @@ package de.oio.ui.views;
 
 import com.google.common.eventbus.EventBus;
 import com.vaadin.event.ShortcutAction;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import de.oio.ui.MainUI;
@@ -34,11 +35,11 @@ public class LoginView extends AbstractView implements Button.ClickListener {
         addComponent(new Label(
                 "Please enter your credentials:"));
         nameTF = new TextField();
-        nameTF.setRequired(true);
+        nameTF.setRequiredIndicatorVisible(true);
         nameTF.focus();
 
         passwordTF = new PasswordField();
-        passwordTF.setRequired(true);
+        passwordTF.setRequiredIndicatorVisible(true);
 
         addComponent(nameTF);
         addComponent(passwordTF);
@@ -46,7 +47,7 @@ public class LoginView extends AbstractView implements Button.ClickListener {
         Button loginButton = new Button("Login");
         loginButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         loginButton.addClickListener(this);
-        loginButton.setIcon(FontAwesome.SIGN_IN);
+        loginButton.setIcon(VaadinIcons.SIGN_IN);
         addComponent(loginButton);
 
         addComponent(new GoToMainViewLink());
@@ -59,7 +60,7 @@ public class LoginView extends AbstractView implements Button.ClickListener {
 
     @Override
     public void buttonClick(ClickEvent event) {
-        if (nameTF.isValid() && passwordTF.isValid()) {
+        if (!nameTF.isEmpty() && !passwordTF.isEmpty()) {
             Authentication authentication = new UsernamePasswordAuthenticationToken(nameTF.getValue(), passwordTF.getValue());
             if (userAuthenticationService.loginUser(authentication)) {
                 EventBus eventbus = MainUI.getCurrent().getEventbus();
@@ -69,10 +70,10 @@ public class LoginView extends AbstractView implements Button.ClickListener {
             }
         } else {
             if (nameTF.isEmpty()) {
-                nameTF.setRequiredError("Please enter your username");
+                Notification.show("Please enter your username");
             }
             if (passwordTF.isEmpty()) {
-                passwordTF.setRequiredError("Please enter your password");
+                Notification.show("Please enter your password");
             }
         }
     }

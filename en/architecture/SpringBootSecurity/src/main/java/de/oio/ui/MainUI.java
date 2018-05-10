@@ -23,7 +23,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,7 +87,7 @@ public class MainUI extends UI {
     public void userLoggedOut(LogoutEvent event) throws ServletException {
         ((VaadinServletRequest) VaadinService.getCurrentRequest()).getHttpServletRequest().logout();
         VaadinSession.getCurrent().close();
-        Page.getCurrent().setLocation("/");
+        Page.getCurrent().setLocation("/logout");
     }
 
     @Subscribe

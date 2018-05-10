@@ -20,6 +20,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @Order(200)
@@ -43,18 +46,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
+
         http
                 // permit access to any resource, access restrictions are handled at the level of Vaadin views
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
-        .and()
-                        // disable CSRF (Cross-Site Request Forgery) since Vaadin implements its own mechanism for this
+                .and()
+
+                // disable CSRF (Cross-Site Request Forgery) since Vaadin implements its own mechanism for this
                 .csrf().disable()
+
                 // let Vaadin be responsible for creating and managing its own sessions
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
-        .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
-        // @formatter:on
+                .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
+
+                // let spring do logout and then redirect to main page
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");;
     }
 
     @Bean
@@ -72,4 +79,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             }
         };
     }
+
+    /*
+    @Bean
+    public AuthenticationManager customAuthenticationManager() throws Exception {
+        return authenticationManager();
+    }
+     */
+    //To expose the AuthenticationManager built using configure(AuthenticationManagerBuilder) as a Spring bean
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
 }
