@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class VaadinSecuredWithSpringSecurityApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(new Object[]{VaadinSecuredWithSpringSecurityApplication.class}, args);
+        SpringApplication.run(VaadinSecuredWithSpringSecurityApplication.class, args);
     }
 }

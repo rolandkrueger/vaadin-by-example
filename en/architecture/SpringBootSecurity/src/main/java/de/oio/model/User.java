@@ -99,7 +99,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    @Transient
+    //@Transient
     public void setUnencryptedPassword(String password) {
         setPassword(new BCryptPasswordEncoder().encode(password));
     }

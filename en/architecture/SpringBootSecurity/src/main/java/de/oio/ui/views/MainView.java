@@ -1,11 +1,10 @@
 package de.oio.ui.views;
 
 import com.google.common.eventbus.Subscribe;
-import com.vaadin.data.util.ObjectProperty;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.ExternalResource;
-import com.vaadin.server.FontAwesome;
-import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
@@ -28,11 +27,11 @@ public class MainView extends AbstractView {
 
     public final static String NAME = "main";
 
-    private ObjectProperty<String> welcomeLabelText;
+    private String welcomeLabelText;
     private LogoutLink logoutLink;
 
     public MainView() {
-        welcomeLabelText = new ObjectProperty<>("");
+        welcomeLabelText = "";
 
         updateWelcomeMessage();
         Label welcomeLabel = new Label(welcomeLabelText, ContentMode.HTML);
@@ -42,10 +41,10 @@ public class MainView extends AbstractView {
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.setSpacing(true);
         final Link profileLink = new Link("Your Profile", new ExternalResource("#!" + ProfileView.NAME));
-        profileLink.setIcon(FontAwesome.USER);
+        profileLink.setIcon(VaadinIcons.USER);
         horizontalLayout.addComponent(profileLink);
         final Link invalidLink = new Link("Go to some invalid page", new ExternalResource("#!invalid_page"));
-        invalidLink.setIcon(FontAwesome.BOMB);
+        invalidLink.setIcon(VaadinIcons.BOMB);
         horizontalLayout.addComponent(invalidLink);
 
         logoutLink = new LogoutLink();
@@ -53,11 +52,11 @@ public class MainView extends AbstractView {
         horizontalLayout.addComponent(logoutLink);
 
         Link adminLink = new Link("Admin page", new ExternalResource("#!" + AdminView.NAME));
-        adminLink.setIcon(FontAwesome.LOCK);
+        adminLink.setIcon(VaadinIcons.LOCK);
         horizontalLayout.addComponent(adminLink);
 
         Link aboutLink = new Link("About", new ExternalResource("#!" + AboutView.NAME));
-        aboutLink.setIcon(FontAwesome.QUESTION_CIRCLE);
+        aboutLink.setIcon(VaadinIcons.QUESTION_CIRCLE);
         horizontalLayout.addComponent(aboutLink);
         addComponent(horizontalLayout);
 
@@ -80,8 +79,7 @@ public class MainView extends AbstractView {
             username = principal.getFullName();
         }
 
-        welcomeLabelText
-                .setValue(username == null ? "<h1>Welcome Stranger</h1><hr/>You're currently not logged in.<hr/>"
+        welcomeLabelText = (username == null ? "<h1>Welcome Stranger</h1><hr/>You're currently not logged in.<hr/>"
                         : "<h1>Welcome " + username + "!</h1><hr/>");
     }
 

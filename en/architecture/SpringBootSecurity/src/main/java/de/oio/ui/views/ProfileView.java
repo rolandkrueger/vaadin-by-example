@@ -1,9 +1,8 @@
 package de.oio.ui.views;
 
 import com.google.common.eventbus.Subscribe;
-import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Label;
 import de.oio.ui.MainUI;
@@ -24,12 +23,12 @@ public class ProfileView extends AbstractView {
 
     public final static String NAME = "profile";
 
-    private ObjectProperty<String> labelProperty;
+    private String labelProperty;
     private LogoutLink logoutLink;
 
     public ProfileView() {
         logoutLink = new LogoutLink();
-        labelProperty = new ObjectProperty<String>("");
+        labelProperty = "";
         addComponent(new Label(labelProperty, ContentMode.HTML));
         updateLabelProperty();
         addComponent(new GoToMainViewLink());
@@ -45,7 +44,7 @@ public class ProfileView extends AbstractView {
     }
 
     private void updateLabelProperty() {
-        labelProperty.setValue("<h1>"
+        labelProperty = ("<h1>"
                 + (MainUI.getCurrent().getCurrentUser() == null ? "" : MainUI.getCurrent().getCurrentUser().getFullName())
                 + "'s Profile</h1>... not much to see here, though.");
     }

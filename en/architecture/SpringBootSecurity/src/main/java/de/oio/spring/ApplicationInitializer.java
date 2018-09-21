@@ -5,7 +5,8 @@ import de.oio.model.User;
 import de.oio.service.RoleRepository;
 import de.oio.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+//import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.ServletContext;
