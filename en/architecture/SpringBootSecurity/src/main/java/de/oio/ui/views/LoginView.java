@@ -33,7 +33,7 @@ public class LoginView extends AbstractView implements Button.ClickListener {
 
     public LoginView() {
         addComponent(new Label(
-                "Please enter your credentials:"));
+                "Please enter your credentials (use admin:admin or user:user):"));
         nameTF = new TextField();
         nameTF.setRequiredIndicatorVisible(true);
         nameTF.focus();
