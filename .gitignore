@@ -9,6 +9,7 @@ ajcore.*
 rebel.xml
 .idea
 atlassian-ide-plugin.xml
+styles.css
 
 # Package Files #
 *.jar
