@@ -19,18 +19,16 @@ import javax.annotation.PostConstruct;
 @SpringView(name = ProfileView.NAME)
 public class ProfileView extends AbstractView {
 
-    private Logger LOG = LoggerFactory.getLogger(ProfileView.class);
-
     public final static String NAME = "profile";
-
-    private String labelProperty;
+    private Logger LOG = LoggerFactory.getLogger(ProfileView.class);
     private LogoutLink logoutLink;
+    private Label label;
 
     public ProfileView() {
         logoutLink = new LogoutLink();
-        labelProperty = "";
-        addComponent(new Label(labelProperty, ContentMode.HTML));
+        label = new Label("", ContentMode.HTML);
         updateLabelProperty();
+        addComponent(label);
         addComponent(new GoToMainViewLink());
         addComponent(logoutLink);
         logoutLink.updateVisibility();
@@ -44,7 +42,7 @@ public class ProfileView extends AbstractView {
     }
 
     private void updateLabelProperty() {
-        labelProperty = ("<h1>"
+        label.setValue("<h1>"
                 + (MainUI.getCurrent().getCurrentUser() == null ? "" : MainUI.getCurrent().getCurrentUser().getFullName())
                 + "'s Profile</h1>... not much to see here, though.");
     }
